@@ -19,7 +19,7 @@ export const addTodo = async (body) => {
   if (!body?.title?.trim()) {
     throw new Error("Text is required");
   }
-  await sql`INSERT INTO todosnew (text) VALUES (${body.text}) RETURNING *`;
+  await sql`INSERT INTO todosnew (title) VALUES (${body.title}) RETURNING *`;
   // RETURNING * để lấy record mới tạo nếu cần (optional)
 };
 
