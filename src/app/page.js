@@ -1,6 +1,6 @@
 // app/page.js
 import { getTodos, addTodo } from '../server/db';
-import { createTodo, toggleTodoAction, deleteTodoAction, toggleTodoAction } from './actions';
+import { createTodo, toggleTodoAction, deleteTodoAction } from './actions';
 import { revalidatePath } from 'next/cache';  // Nếu cần dùng trong inline action
 
 export const runtime = 'nodejs';
