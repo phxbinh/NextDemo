@@ -56,13 +56,3 @@ export async function deleteTodoAction(formData) {
     return { error: 'Có lỗi khi xóa todo.' };
   }
 }
-
-export async function toggleTodoAction(formData) {
-  const id = Number(formData.get('id'));
-
-  await sql`
-    UPDATE todosnew
-    SET completed = NOT completed
-    WHERE id = ${id}
-  `;
-}
