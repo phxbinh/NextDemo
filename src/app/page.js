@@ -21,10 +21,10 @@ export default async function Home() {
 
 async function handleAdd(formData) {
   'use server';
-  const text = formData.get('text')?.toString().trim();
-  if (!text) return;
+  const title = formData.get('title')?.toString().trim();
+  if (!title) return;
 
-  await addTodo({ text });   // GỌI DB TRỰC TIẾP
+  await addTodo({ title });   // GỌI DB TRỰC TIẾP
   revalidatePath('/');
 }
 
