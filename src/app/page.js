@@ -1,5 +1,5 @@
 // app/page.js
-import { getTodos } from '../server/db';
+import { getTodos, addTodo } from '../server/db';
 import { createTodo, toggleTodoAction, deleteTodoAction } from './actions';
 import { revalidatePath } from 'next/cache';  // Nếu cần dùng trong inline action
 
@@ -7,7 +7,7 @@ export default async function Home() {
   const todos = await getTodos();  // Fetch data server-side
 
   // Inline Server Action cho form add (cách đơn giản, không cần file actions riêng nếu muốn)
-  async function handleAdd(formData) {
+  /*async function handleAdd(formData) {
     'use server';
     const result = await createTodo(formData);
     if (result.error) {
@@ -15,7 +15,16 @@ export default async function Home() {
       console.error(result.error);
     }
     // revalidatePath('/') đã có trong action
-  }
+  }*/
+
+async function handleAdd(formData) {
+  'use server';
+  const text = formData.get('text')?.toString().trim();
+  if (!text) return;
+
+  await addTodo({ text });   // GỌI DB TRỰC TIẾP
+  revalidatePath('/');
+}
 
   return (
     <main className="max-w-2xl mx-auto p-8">
