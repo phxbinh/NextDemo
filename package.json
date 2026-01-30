@@ -9,19 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "15.0.0",                // hoặc phiên bản mới nhất (Next.js 15+)
-    "react": "^19.0.0-rc",           // React 19 cho Next.js 15
+    "next": "15.0.0",                
+    "react": "^19.0.0-rc",           
     "react-dom": "^19.0.0-rc",
-    "@neondatabase/serverless": "^1.0.0",  // Driver Neon chính thức, nhẹ, serverless-ready
-    // Nếu bạn dùng Tailwind (từ create-next-app): giữ nguyên
+    "@neondatabase/serverless": "^1.0.0",  
     "tailwindcss": "^3.4.0",
     "postcss": "^8.4.0",
     "autoprefixer": "^10.4.0"
   },
   "devDependencies": {
-    // Nếu bạn chọn JS thuần (không TS) thì không cần typescript, @types/*
     "eslint": "^8.0.0",
-    "eslint-config-next": "15.0.0"   // Config ESLint cho Next.js
-    // Nếu sau này muốn thêm shadcn/ui, lucide-react, hoặc drizzle-orm thì add vào đây
+    "eslint-config-next": "15.0.0" 
   }
 }
