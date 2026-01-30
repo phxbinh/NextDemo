@@ -1,7 +1,7 @@
 'use server';  // Bắt buộc cho Server Actions
 
 import { revalidatePath } from 'next/cache';
-import { addTodo, deleteTodo, toggleTodo } from '@/server/db';  // Import từ file db.js của bạn
+import { addTodo, deleteTodo, toggleTodo } from '../server/db';  // Import từ file db.js của bạn
 
 // Action để thêm todo mới
 export async function createTodo(formData) {
