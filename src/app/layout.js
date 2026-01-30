@@ -1,4 +1,6 @@
 // app/layout.js
+import './globals.css';
+
 export const metadata = {
   title: 'Todo App Neon + Next.js',
   description: 'Simple Todo with Neon DB',
