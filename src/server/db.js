@@ -10,7 +10,7 @@ export const getTodos = async () => {
   return rows;
 };*/
 export const getTodos = async () => {
-  return await sql`SELECT * FROM todos ORDER BY id DESC`;
+  return await sql`SELECT * FROM todosnew ORDER BY id DESC`;
 };
 
 
