@@ -58,6 +58,7 @@ export async function deleteTodoAction(formData) {
 }
 
 // Action để checked/unchecked todo
+/*
 export async function toggleTodoAction(formData) {
   const id = Number(formData.get('id'));
 
@@ -74,4 +75,4 @@ export async function toggleTodoAction(formData) {
     return { error: 'Toggle failed' };
   }
 }
-
+*/
