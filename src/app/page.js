@@ -35,7 +35,7 @@ async function handleAdd(formData) {
       {/* Form thêm todo */}
       <form action={handleAdd} className="mb-8 flex gap-2">
         <input
-          name="text"  // Phải khớp với field trong db (text thay vì title)
+          name="title"  // Phải khớp với field trong db (text thay vì title)
           type="text"
           placeholder="Nhập todo mới..."
           className="flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -69,7 +69,7 @@ async function handleAdd(formData) {
               </form>
 
               <span className={todo.completed ? 'line-through text-gray-500' : ''}>
-                {todo.text}
+                {todo.title}
               </span>
             </div>
 
