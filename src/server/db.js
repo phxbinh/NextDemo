@@ -5,7 +5,7 @@ const sql = neon(process.env.DATABASE_URL, { fullResults: true }); // fullResult
 
 // Lấy tất cả todos, sắp xếp mới nhất trước
 export const getTodos = async () => {
-  const { rows } = await sql`SELECT * FROM todos ORDER BY id DESC`;
+  const { rows } = await sql`SELECT * FROM todosnew ORDER BY id DESC`;
   return rows;
 };
 
@@ -14,7 +14,7 @@ export const addTodo = async (body) => {
   if (!body?.text?.trim()) {
     throw new Error("Text is required");
   }
-  await sql`INSERT INTO todos (text) VALUES (${body.text}) RETURNING *`;
+  await sql`INSERT INTO todosnew (text) VALUES (${body.text}) RETURNING *`;
   // RETURNING * để lấy record mới tạo nếu cần (optional)
 };
 
@@ -23,7 +23,7 @@ export const deleteTodo = async (body) => {
   if (!body?.id) {
     throw new Error("ID is required");
   }
-  await sql`DELETE FROM todos WHERE id = ${body.id}`;
+  await sql`DELETE FROM todosnew WHERE id = ${body.id}`;
 };
 
 // Bonus: Toggle completed (nếu bạn muốn thêm chức năng check/uncheck)
@@ -32,7 +32,7 @@ export const toggleTodo = async (body) => {
     throw new Error("ID is required");
   }
   await sql`
-    UPDATE todos 
+    UPDATE todosnew 
     SET completed = NOT completed 
     WHERE id = ${body.id}
   `;
