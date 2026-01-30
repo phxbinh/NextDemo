@@ -1,6 +1,6 @@
 // app/page.js
 import { getTodos, addTodo } from '../server/db';
-import { createTodo, toggleTodoAction, deleteTodoAction } from './actions';
+import { createTodo, toggleTodoAction, deleteTodoAction, toggleTodoAction } from './actions';
 import { revalidatePath } from 'next/cache';  // Nếu cần dùng trong inline action
 
 export const runtime = 'nodejs';
@@ -48,7 +48,7 @@ async function handleAdd(formData) {
           Thêm
         </button>
       </form>
-
+/*
       <ul className="space-y-3">
         {todos.map((todo) => (
           <li
@@ -85,6 +85,57 @@ async function handleAdd(formData) {
           </li>
         ))}
       </ul>
+*/
+
+<ul className="space-y-3">
+  {todos.map((todo) => (
+    <li
+      key={todo.id}
+      className="flex items-center justify-between p-4 bg-gray-50 rounded-lg shadow-sm"
+    >
+      <div className="flex items-center gap-3">
+        {/* Toggle completed */}
+        <form action={toggleTodoAction}>
+          <input type="hidden" name="id" value={todo.id} />
+
+          <button
+            type="submit"
+            aria-label="Toggle completed"
+            className="flex items-center"
+          >
+            <input
+              type="checkbox"
+              checked={todo.completed}
+              readOnly
+              className="w-5 h-5 cursor-pointer"
+            />
+          </button>
+        </form>
+
+        <span
+          className={
+            todo.completed
+              ? 'line-through text-gray-500 select-none'
+              : 'select-none'
+          }
+        >
+          {todo.text}
+        </span>
+      </div>
+
+      {/* Delete */}
+      <form action={deleteTodoAction}>
+        <input type="hidden" name="id" value={todo.id} />
+        <button
+          type="submit"
+          className="text-red-500 hover:text-red-700 font-medium"
+        >
+          Xóa
+        </button>
+      </form>
+    </li>
+  ))}
+</ul>
 
       {todos.length === 0 && (
         <p className="text-center text-gray-500 mt-10">Chưa có todo nào. Thêm đi!</p>
