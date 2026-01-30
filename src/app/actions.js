@@ -1,4 +1,5 @@
 'use server';  // Bắt buộc cho Server Actions
+export const runtime = 'nodejs';
 
 import { revalidatePath } from 'next/cache';
 import { addTodo, deleteTodo, toggleTodo } from '../server/db';  // Import từ file db.js của bạn
