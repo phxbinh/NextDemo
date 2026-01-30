@@ -56,23 +56,3 @@ export async function deleteTodoAction(formData) {
     return { error: 'Có lỗi khi xóa todo.' };
   }
 }
-
-// Action để checked/unchecked todo
-/*
-export async function toggleTodoAction(formData) {
-  const id = Number(formData.get('id'));
-
-  if (!id) {
-    return { error: 'Invalid ID' };
-  }
-
-  try {
-    await toggleTodo({ id });   // 👈 dùng lại DB layer
-    revalidatePath('/');
-    return { success: true };
-  } catch (err) {
-    console.error('Toggle todo failed:', err);
-    return { error: 'Toggle failed' };
-  }
-}
-*/
