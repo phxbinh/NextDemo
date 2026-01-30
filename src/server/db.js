@@ -4,10 +4,15 @@ import { neon } from "@neondatabase/serverless";
 const sql = neon(process.env.DATABASE_URL); // fullResults: true để lấy đầy đủ metadata nếu cần
 
 // Lấy tất cả todos, sắp xếp mới nhất trước
+/*
 export const getTodos = async () => {
   const { rows } = await sql`SELECT * FROM todosnew ORDER BY id DESC`;
   return rows;
+};*/
+export const getTodos = async () => {
+  return await sql`SELECT * FROM todos ORDER BY id DESC`;
 };
+
 
 // Thêm todo mới (dùng text thay vì title để khớp code bạn)
 export const addTodo = async (body) => {
