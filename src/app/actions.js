@@ -12,7 +12,7 @@ export async function createTodo(formData) {
   }
 
   try {
-    await addTodo({ title });  // Gọi hàm db
+    await addTodo({ title: title });  // Gọi hàm db
     revalidatePath('/');  // Refresh trang chủ để hiển thị todo mới
     return { success: true };
   } catch (error) {
