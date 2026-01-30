@@ -5,14 +5,14 @@ import { addTodo, deleteTodo, toggleTodo } from '../server/db';  // Import từ 
 
 // Action để thêm todo mới
 export async function createTodo(formData) {
-  const text = formData.get('text')?.toString().trim();
+  const title = formData.get('title')?.toString().trim();
 
-  if (!text) {
+  if (!title) {
     return { error: 'Vui lòng nhập nội dung todo!' };
   }
 
   try {
-    await addTodo({ text });  // Gọi hàm db
+    await addTodo({ title });  // Gọi hàm db
     revalidatePath('/');  // Refresh trang chủ để hiển thị todo mới
     return { success: true };
   } catch (error) {
