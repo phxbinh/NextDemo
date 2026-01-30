@@ -1,7 +1,7 @@
 // src/server/db.js
 import { neon } from "@neondatabase/serverless";
 
-const sql = neon(process.env.DATABASE_URL); // fullResults: true để lấy đầy đủ metadata nếu cần
+const sql = neon(process.env.DATABASE_URL,{fullResults: true}); // fullResults: true để lấy đầy đủ metadata nếu cần
 
 // Lấy tất cả todos, sắp xếp mới nhất trước
 export const getTodos = async () => {
