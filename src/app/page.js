@@ -56,23 +56,36 @@ async function handleAdd(formData) {
             className="flex items-center justify-between p-4 bg-gray-50 rounded-lg shadow-sm"
           >
 
-            <div className="flex items-center gap-3">
-              <form action={toggleTodoAction}>
-                <input type="hidden" name="id" value={todo.id} />
-                <button type="submit" className="cursor-pointer">
-                  <input
-                    type="checkbox"
-                    readOnly
-                    checked={todo.completed}
-                    className="w-5 h-5 pointer-events-none"
-                  />
-                </button>
-              </form>
+ <div className="flex items-center gap-3">
+  <form action={toggleTodoAction} className="flex items-center gap-3">
+    <input type="hidden" name="id" value={todo.id.toString()} />
+    
+    {/* Checkbox + label riêng */}
+    <input
+      type="checkbox"
+      id={`todo-${todo.id}`}  // id unique
+      checked={todo.completed}
+      readOnly
+      className="hidden"  // ẩn checkbox gốc nếu muốn style custom
+    />
+    <label
+      htmlFor={`todo-${todo.id}`}
+      className="cursor-pointer"
+    >
+      {/* Custom visual checkbox nếu muốn (hoặc dùng input bình thường) */}
+      <div className={`w-5 h-5 border-2 rounded-sm flex items-center justify-center ${todo.completed ? 'bg-blue-600 border-blue-600' : 'border-gray-400'}`}>
+        {todo.completed && <span className="text-white text-xs">✓</span>}
+      </div>
+    </label>
 
-              <span className={todo.completed ? 'line-through text-gray-500' : ''}>
-                {todo.title}
-              </span>
-            </div>
+    {/* Không cần button submit riêng – label click sẽ trigger? Không, cần button ẩn */}
+    <button type="submit" className="sr-only">Toggle</button>  {/* sr-only: ẩn visually nhưng vẫn accessible */}
+  </form>
+
+  <span className={todo.completed ? 'line-through text-gray-500' : ''}>
+    {todo.title}
+  </span>
+</div>
 
             <form action={deleteTodoAction}>
               <input type="hidden" name="id" value={todo.id} />
