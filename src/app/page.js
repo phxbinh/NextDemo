@@ -55,23 +55,27 @@ async function handleAdd(formData) {
             key={todo.id}
             className="flex items-center justify-between p-4 bg-gray-50 rounded-lg shadow-sm"
           >
-            <div className="flex items-center gap-3">
-              <form action={toggleTodoAction}>
-                <input type="hidden" name="id" value={todo.id} />
-                <button type="submit" className="cursor-pointer">
-                  <input
-                    type="checkbox"
-                    readOnly
-                    checked={todo.completed}
-                    className="w-5 h-5 pointer-events-none"
-                  />
-                </button>
-              </form>
 
-              <span className={todo.completed ? 'line-through text-gray-500' : ''}>
-                {todo.title}
-              </span>
-            </div>
+<div className="flex items-center gap-3">
+  <label className="flex items-center gap-3 cursor-pointer select-none">
+    <input
+      type="checkbox"
+      checked={todo.completed}
+      readOnly  // giữ để ngăn user toggle bằng keyboard nếu cần
+      onClick={async () => {
+        // Tạo FormData giả để truyền id (Server Action mong đợi FormData)
+        const formData = new FormData();
+        formData.append('id', todo.id.toString());  // .toString() nếu id là BigInt
+
+        await toggleTodoAction(formData);  // gọi trực tiếp action
+      }}
+      className="w-5 h-5 accent-blue-600 cursor-pointer"  // accent để màu đẹp hơn
+    />
+    <span className={todo.completed ? 'line-through text-gray-500' : ''}>
+      {todo.title}
+    </span>
+  </label>
+</div>
 
             <form action={deleteTodoAction}>
               <input type="hidden" name="id" value={todo.id} />
