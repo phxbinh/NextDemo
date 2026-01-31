@@ -39,6 +39,6 @@ export const toggleTodo = async (body) => {
   await sql`
     UPDATE todosnew 
     SET completed = NOT completed 
-    WHERE id = ${body.id}
+    WHERE id = ${body.id}::bigint
   `;
 };
