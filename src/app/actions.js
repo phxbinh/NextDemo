@@ -24,10 +24,11 @@ export async function createTodo(formData) {
 // Action để toggle completed (check/uncheck)
 export async function toggleTodoAction(formData) {
   const id = formData.get('id');
-
+  alert("before: "+id)
   if (!id) {
     return { error: 'ID không hợp lệ' };
   }
+  alert("after: "+id)
 
   try {
     await toggleTodo({ id: Number(id) });  // Ép Number vì FormData gửi string
