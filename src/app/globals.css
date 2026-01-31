@@ -1,3 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Nếu bạn có custom theme, thêm ở đây (CSS-first config) */
+/* Ví dụ:
+@theme {
+  --color-primary: #3b82f6;
+}
+*/
+
+/* Hoặc giữ custom variables nếu có */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
