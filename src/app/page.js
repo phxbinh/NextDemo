@@ -57,17 +57,24 @@ async function handleAdd(formData) {
           >
 
             <div className="flex items-center gap-3">
-              <form action={toggleTodoAction}>
-                <input type="hidden" name="id" value={todo.id} />
-                <button type="submit" className="cursor-pointer">
-                  <input
-                    type="checkbox"
-                    readOnly
-                    checked={todo.completed}
-                    className="w-5 h-5 pointer-events-none"
-                  />
-                </button>
-              </form>
+<form action={toggleTodoAction}>
+  <input type="hidden" name="id" value={todo.id} />
+  {/* Nếu server action cần biết trạng thái mới */}
+  <input type="hidden" name="completed" value={(!todo.completed).toString()} />
+
+  <button
+    type="submit"
+    className="flex items-center gap-2 cursor-pointer hover:opacity-80"
+  >
+    <input
+      type="checkbox"
+      checked={todo.completed}
+      readOnly
+      className="w-5 h-5 pointer-events-none accent-blue-600"
+    />
+    {/* hoặc dùng icon lucide-react / heroicons thay vì input checkbox thật */}
+  </button>
+</form>
 
               <span className={todo.completed ? 'line-through text-gray-500' : ''}>
                 {todo.title}
