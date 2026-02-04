@@ -66,7 +66,7 @@ async function handleToggle(formData) {
           >
 
             <div className="flex items-center gap-3">
-<form action={toggleTodoAction}>
+<form action={toggleTodoAction} method="post">
   <input type="hidden" name="id" value={todo.id} />
   {/* Nếu server action cần biết trạng thái mới */}
   {/*<input type="hidden" name="completed" value={(!todo.completed).toString()} />*/}
