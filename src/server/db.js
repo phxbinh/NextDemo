@@ -3,7 +3,15 @@
 import { neon } from "@neondatabase/serverless";
 import { unstable_noStore as noStore } from 'next/cache';
 
-const sql = neon(process.env.DATABASE_URL); // fullResults: true để lấy đầy đủ metadata nếu cần
+//const sql = neon(process.env.DATABASE_URL); // fullResults: true để lấy đầy đủ metadata nếu cần
+
+const sql = neon(process.env.DATABASE_URL, {
+  fullResults: true,          // trả về đầy đủ metadata, giúp debug
+  max: 20,                    // giới hạn connection pool
+  connectionTimeout: 30000,   // 30 giây
+  idleTimeout: 30000,
+});
+
 
 export const getTodos = async () => {
   noStore();
