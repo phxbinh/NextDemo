@@ -28,7 +28,7 @@ async function handleAdd(formData) {
   revalidatePath('/');
 }
 
-async function checkToggle(formData) {
+function checkToggle(formData) {
     alert(formData.get('id'));
   }
 
