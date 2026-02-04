@@ -17,13 +17,12 @@ export const getTodos = async () => {
 */
 
 // server/db.js
-export const getTodos = async () => {
-  return await sql(
-    'SELECT * FROM todosnew ORDER BY id DESC',
-    { cache: 'no-store' }
-  );
-};
+import { unstable_noStore as noStore } from 'next/cache';
 
+export const getTodos = async () => {
+  noStore();
+  return await sql`SELECT * FROM todosnew ORDER BY id DESC`;
+};
 
 // Thêm todo mới (dùng text thay vì title để khớp code bạn)
 export const addTodo = async (body) => {
