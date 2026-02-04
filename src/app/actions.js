@@ -42,7 +42,7 @@ export async function toggleTodoAction(formData) {
 }
 */
 
-export async function toggleTodoAction(formData) {
+export async function toggleTodoAction_(formData) {
   const idStr = formData.get('id');
 
   console.log('FormData id received:', idStr, typeof idStr);
@@ -91,3 +91,29 @@ export async function deleteTodoAction(formData) {
     return { error: 'Có lỗi khi xóa todo.' };
   }
 }
+
+
+export async function toggleTodoAction(formData) {
+  const id = formData.get('id');
+
+  console.log('FormData id received:', idStr, typeof idStr);
+
+  if (!id) {
+    return { error: 'ID không hợp lệ' };
+  }
+
+  try {
+    console.log('Calling toggleTodo with id (string):', id);
+    await toggleTodo({ id: Number(id) });
+    revalidatePath('/');
+    return { success: true };
+  } catch (error) {
+    console.error('Toggle error:', error);
+    return { error: 'Lỗi cập nhật trạng thái' };
+  }
+}
+
+
+
+
+
