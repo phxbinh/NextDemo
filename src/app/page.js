@@ -1,5 +1,5 @@
 // app/page.js
-import { getTodos, addTodo, toggleTodo } from '../server/db';
+import { getTodos, addTodo } from '../server/db';
 import { createTodo, toggleTodoAction, deleteTodoAction } from './actions';
 import { revalidatePath } from 'next/cache';  // Nếu cần dùng trong inline action
 
@@ -27,15 +27,6 @@ async function handleAdd(formData) {
   await addTodo({ title });   // GỌI DB TRỰC TIẾP
   revalidatePath('/');
 }
-
-async function handleToggle(formData) {
-  'use server';
-  const id = formData.get('id');
-  if (!id) return;
-
-  await toggleTodo({ id });   // GỌI DB TRỰC TIẾP
-  revalidatePath('/');
-  }
 
   return (
     <main className="max-w-2xl mx-auto p-8">
