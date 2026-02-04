@@ -21,6 +21,7 @@ export async function createTodo(formData) {
   }
 }
 
+/*
 // Action để toggle completed (check/uncheck)
 export async function toggleTodoAction(formData) {
   const id = formData.get('id');
@@ -39,6 +40,39 @@ export async function toggleTodoAction(formData) {
     return { error: 'Có lỗi khi cập nhật trạng thái.' };
   }
 }
+*/
+
+export async function toggleTodoAction(formData: FormData) {
+  const idStr = formData.get('id');
+
+  console.log('FormData id received:', idStr, typeof idStr); // debug
+
+  if (typeof idStr !== 'string' || !idStr.trim()) {
+    console.error('Invalid id from form');
+    return { error: 'ID không hợp lệ' };
+  }
+
+  const id = idStr.trim(); // giữ nguyên string
+
+  try {
+    console.log('Calling toggleTodo with id (string):', id);
+    await toggleTodo({ id });  // truyền string
+    revalidatePath('/');
+    return { success: true };
+  } catch (error) {
+    console.error('Toggle error:', error);
+    return { error: 'Lỗi cập nhật trạng thái' };
+  }
+}
+
+
+
+
+
+
+
+
+
 
 // Action để xóa todo
 export async function deleteTodoAction(formData) {
