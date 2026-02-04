@@ -1,4 +1,6 @@
 // src/server/db.js
+'use server';
+
 import { neon } from "@neondatabase/serverless";
 
 const sql = neon(process.env.DATABASE_URL); // fullResults: true để lấy đầy đủ metadata nếu cần
