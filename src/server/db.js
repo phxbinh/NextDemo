@@ -35,7 +35,8 @@ export const deleteTodo = async (body) => {
   await sql`DELETE FROM todosnew WHERE id = ${body.id}`;
 };
 
-export const toggleTodo = async ({ id }) => {
+
+export const toggleTodo_ = async ({ id }) => {
   const todoId = Number(id);
   if (!todoId) {
     throw new Error("ID is required");
@@ -46,6 +47,28 @@ export const toggleTodo = async ({ id }) => {
     WHERE id = ${todoId}
     RETURNING *;
   `;
+};
+
+export const toggleTodo = async ({ id }) => {
+  const todoId = Number(id);
+  if (!todoId) {
+    throw new Error("ID is required");
+  }
+
+  try {
+    const result = await sql`
+      UPDATE todosnew 
+      SET completed = NOT completed 
+      WHERE id = ${todoId}
+      RETURNING id, completed;
+    `;
+
+    console.log('[DB] Toggle success:', result.rows[0]);
+    return result.rows[0];
+  } catch (error) {
+    console.error('[DB] Toggle FAILED:', error.message, error.stack);
+    throw error;
+  }
 };
 
 
