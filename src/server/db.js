@@ -69,14 +69,14 @@ export const toggleTodo_ = async ({ id }) => {
 };
 
 
-export const toggleTodo = async ({ id }) => {
-  if (!id?.trim()) {
+export const toggleTodo = async (body) => {
+  if (!body?.id) {
     throw new Error("ID is required");
   }
   return await sql`
     UPDATE todosnew 
     SET completed = NOT completed 
-    WHERE id = ${id}
+    WHERE id = ${body.id}
     RETURNING id, completed;
   `;
 };
