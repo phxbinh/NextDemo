@@ -36,20 +36,21 @@ export const deleteTodo = async (body) => {
 };
 
 
-export const toggleTodo_ = async ({ id }) => {
+export const toggleTodo = async ({ id }) => {
   const todoId = Number(id);
   if (!todoId) {
     throw new Error("ID is required");
   }
+  console.log('[DB] Toggle success:', typeof todoId, ' - ', todoId);
   return await sql`
     UPDATE todosnew
     SET completed = NOT completed
     WHERE id = ${todoId}
-    RETURNING *;
+    RETURNING id, completed
   `;
 };
 
-export const toggleTodo = async ({ id }) => {
+export const toggleTodo_ = async ({ id }) => {
   const todoId = Number(id);
   if (!todoId) {
     throw new Error("ID is required");
