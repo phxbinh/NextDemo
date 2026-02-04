@@ -30,7 +30,7 @@ async function handleAdd(formData) {
 
 async function handleToggle(formData) {
   'use server';
-  const id = formData.get('id');
+  const id = formData.get('id')?.toString().trim();
   if (!id) return;
 
   await toggleTodo({ id });   // GỌI DB TRỰC TIẾP
