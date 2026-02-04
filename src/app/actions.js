@@ -21,58 +21,6 @@ export async function createTodo(formData) {
   }
 }
 
-/*
-// Action để toggle completed (check/uncheck)
-export async function toggleTodoAction(formData) {
-  const id = formData.get('id');
-  alert("before: "+id)
-  if (!id) {
-    return { error: 'ID không hợp lệ' };
-  }
-  alert("after: "+id)
-
-  try {
-    await toggleTodo({ id: Number(id) });  // Ép Number vì FormData gửi string
-    revalidatePath('/');
-    return { success: true };
-  } catch (error) {
-    console.error('Lỗi toggle todo:', error);
-    return { error: 'Có lỗi khi cập nhật trạng thái.' };
-  }
-}
-*/
-
-export async function toggleTodoAction_(formData) {
-  const idStr = formData.get('id');
-
-  console.log('FormData id received:', idStr, typeof idStr);
-
-  if (typeof idStr !== 'string' || !idStr.trim()) {
-    console.error('Invalid id from form');
-    return { error: 'ID không hợp lệ' };
-  }
-
-  const id = idStr.trim(); // Giữ string để Neon bind an toàn
-
-  try {
-    console.log('Calling toggleTodo with id (string):', id);
-    await toggleTodo({ id });
-    revalidatePath('/');
-    return { success: true };
-  } catch (error) {
-    console.error('Toggle error:', error);
-    return { error: 'Lỗi cập nhật trạng thái' };
-  }
-}
-
-
-
-
-
-
-
-
-
 
 // Action để xóa todo
 export async function deleteTodoAction(formData) {
@@ -92,25 +40,19 @@ export async function deleteTodoAction(formData) {
   }
 }
 
-
+// Toggle completed chechked box todosnew
 export async function toggleTodoAction(formData) {
-  const id = formData.get('id');
+  const rawId = formData.get('id');
+  const id = Number(rawId);
 
-  console.log('FormData id received:', idStr, typeof idStr);
+  console.log('[ACTION] toggle id:', rawId, '=>', id, typeof id);
 
-  if (!id) {
-    return { error: 'ID không hợp lệ' };
+  if (!Number.isInteger(id)) {
+    throw new Error('Invalid ID');
   }
 
-  try {
-    console.log('Calling toggleTodo with id (string):', id);
-    await toggleTodo({ id: Number(id) });
-    revalidatePath('/');
-    return { success: true };
-  } catch (error) {
-    console.error('Toggle error:', error);
-    return { error: 'Lỗi cập nhật trạng thái' };
-  }
+  await toggleTodo({ id });
+  revalidatePath('/');
 }
 
 
