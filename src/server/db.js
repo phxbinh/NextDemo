@@ -1,5 +1,4 @@
 // src/server/db.js
-'use server';
 
 import { neon } from "@neondatabase/serverless";
 
@@ -71,14 +70,26 @@ export const toggleTodo_ = async ({ id }) => {
 };
 
 
-export const toggleTodo = async (body) => {
+export const toggleTodo__ = async (body) => {
   if (!body?.id) {
     throw new Error("ID is required");
   }
   return await sql`UPDATE todosnew SET completed = NOT completed WHERE id = ${body.id} RETURNING *`;
 };
 
+export const toggleTodo = async ({ id }) => {
+  const todoId = Number(id);
+  if (!Number.isInteger(todoId)) {
+    throw new Error("Invalid ID");
+  }
 
+  return await sql`
+    UPDATE todosnew
+    SET completed = NOT completed
+    WHERE id = ${todoId}
+    RETURNING *;
+  `;
+};
 
 
 
