@@ -88,8 +88,8 @@ export const toggleTodo__ = async (body) => {
 
 export const toggleTodo = async ({ id }) => {
   const todoId = Number(id);
-  if (!Number.isInteger(todoId)) {
-    throw new Error("Invalid ID");
+  if (!todoId) {
+    throw new Error("ID is required");
   }
 
   return await sql`
