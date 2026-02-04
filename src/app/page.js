@@ -28,10 +28,6 @@ async function handleAdd(formData) {
   revalidatePath('/');
 }
 
-function checkToggle(formData) {
-    alert(formData.get('id'));
-  }
-
   return (
     <main className="max-w-2xl mx-auto p-8">
       <h1 className="text-4xl font-bold mb-8 text-center">Todo App Neon JS</h1>
@@ -61,7 +57,7 @@ function checkToggle(formData) {
           >
 
             <div className="flex items-center gap-3">
-<form action={checkToggle}>
+<form action={toggleTodoAction}>
   <input type="hidden" name="id" value={todo.id} />
   {/* Nếu server action cần biết trạng thái mới */}
   {/*<input type="hidden" name="completed" value={(!todo.completed).toString()} />*/}
