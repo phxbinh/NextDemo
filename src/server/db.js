@@ -45,26 +45,24 @@ export const toggleTodo = async (body) => {
 };
 */
 
-// db.ts hoặc file server
-export const toggleTodo = async (body: { id: string }) => {
-  if (!body?.id?.trim()) {
+export const toggleTodo = async ({ id }) => {
+  if (!id?.trim()) {
     throw new Error("ID is required");
   }
 
-  console.log('Executing SQL toggle for id:', body.id);
+  console.log('Executing SQL toggle for id:', id);
 
   const result = await sql`
     UPDATE todosnew 
     SET completed = NOT completed 
-    WHERE id = ${body.id}
-    RETURNING id, completed;   -- thêm RETURNING để debug
+    WHERE id = ${id}
+    RETURNING id, completed;
   `;
 
-  console.log('SQL result:', result); // xem rowCount, rows
+  console.log('Update result:', result.rows); // rows là array
 
   if (result.rowCount === 0) {
-    console.warn(`No row found/updated for id: ${body.id}`);
-    // Có thể throw nếu muốn báo lỗi
+    console.warn(`No row found/updated for id: ${id}`);
   }
 
   return result;
