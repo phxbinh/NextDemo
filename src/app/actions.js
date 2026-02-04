@@ -1,3 +1,4 @@
+// src/app/actions.js
 'use server';  // Bắt buộc cho Server Actions
 
 import { revalidatePath } from 'next/cache';
