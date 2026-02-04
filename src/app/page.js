@@ -9,25 +9,15 @@ export default async function Home() {
   const todos = await getTodos();  // Fetch data server-side
 
   // Inline Server Action cho form add (cách đơn giản, không cần file actions riêng nếu muốn)
-  /*async function handleAdd(formData) {
+  async function handleAdd(formData) {
     'use server';
-    const result = await createTodo(formData);
-    if (result.error) {
-      // Có thể throw hoặc return error để hiển thị
-      console.error(result.error);
-    }
-    // revalidatePath('/') đã có trong action
-  }*/
-
-async function handleAdd(formData) {
-  'use server';
-  const title = formData.get('title')?.toString().trim();
-  if (!title) return;
-
-  await addTodo({ title });   // GỌI DB TRỰC TIẾP
-  revalidatePath('/');
-}
-
+    const title = formData.get('title')?.toString().trim();
+    if (!title) return;
+  
+    await addTodo({ title });   // GỌI DB TRỰC TIẾP
+    revalidatePath('/');
+  }
+  
   return (
     <main className="max-w-2xl mx-auto p-8">
       <h1 className="text-4xl font-bold mb-8 text-center">Todo App Neon JS</h1>
@@ -55,32 +45,29 @@ async function handleAdd(formData) {
             key={todo.id}
             className="flex items-center justify-between p-4 bg-gray-50 rounded-lg shadow-sm"
           >
-
             <div className="flex items-center gap-3">
-<form action={toggleTodoAction} method="post">
-  <input type="hidden" name="id" value={todo.id} />
-  {/* Nếu server action cần biết trạng thái mới */}
-  <input type="hidden" name="completed" value={(!todo.completed).toString()} />
-
-  <button
-    type="submit"
-    className="flex items-center gap-2 cursor-pointer hover:opacity-80"
-  >
-    <input
-      type="checkbox"
-      checked={todo.completed}
-      readOnly
-      className="w-5 h-5 pointer-events-none accent-blue-600"
-    />
-    {/* hoặc dùng icon lucide-react / heroicons thay vì input checkbox thật */}
-  </button>
-</form>
-
+              <form action={toggleTodoAction} method="post">
+                <input type="hidden" name="id" value={todo.id} />
+                {/* Nếu server action cần biết trạng thái mới */}
+                <input type="hidden" name="completed" value={(!todo.completed).toString()} />
+              
+                <button
+                  type="submit"
+                  className="flex items-center gap-2 cursor-pointer hover:opacity-80"
+                >
+                  <input
+                    type="checkbox"
+                    checked={todo.completed}
+                    readOnly
+                    className="w-5 h-5 pointer-events-none accent-blue-600"
+                  />
+                  {/* hoặc dùng icon lucide-react / heroicons thay vì input checkbox thật */}
+                </button>
+              </form>
               <span className={todo.completed ? 'line-through text-gray-500' : ''}>
                 {todo.title} - {todo.id} - {typeof todo.id}
               </span>
             </div>
-
             <form action={deleteTodoAction}>
               <input type="hidden" name="id" value={todo.id} />
               <button
