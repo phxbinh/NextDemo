@@ -30,7 +30,7 @@ async function handleAdd(formData) {
 
 async function handleToggle(formData) {
   'use server';
-  const id = formData.get('id')?.toString().trim();
+  const id = formData.get('id');
   if (!id) return;
 
   await toggleTodo({ id });   // GỌI DB TRỰC TIẾP
@@ -86,7 +86,7 @@ async function handleToggle(formData) {
 </form>
 
               <span className={todo.completed ? 'line-through text-gray-500' : ''}>
-                {todo.title}
+                {todo.title} - {todo.id}
               </span>
             </div>
 
