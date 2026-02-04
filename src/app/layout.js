@@ -1,5 +1,4 @@
-// app/layout.js
-//import './globals.css';
+// src/app/layout.js
 
 export const metadata = {
   title: 'Todo App Neon + Next.js',
