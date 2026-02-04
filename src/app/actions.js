@@ -42,21 +42,21 @@ export async function toggleTodoAction(formData) {
 }
 */
 
-export async function toggleTodoAction(formData: FormData) {
+export async function toggleTodoAction(formData) {
   const idStr = formData.get('id');
 
-  console.log('FormData id received:', idStr, typeof idStr); // debug
+  console.log('FormData id received:', idStr, typeof idStr);
 
   if (typeof idStr !== 'string' || !idStr.trim()) {
     console.error('Invalid id from form');
     return { error: 'ID không hợp lệ' };
   }
 
-  const id = idStr.trim(); // giữ nguyên string
+  const id = idStr.trim(); // Giữ string để Neon bind an toàn
 
   try {
     console.log('Calling toggleTodo with id (string):', id);
-    await toggleTodo({ id });  // truyền string
+    await toggleTodo({ id });
     revalidatePath('/');
     return { success: true };
   } catch (error) {
