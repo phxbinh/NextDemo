@@ -31,6 +31,7 @@ export const deleteTodo = async (body) => {
   await sql`DELETE FROM todosnew WHERE id = ${body.id}`;
 };
 
+/*
 // Bonus: Toggle completed (nếu bạn muốn thêm chức năng check/uncheck)
 export const toggleTodo = async (body) => {
   if (!body?.id) {
@@ -42,3 +43,35 @@ export const toggleTodo = async (body) => {
     WHERE id = ${body.id}
   `;
 };
+*/
+
+// db.ts hoặc file server
+export const toggleTodo = async (body: { id: string }) => {
+  if (!body?.id?.trim()) {
+    throw new Error("ID is required");
+  }
+
+  console.log('Executing SQL toggle for id:', body.id);
+
+  const result = await sql`
+    UPDATE todosnew 
+    SET completed = NOT completed 
+    WHERE id = ${body.id}
+    RETURNING id, completed;   -- thêm RETURNING để debug
+  `;
+
+  console.log('SQL result:', result); // xem rowCount, rows
+
+  if (result.rowCount === 0) {
+    console.warn(`No row found/updated for id: ${body.id}`);
+    // Có thể throw nếu muốn báo lỗi
+  }
+
+  return result;
+};
+
+
+
+
+
+
