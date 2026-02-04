@@ -86,7 +86,7 @@ async function handleToggle(formData) {
 </form>
 
               <span className={todo.completed ? 'line-through text-gray-500' : ''}>
-                {todo.title} - {todo.id}
+                {todo.title} - {todo.id} - {typeof todo.id}
               </span>
             </div>
 
