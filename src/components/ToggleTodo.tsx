@@ -2,7 +2,7 @@
 'use client';
 
 import { useTransition } from 'react';
-import { toggleTodoAction } from '@/app/actions'; // adjust path
+import { toggleTodoAction } from '../app/actions'; // adjust path
 
 export function ToggleTodo({ id, completed }: { id: number; completed: boolean }) {
   const [isPending, startTransition] = useTransition();
@@ -10,7 +10,7 @@ export function ToggleTodo({ id, completed }: { id: number; completed: boolean }
   const handleToggle = () => {
     startTransition(async () => {
       const formData = new FormData();
-      formData.append('id', id.toString());
+      formData.append('id');
 
       try {
         await toggleTodoAction(formData);
