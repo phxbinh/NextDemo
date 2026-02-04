@@ -3,7 +3,7 @@ import { getTodos, addTodo, toggleTodo } from '../server/db';
 import { createTodo, toggleTodoAction, deleteTodoAction } from './actions';
 import { revalidatePath } from 'next/cache';  // Nếu cần dùng trong inline action
 
-export const runtime = 'nodejs';
+
 
 export default async function Home() {
   const todos = await getTodos();  // Fetch data server-side
