@@ -60,7 +60,7 @@ async function handleAdd(formData) {
 <form action={toggleTodoAction} method="post">
   <input type="hidden" name="id" value={todo.id} />
   {/* Nếu server action cần biết trạng thái mới */}
-  {/*<input type="hidden" name="completed" value={(!todo.completed).toString()} />*/}
+  <input type="hidden" name="completed" value={(!todo.completed).toString()} />
 
   <button
     type="submit"
