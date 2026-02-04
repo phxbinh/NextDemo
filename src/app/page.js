@@ -71,11 +71,11 @@ export default async function Home() {
             </div> */}
             
             <div className="flex items-center gap-3">
-  <ToggleTodo id={todo.id} completed={todo.completed} />
-  <span className={todo.completed ? 'line-through text-gray-500' : ''}>
-    {todo.title} - {todo.id}
-  </span>
-</div>
+              <ToggleTodo id={todo.id} completed={todo.completed} />
+              <span className={todo.completed ? 'line-through text-gray-500' : ''}>
+                {todo.title} - {todo.id}
+              </span>
+            </div>
             
             
             <form action={deleteTodoAction}>
