@@ -10,7 +10,7 @@ export function ToggleTodo({ id, completed }: { id: number; completed: boolean }
   const handleToggle = () => {
     startTransition(async () => {
       const formData = new FormData();
-      formData.append('id');
+      formData.append('id', id.toString());
 
       try {
         await toggleTodoAction(formData);
