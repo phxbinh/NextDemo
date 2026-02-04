@@ -29,7 +29,7 @@ async function handleAdd(formData) {
 }
 
 async function checkToggle(formDat) {
-    alert(formData.get('id')
+    alert(formData.get('id'));
   }
 
   return (
