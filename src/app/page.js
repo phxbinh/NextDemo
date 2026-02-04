@@ -2,6 +2,7 @@
 import { getTodos, addTodo } from '../server/db';
 import { createTodo, toggleTodoAction, deleteTodoAction } from './actions';
 import { revalidatePath } from 'next/cache';  // Nếu cần dùng trong inline action
+import ToggleTodo from '../components/ToggleTodo';
 
 
 
@@ -45,11 +46,12 @@ export default async function Home() {
             key={todo.id}
             className="flex items-center justify-between p-4 bg-gray-50 rounded-lg shadow-sm"
           >
+          {/*
             <div className="flex items-center gap-3">
               <form action={toggleTodoAction} method="post">
-                <input type="hidden" name="id" value={todo.id} />
+                <input type="hidden" name="id" value={todo.id} />*/}
                 {/* Nếu server action cần biết trạng thái mới */}
-                <input type="hidden" name="completed" value={(!todo.completed).toString()} />
+               {/* <input type="hidden" name="completed" value={(!todo.completed).toString()} />
               
                 <button
                   type="submit"
@@ -61,13 +63,21 @@ export default async function Home() {
                     readOnly
                     className="w-5 h-5 pointer-events-none accent-blue-600"
                   />
-                  {/* hoặc dùng icon lucide-react / heroicons thay vì input checkbox thật */}
                 </button>
               </form>
               <span className={todo.completed ? 'line-through text-gray-500' : ''}>
                 {todo.title} - {todo.id} - {typeof todo.id}
               </span>
-            </div>
+            </div> */}
+            
+            <div className="flex items-center gap-3">
+  <ToggleTodo id={todo.id} completed={todo.completed} />
+  <span className={todo.completed ? 'line-through text-gray-500' : ''}>
+    {todo.title} - {todo.id}
+  </span>
+</div>
+            
+            
             <form action={deleteTodoAction}>
               <input type="hidden" name="id" value={todo.id} />
               <button
