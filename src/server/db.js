@@ -10,8 +10,18 @@ export const getTodos = async () => {
   const { rows } = await sql`SELECT * FROM todosnew ORDER BY id DESC`;
   return rows;
 };*/
+/*
 export const getTodos = async () => {
   return await sql`SELECT * FROM todosnew ORDER BY id DESC`;
+};
+*/
+
+// server/db.js
+export const getTodos = async () => {
+  return await sql(
+    'SELECT * FROM todosnew ORDER BY id DESC',
+    { cache: 'no-store' }
+  );
 };
 
 
