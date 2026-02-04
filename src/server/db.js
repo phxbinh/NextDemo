@@ -3,15 +3,16 @@
 import { neon } from "@neondatabase/serverless";
 import { unstable_noStore as noStore } from 'next/cache';
 
-//const sql = neon(process.env.DATABASE_URL); // fullResults: true để lấy đầy đủ metadata nếu cần
+const sql = neon(process.env.DATABASE_URL_O); // fullResults: true để lấy đầy đủ metadata nếu cần
 
+/*
 const sql = neon(process.env.DATABASE_URL, {
   fullResults: true,          // trả về đầy đủ metadata, giúp debug
   max: 20,                    // giới hạn connection pool
   connectionTimeout: 30000,   // 30 giây
   idleTimeout: 30000,
 });
-
+*/
 
 export const getTodos = async () => {
   noStore();
@@ -46,10 +47,11 @@ export const toggleTodo = async ({ id }) => {
     UPDATE todosnew
     SET completed = NOT completed
     WHERE id = ${todoId}
-    RETURNING id, completed
+    RETURNING id, completed;
   `;
 };
 
+/*
 export const toggleTodo_ = async ({ id }) => {
   const todoId = Number(id);
   if (!todoId) {
@@ -71,6 +73,6 @@ export const toggleTodo_ = async ({ id }) => {
     throw error;
   }
 };
-
+*/
 
 
