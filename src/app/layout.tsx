@@ -1,5 +1,4 @@
 // src/app/layout.js
-/*
 import './globals.css';
 
 export const metadata = {
@@ -16,8 +15,8 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-*/
 
+/*
 'use client'; // Vì cần state cho toggle sidebar trên mobile
 
 import { useState } from 'react';
@@ -31,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="vi">
       <body className="flex min-h-screen bg-gradient-to-br from-gray-950 via-purple-950 to-indigo-950 text-gray-100">
-        {/* Sidebar */}
+      
         <div
           className={`fixed inset-y-0 left-0 z-50 w-64 transform transition-transform duration-300 ease-in-out
             ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
@@ -40,9 +39,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Sidebar />
         </div>
 
-        {/* Nội dung chính */}
+     
         <div className="flex-1 flex flex-col">
-          {/* Top bar với hamburger button cho mobile */}
+          
           <header className="md:hidden sticky top-0 z-40 bg-black/40 backdrop-blur-xl border-b border-cyan-500/30">
             <div className="flex items-center justify-between px-4 h-16">
               <button
@@ -62,17 +61,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 Neon JS
               </div>
 
-              <div className="w-8" /> {/* placeholder cho cân bằng */}
+              <div className="w-8" /> 
             </div>
           </header>
 
-          {/* Main content */}
+          
           <main className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'md:ml-0' : 'md:ml-64'}`}>
             {children}
           </main>
         </div>
 
-        {/* Overlay backdrop khi sidebar mở trên mobile */}
+        <note> Overlay backdrop khi sidebar mở trên mobile </note>
         {isSidebarOpen && (
           <div
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
@@ -83,6 +82,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-
+*/
 
 
