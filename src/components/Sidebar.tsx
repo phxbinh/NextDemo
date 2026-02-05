@@ -11,6 +11,7 @@ export default function Sidebar() {
     { name: 'Todos', href: '/todos' },
     { name: 'Profile', href: '/profile' },
     { name: 'Settings', href: '/settings' },
+    { name: 'About', htef: '/about' }
   ];
 
   return (
