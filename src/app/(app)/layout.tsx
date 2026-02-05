@@ -98,7 +98,12 @@ export default function DashboardLayout({
           </div>
         </header>
 
-        <main className="flex-1 md:ml-64">
+        <main className="flex-1
+      min-h-screen
+      overflow-y-auto
+      px-4 py-6
+      md:ml-64
+">
           {children}
         </main>
       </div>
