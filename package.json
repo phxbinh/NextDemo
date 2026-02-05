@@ -15,8 +15,7 @@
     "@neondatabase/serverless": "^0.9.5",
      "typescript": "^5.5.4",
   "@types/react": "^18.3.3",
-  "@types/node": "^22.7.4",
-  "next-auth": "^5.0.0"
+  "@types/node": "^22.7.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.0",
