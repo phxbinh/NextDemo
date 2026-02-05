@@ -1,4 +1,5 @@
 // src/app/layout.js
+/*
 import './globals.css';
 
 export const metadata = {
@@ -15,8 +16,10 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+*/
 
-/*
+
+
 'use client'; // Vì cần state cho toggle sidebar trên mobile
 
 import { useState } from 'react';
@@ -82,6 +85,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-*/
+
 
 
