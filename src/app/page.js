@@ -119,6 +119,12 @@ export default function Home() {
         >
           Về App
         </Link>
+                <Link 
+          href="/dashboard" 
+          className="px-10 py-5 bg-black/30 backdrop-blur-xl border border-cyan-500/30 rounded-2xl text-cyan-300 font-medium hover:bg-cyan-900/30 transition-all"
+        >
+          Dashboard
+        </Link>
       </div>
     </main>
   );
