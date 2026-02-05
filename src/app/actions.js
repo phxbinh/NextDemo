@@ -15,15 +15,16 @@ export async function createTodo(formData) {
   try {
     await addTodo({ title: title });  // Gọi hàm db
     revalidatePath('/');  // Refresh trang chủ để hiển thị todo mới
-    return { success: true };
+    //return { success: true };
   } catch (error) {
     console.error('Lỗi khi thêm todo:', error);
-    return { error: 'Có lỗi xảy ra khi thêm todo.' };
+    //return { error: 'Có lỗi xảy ra khi thêm todo.' };
   }
 }
 
 
 // Action để xóa todo
+/*
 export async function deleteTodoAction(formData) {
   const id = formData.get('id');
 
@@ -40,6 +41,27 @@ export async function deleteTodoAction(formData) {
     return { error: 'Có lỗi khi xóa todo.' };
   }
 }
+*/
+// Action để xóa todo
+export async function deleteTodoAction(formData) {
+  const id = formData.get('id');
+
+  if (!id) {
+    console.error('ID không hợp lệ');
+    return;  // hoặc throw new Error('ID không hợp lệ') nếu muốn error boundary catch
+  }
+
+  try {
+    await deleteTodo({ id: Number(id) });
+    revalidatePath('/');  // hoặc '/todos' nếu trang cụ thể
+    // Không return gì cả → OK
+  } catch (error) {
+    console.error('Lỗi xóa todo:', error);
+    // Không return error object → có thể throw nếu muốn hiển thị error page
+    // throw new Error('Có lỗi khi xóa todo.');
+  }
+}
+
 
 // Toggle completed chechked box todosnew
 export async function toggleTodoAction(formData) {
