@@ -17,7 +17,7 @@ export default async function Todos() {
     revalidatePath('/');
   }
   return (
-  <main className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-950 to-purple-950 text-gray-100">
+ 
     <div className="max-w-2xl mx-auto p-6 md:p-8">
       <h1 className="text-5xl md:text-6xl font-extrabold mb-10 text-center tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 drop-shadow-lg">
         Todo App Neon JS
@@ -85,7 +85,13 @@ export default async function Todos() {
         </div>
       )}
     </div>
-  </main>
+
 );
   }
+
+/*
+
+ <main className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-950 to-purple-950 text-gray-100">
+  </main>
+*/
   
