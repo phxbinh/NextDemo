@@ -1,4 +1,5 @@
 // app/not-found.tsx (hoặc app/not-found.js)
+/*
 import { getServerSession } from 'next-auth'; // nếu dùng server component
 // hoặc import { useSession } from 'next-auth/react'; nếu client
 
@@ -19,10 +20,22 @@ export default async function NotFound() {
           ? 'Bạn có thể đang truy cập sai link.' 
           : 'Vui lòng đăng nhập để tiếp tục.'}
       </p>
-      {/* Thêm link về home */}
+      
       <a href="/" className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
         Về trang chủ
       </a>
     </div>
   );
 }
+*/
+
+
+
+export const dynamic = 'force-dynamic'; // hoặc 'force-static' nếu muốn, nhưng tốt nhất fix gốc
+
+export default function NotFound() {
+  return <h1>404 - Không tìm thấy trang</h1>;
+}
+
+
+
