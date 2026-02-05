@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
 'use client'; // Vì cần state cho toggle sidebar trên mobile
 
 import { useState } from 'react';
-import Sidebar from './components/Sidebar';
+import Sidebar from '../components/Sidebar';
 //import Navbar from '@/components/Navbar'; // nếu có
 import './globals.css';
 
