@@ -1,10 +1,9 @@
 // src/app/page.js
+/*
 import { getTodos, addTodo } from '../server/db';
 import { createTodo, toggleTodoAction, deleteTodoAction } from './actions';
 import { revalidatePath } from 'next/cache';  // Nếu cần dùng trong inline action
 import { ToggleTodo } from '../components/ToggleTodo';
-
-
 
 export default async function Home() {
   const todos = await getTodos();  // Fetch data server-side
@@ -25,7 +24,7 @@ export default async function Home() {
         Todo App Neon JS
       </h1>
 
-      {/* Form thêm todo - glassmorphism + neon glow */}
+      <h6>Form thêm todo - glassmorphism + neon glow </h6>
       <form
         action={handleAdd}
         className="mb-10 relative flex gap-3 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl shadow-indigo-500/20 p-2 focus-within:ring-2 focus-within:ring-cyan-400/50 transition-all duration-300"
@@ -90,95 +89,38 @@ export default async function Home() {
   </main>
 );
   }
+  */
   
-  
-  async function appending() {
-    const todos = await getTodos();  // Fetch data server-side
+  // src/app/page.tsx
+import Link from 'next/link';
 
-  // Inline Server Action cho form add (cách đơn giản, không cần file actions riêng nếu muốn)
-  async function handleAdd(formData) {
-    'use server';
-    const title = formData.get('title')?.toString().trim();
-    if (!title) return;
-  
-    await addTodo({ title });   // GỌI DB TRỰC TIẾP
-    revalidatePath('/');
-  }
+export default function Home() {
   return (
-    <main className="max-w-2xl mx-auto p-8">
-      <h1 className="text-4xl font-bold mb-8 text-center">Todo App Neon JS</h1>
-
-      {/* Form thêm todo */}
-      <form action={handleAdd} className="mb-8 flex gap-2">
-        <input
-          name="title"  // Phải khớp với field trong db (text thay vì title)
-          type="text"
-          placeholder="Nhập todo mới..."
-          className="flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        />
-        <button
-          type="submit"
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-        >
-          Thêm
-        </button>
-      </form>
-
-      <ul className="space-y-3">
-        {todos.map((todo) => (
-          <li
-            key={todo.id}
-            className="flex items-center justify-between p-4 bg-gray-50 rounded-lg shadow-sm"
-          >
-          {/*
-            <div className="flex items-center gap-3">
-              <form action={toggleTodoAction} method="post">
-                <input type="hidden" name="id" value={todo.id} />*/}
-                {/* Nếu server action cần biết trạng thái mới */}
-               {/* <input type="hidden" name="completed" value={(!todo.completed).toString()} />
-              
-                <button
-                  type="submit"
-                  className="flex items-center gap-2 cursor-pointer hover:opacity-80"
-                >
-                  <input
-                    type="checkbox"
-                    checked={todo.completed}
-                    readOnly
-                    className="w-5 h-5 pointer-events-none accent-blue-600"
-                  />
-                </button>
-              </form>
-              <span className={todo.completed ? 'line-through text-gray-500' : ''}>
-                {todo.title} - {todo.id} - {typeof todo.id}
-              </span>
-            </div> */}
-            
-            <div className="flex items-center gap-3">
-              <ToggleTodo id={todo.id} completed={todo.completed} />
-              <span className={todo.completed ? 'line-through text-gray-500' : ''}>
-                {todo.title} - {todo.id}
-              </span>
-            </div>
-            
-            
-            <form action={deleteTodoAction}>
-              <input type="hidden" name="id" value={todo.id} />
-              <button
-                type="submit"
-                className="text-red-500 hover:text-red-700 font-medium"
-              >
-                Xóa
-              </button>
-            </form>
-          </li>
-        ))}
-      </ul>
+    <main className="min-h-screen flex flex-col items-center justify-center p-8 bg-gradient-to-br from-gray-950 via-purple-950 to-indigo-950 text-gray-100">
+      <h1 className="text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 mb-8">
+        Chào mừng đến Neon JS Todo
+      </h1>
       
-      {todos.length === 0 && (
-        <p className="text-center text-gray-500 mt-10">Chưa có todo nào. Thêm đi!</p>
-      )}
+      <p className="text-2xl text-cyan-300 mb-12 text-center max-w-2xl">
+        Ứng dụng todo với vibe cyberpunk neon – quản lý nhiệm vụ kiểu futuristic!
+      </p>
+
+      <div className="flex gap-6">
+        <Link 
+          href="/todos" 
+          className="px-10 py-5 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-2xl text-white font-bold hover:from-cyan-500 hover:to-purple-500 shadow-lg shadow-purple-500/40 hover:shadow-purple-400/60 transform hover:scale-105 transition-all duration-300"
+        >
+          Xem Todos Ngay
+        </Link>
+        
+        <Link 
+          href="/about" 
+          className="px-10 py-5 bg-black/30 backdrop-blur-xl border border-cyan-500/30 rounded-2xl text-cyan-300 font-medium hover:bg-cyan-900/30 transition-all"
+        >
+          Về App
+        </Link>
+      </div>
     </main>
   );
 }
+
