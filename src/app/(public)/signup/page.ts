@@ -6,13 +6,15 @@ import { useState } from 'react';
 export default function SignupPage() {
   const [message, setMessage] = useState<string | null>(null);
 
+  async function action(formData: FormData) {
+    const res = await signUp(formData);
+    if (res?.error) setMessage(res.error);
+    else setMessage('Check your email to confirm signup');
+  }
+
   return (
     <form
-      action={async (formData) => {
-        const res = await signUp(formData);
-        if (res?.error) setMessage(res.error);
-        else setMessage('Check your email to confirm signup');
-      }}
+      action={action}
       className="max-w-sm mx-auto mt-20 space-y-4"
     >
       <h1 className="text-2xl font-bold">Sign Up</h1>
