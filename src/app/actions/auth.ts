@@ -72,6 +72,8 @@ export async function signUp(formData: FormData) {
 
 export async function signIn(formData: FormData) {
   const supabase = supabaseServer(); // ✅
+ console.log('SUPABASE_URL =', process.env.NEXT_PUBLIC_SUPABASE_URL);
+console.log('SUPABASE_KEY =', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
