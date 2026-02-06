@@ -2,7 +2,7 @@
 import { getTodos, addTodo } from '../../../server/db';
 import { createTodo, toggleTodoAction, deleteTodoAction } from '../../actions';
 import { revalidatePath } from 'next/cache';  // Nếu cần dùng trong inline action
-import { ToggleTodo } from '../../../components/ToggleTodo';
+import { ToggleTodo, ConfirmDeleteModal } from '../../../components/ToggleTodo';
 import Link from 'next/link';
 
 export default async function Todos() {
