@@ -11,7 +11,7 @@ export default async function TodoDetail({ params }) {
   return (
     <div className="max-w-xl mx-auto mt-20 space-y-6">
       <h1 className="text-3xl font-bold text-white">Todo Detail</h1>
-
+      <h3> Trậng thái: {todo.completed?"Đã hoàn thành":"Chưa hoàn thành"}</h3>
       {/* Update */}
       <form action={updateTodoAction} className="space-y-4">
         <input type="hidden" name="id" value={todo.id} />
