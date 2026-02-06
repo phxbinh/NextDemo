@@ -13,6 +13,11 @@ export default {
         neonCyan: '#22d3ee',
         neonPurple: '#a855f7',
       },
+      zIndex: {
+        100: '100',
+        550: '500',
+        999: '999',
+      },
       animation: {
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
