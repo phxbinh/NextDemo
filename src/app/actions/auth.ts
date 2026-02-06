@@ -45,8 +45,8 @@ export async function signOut() {
 
 
 'use server';
-
-import { supabaseServer } from '../../lib/supabase/server';
+import { supabaseServerAction } from '../../lib/supabase/server';
+//import { supabaseServer } from '../../lib/supabase/server';
 import { redirect } from 'next/navigation';
 
 export async function signUp(formData: FormData) {
@@ -70,6 +70,7 @@ export async function signUp(formData: FormData) {
   return { success: true };
 }
 
+/* chạy được với (chạy được) ở lib/supabase/server.ts
 export async function signIn(formData: FormData) {
   const supabase = supabaseServer(); // ✅
  console.log('SUPABASE_URL =', process.env.NEXT_PUBLIC_SUPABASE_URL);
@@ -89,6 +90,25 @@ console.log('SUPABASE_KEY =', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 
   redirect('/dashboard');
 }
+*/
+
+
+export async function signIn(formData: FormData) {
+  const supabase = supabaseServerAction(); // 🔴 BẮT BUỘC
+
+  const email = formData.get('email') as string;
+  const password = formData.get('password') as string;
+
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) return { error: error.message };
+
+  redirect('/dashboard');
+}
+
 
 export async function signOut() {
   const supabase = supabaseServer(); // ✅
