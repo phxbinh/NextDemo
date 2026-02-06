@@ -23,3 +23,25 @@ app/
 │       └─ page.tsx         → /login
 
 ```
+
+## Cấu trúc cho auth
+```txt
+lib/
+├─ auth/
+│  ├─ server.ts        // createNeonAuth
+│
+app/
+├─ (public)/
+│  ├─ login/page.tsx
+│  ├─ signup/page.tsx
+│  ├─ confirm/page.tsx
+│
+├─ (app)/
+│  ├─ layout.tsx       // Sidebar + auth guard
+│  ├─ page.tsx
+│
+├─ api/
+│  └─ auth/[...path]/route.ts
+│
+middleware.ts
+```
