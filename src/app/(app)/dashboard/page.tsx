@@ -10,6 +10,7 @@ export default function DashboardPage() {
   );
 }*/
 
+/* chạy được với (chạy được) ở lib/supabase/server.ts
 import { supabaseServer } from '../../../lib/supabase/server';
 import { redirect } from 'next/navigation';
 
@@ -26,3 +27,21 @@ export default async function DashboardPage() {
 
   return <h1>Welcome {user.email}</h1>;
 }
+*/
+
+import { supabaseServerComponent } from '../../../lib/supabase/server';
+import { redirect } from 'next/navigation';
+
+export default async function DashboardPage() {
+  const supabase = supabaseServerComponent();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) redirect('/login');
+
+  return <h1>Welcome {user.email}</h1>;
+}
+
+
