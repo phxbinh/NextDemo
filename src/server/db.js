@@ -51,28 +51,28 @@ export const toggleTodo = async ({ id }) => {
   `;
 };
 
-/*
-export const toggleTodo_ = async ({ id }) => {
+export const getTodoById = async (id) => {
+  noStore();
   const todoId = Number(id);
-  if (!todoId) {
-    throw new Error("ID is required");
-  }
+  if (!todoId) throw new Error('Invalid ID');
 
-  try {
-    const result = await sql`
-      UPDATE todosnew 
-      SET completed = NOT completed 
-      WHERE id = ${todoId}
-      RETURNING id, completed;
-    `;
-
-    console.log('[DB] Toggle success:', result.rows[0]);
-    return result.rows[0];
-  } catch (error) {
-    console.error('[DB] Toggle FAILED:', error.message, error.stack);
-    throw error;
-  }
+  const rows = await sql`
+    SELECT * FROM todosnew WHERE id = ${todoId}
+  `;
+  return rows[0];
 };
-*/
 
+export const updateTodo = async ({ id, title }) => {
+  const todoId = Number(id);
+  if (!todoId || !title?.trim()) {
+    throw new Error('Invalid data');
+  }
+
+  return await sql`
+    UPDATE todosnew
+    SET title = ${title}
+    WHERE id = ${todoId}
+    RETURNING *;
+  `;
+};
 
