@@ -111,7 +111,7 @@ export async function signIn(formData: FormData) {
 
 
 export async function signOut() {
-  const supabase = supabaseServer(); // ✅
+  const supabase = supabaseServerAction(); // ✅
 
   await supabase.auth.signOut();
   redirect('/login');
