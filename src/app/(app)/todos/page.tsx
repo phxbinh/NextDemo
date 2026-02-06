@@ -69,7 +69,12 @@ export default async function Todos() {
               </span>
             </div>
 
-            <form action={deleteTodoAction}>
+<ConfirmDeleteModal
+  action={deleteTodoAction}
+  todoId={todo.id}
+/>
+
+           {/* <form action={deleteTodoAction}>
               <input type="hidden" name="id" value={todo.id} />
               <button
                 type="submit"
@@ -77,7 +82,7 @@ export default async function Todos() {
               >
                 Xóa
               </button>
-            </form>
+            </form>*/}
           </li>
         ))}
       </ul>
