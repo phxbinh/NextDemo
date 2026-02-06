@@ -26,6 +26,7 @@ export function supabaseServer() {
 }
 */
 
+/* chạy được
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
@@ -37,7 +38,22 @@ console.log('SUPABASE_KEY =', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
     cookies,
   });
 }
+*/
 
+
+import { cookies } from 'next/headers';
+import {
+  createServerComponentClient,
+  createServerActionClient,
+} from '@supabase/auth-helpers-nextjs';
+
+export function supabaseServerComponent() {
+  return createServerComponentClient({ cookies });
+}
+
+export function supabaseServerAction() {
+  return createServerActionClient({ cookies });
+}
 
 
 
