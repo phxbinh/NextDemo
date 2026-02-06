@@ -2,7 +2,7 @@
 'use server';  // Bắt buộc cho Server Actions
 
 import { revalidatePath } from 'next/cache';
-import { addTodo, deleteTodo, toggleTodo } from '../server/db';  // Import từ file db.js của bạn
+import { addTodo, deleteTodo, toggleTodo, getTodoById, updateTodo } from '../server/db';  // Import từ file db.js của bạn
 
 // Action để thêm todo mới
 export async function createTodo(formData) {
@@ -22,26 +22,6 @@ export async function createTodo(formData) {
   }
 }
 
-
-// Action để xóa todo
-/*
-export async function deleteTodoAction(formData) {
-  const id = formData.get('id');
-
-  if (!id) {
-    return { error: 'ID không hợp lệ' };
-  }
-
-  try {
-    await deleteTodo({ id: Number(id) });
-    revalidatePath('/');
-    return { success: true };
-  } catch (error) {
-    console.error('Lỗi xóa todo:', error);
-    return { error: 'Có lỗi khi xóa todo.' };
-  }
-}
-*/
 // Action để xóa todo
 export async function deleteTodoAction(formData) {
   const id = formData.get('id');
@@ -77,6 +57,27 @@ export async function toggleTodoAction(formData) {
   await toggleTodo({ id });
   revalidatePath('/');
 }
+
+export async function updateTodoAction(formData) {
+  const id = Number(formData.get('id'));
+  const title = formData.get('title')?.toString().trim();
+
+  if (!id || !title) throw new Error('Invalid input');
+
+  await updateTodo({ id, title });
+
+  revalidatePath(`/todos/${id}`);
+  revalidatePath('/todos');
+}
+
+export async function deleteTodoFromDetail(formData) {
+  const id = Number(formData.get('id'));
+  if (!id) throw new Error('Invalid ID');
+
+  await deleteTodo({ id });
+  revalidatePath('/todos');
+}
+
 
 
 
