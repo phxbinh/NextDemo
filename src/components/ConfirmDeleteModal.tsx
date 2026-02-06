@@ -17,7 +17,7 @@ export function ConfirmDeleteModal({ action, todoId }) {
 
       {/* Modal */}
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+        <div className="fixed inset-0 z-550 flex items-center justify-center bg-black/60">
           <div className="bg-zinc-900 rounded-2xl p-6 w-full max-w-sm shadow-xl">
             <h2 className="text-xl font-semibold text-white mb-4">
               Xác nhận xóa
