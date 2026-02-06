@@ -45,12 +45,11 @@ export async function signOut() {
 
 
 'use server';
-import { supabaseServerAction } from '../../lib/supabase/server';
-//import { supabaseServer } from '../../lib/supabase/server';
+import { supabaseServerAction, supabaseServerComponent } from '../../lib/supabase/server';
 import { redirect } from 'next/navigation';
 
 export async function signUp(formData: FormData) {
-  const supabase = supabaseServerAction(); // ✅ GỌI FUNCTION
+  const supabase = supabaseServerComponent(); // ✅ GỌI FUNCTION
 
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
