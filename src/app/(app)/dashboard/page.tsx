@@ -31,6 +31,7 @@ export default async function DashboardPage() {
 
 import { supabaseServerComponent } from '../../../lib/supabase/server';
 import { redirect } from 'next/navigation';
+import { LogoutButton } from '../../../components/signout';
 
 export default async function DashboardPage() {
   const supabase = supabaseServerComponent();
@@ -41,7 +42,10 @@ export default async function DashboardPage() {
 
   if (!user) redirect('/login');
 
-  return <h1>Welcome {user.email}</h1>;
+  return (<>
+    <h1>Welcome {user.email}</h1>
+    < LogoutButton />
+    </>);
 }
 
 
