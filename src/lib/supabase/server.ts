@@ -7,6 +7,7 @@ export const supabaseServer = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 */
+/*
 import { createServerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
@@ -23,3 +24,17 @@ export function supabaseServer() {
     }
   );
 }
+*/
+
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
+
+export function supabaseServer() {
+  return createServerComponentClient({
+    cookies,
+  });
+}
+
+
+
+
