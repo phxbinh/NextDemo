@@ -2,6 +2,7 @@
 'use server';  // Bắt buộc cho Server Actions
 
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 import { addTodo, deleteTodo, toggleTodo, getTodoById, updateTodo } from '../server/db';  // Import từ file db.js của bạn
 
 // Action để thêm todo mới
@@ -76,6 +77,7 @@ export async function deleteTodoFromDetail(formData) {
 
   await deleteTodo({ id });
   revalidatePath('/todos');
+  redirect('/todos');
 }
 
 
