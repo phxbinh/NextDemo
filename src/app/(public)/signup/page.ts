@@ -1,6 +1,6 @@
 'use client';
 
-import { signUp } from '../../actionAuth/auth';
+import { signUp } from '../../actionsAuth/auth';
 import { useState } from 'react';
 
 export default function SignupPage() {
