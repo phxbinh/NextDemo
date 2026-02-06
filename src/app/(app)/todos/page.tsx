@@ -3,6 +3,7 @@ import { getTodos, addTodo } from '../../../server/db';
 import { createTodo, toggleTodoAction, deleteTodoAction } from '../../actions';
 import { revalidatePath } from 'next/cache';  // Nếu cần dùng trong inline action
 import { ToggleTodo } from '../../../components/ToggleTodo';
+import Link from 'next/link';
 
 export default async function Todos() {
   const todos = await getTodos();  // Fetch data server-side
@@ -59,7 +60,12 @@ export default async function Todos() {
                     : 'text-white'
                 }`}
               >
-                {todo.title}
+                <Link
+  href={`/todos/${todo.id}`}
+  className="text-lg font-medium text-white hover:underline"
+>
+  {todo.title}
+</Link>
               </span>
             </div>
 
