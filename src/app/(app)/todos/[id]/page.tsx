@@ -1,6 +1,7 @@
 import { getTodoById } from '../../../../server/db';
 import { updateTodoAction, deleteTodoFromDetail } from '../../../actions';
 import { notFound, redirect } from 'next/navigation';
+import { ConfirmDeleteModal } from '../../../../components/ConfirmDeleteModal';
 
 export default async function TodoDetail({ params }) {
   const todo = await getTodoById(params.id);
@@ -28,6 +29,16 @@ export default async function TodoDetail({ params }) {
       </form>
 
       {/* Delete */}
+      <ConfirmDeleteModal
+        action={deleteTodoFromDetail}
+        todoId={todo.id}
+      />
+    </div>
+  );
+}
+
+// delete in detail
+/*
       <form
         action={async (formData) => {
           'use server';
@@ -43,6 +54,5 @@ export default async function TodoDetail({ params }) {
           Xóa todo
         </button>
       </form>
-    </div>
-  );
-}
+*/
+
