@@ -3,7 +3,7 @@
 import { neon } from "@neondatabase/serverless";
 import { unstable_noStore as noStore } from 'next/cache';
 
-const sql = neon(process.env.DATABASE_URL_O); // fullResults: true để lấy đầy đủ metadata nếu cần
+const sql = neon(process.env.DATABASE_URL); // fullResults: true để lấy đầy đủ metadata nếu cần
 
 /*
 const sql = neon(process.env.DATABASE_URL, {
