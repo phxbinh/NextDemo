@@ -44,22 +44,3 @@ export default async function TodoDetail({ params }) {
   );
 }
 
-// delete in detail
-/*
-      <form
-        action={async (formData) => {
-          'use server';
-          await deleteTodoFromDetail(formData);
-          redirect('/todos');
-        }}
-      >
-        <input type="hidden" name="id" value={todo.id} />
-        <button
-          type="submit"
-          className="text-red-400 hover:text-red-300"
-        >
-          Xóa todo
-        </button>
-      </form>
-*/
-
