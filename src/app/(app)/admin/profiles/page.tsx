@@ -26,7 +26,7 @@ export default async function AdminProfilesPage() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">User Profiles</h1>
+      <h1 className="text-2xl font-bold mb-4">User Profiles: Profiles page: /admin/profiles</h1>
 
       <table className="w-full border text-sm">
         <thead className="bg-gray-100">
