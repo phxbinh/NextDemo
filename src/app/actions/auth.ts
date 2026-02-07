@@ -95,6 +95,7 @@ export async function signUp(formData: FormData) {
  * - Sync user + profile sang Neon
  * - RLS bắt đầu hoạt động
  */
+/*
 export async function signIn(formData: FormData) {
   const supabase = supabaseServerAction();
 
@@ -131,6 +132,44 @@ export async function signIn(formData: FormData) {
 
   redirect('/dashboard');
 }
+*/
+export async function signIn(formData: FormData) {
+  const supabase = supabaseServerAction();
+
+  const email = formData.get('email') as string;
+  const password = formData.get('password') as string;
+
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return { error: 'Auth session not found' };
+  }
+
+  // ✅ SYNC SUPABASE → NEON (KHÔNG CONTEXT)
+  await syncUser({
+    id: user.id,
+    email: user.email!,
+  });
+
+  await ensureProfile(user.id);
+
+  redirect('/dashboard');
+}
+
+
+
+
 
 /**
  * SIGN OUT
