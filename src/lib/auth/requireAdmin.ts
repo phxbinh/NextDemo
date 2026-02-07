@@ -1,14 +1,17 @@
+// lib/auth/requireAdmin.ts
 import { sql } from '../neon/sql';
 
 export async function requireAdmin(userId: string) {
-  const rows = await sql<{ role: string }[]>`
+  const rows = await sql`
     select role
     from profiles
     where user_id = ${userId}
     limit 1
   `;
 
-  if (!rows.length || rows[0].role !== 'admin') {
+  const role = (rows as { role: string }[])[0]?.role;
+
+  if (role !== 'admin') {
     throw new Error('FORBIDDEN');
   }
 }
