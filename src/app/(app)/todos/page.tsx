@@ -63,28 +63,18 @@ export default async function Todos() {
                 }`}
               >
                 <Link
-  href={`/todos/${todo.id}`}
-  className="text-lg font-medium text-white hover:underline"
->
-  {todo.title}
-</Link>
+                  href={`/todos/${todo.id}`}
+                  className="text-lg font-medium text-white hover:underline"
+                >
+                  {todo.title}
+                </Link>
               </span>
             </div>
 
-<ConfirmDeleteModal
-  action={deleteTodoAction}
-  todoId={todo.id}
-/>
-
-           {/* <form action={deleteTodoAction}>
-              <input type="hidden" name="id" value={todo.id} />
-              <button
-                type="submit"
-                className="text-red-400 hover:text-red-300 font-medium px-4 py-2 rounded-lg hover:bg-red-500/20 transition-colors duration-200 opacity-70 hover:opacity-100"
-              >
-                Xóa
-              </button>
-            </form>*/}
+            <ConfirmDeleteModal
+              action={deleteTodoAction}
+              todoId={todo.id}
+            />
           </li>
         ))}
       </ul>
@@ -102,9 +92,4 @@ export default async function Todos() {
 );
   }
 
-/*
-
- <main className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-950 to-purple-950 text-gray-100">
-  </main>
-*/
   
