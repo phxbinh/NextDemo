@@ -39,8 +39,8 @@ console.log('SUPABASE_KEY =', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
   });
 }
 */
-
-
+// lib/supabase/server.ts
+import { createClient } from "@supabase/supabase-js";
 import { cookies } from 'next/headers';
 import {
   createServerComponentClient,
@@ -54,6 +54,11 @@ export function supabaseServerComponent() {
 export function supabaseServerAction() {
   return createServerActionClient({ cookies });
 }
+
+export const supabaseServer = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY! // server only
+);
 
 
 
