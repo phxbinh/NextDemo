@@ -7,7 +7,6 @@ import {
   supabaseServerComponent,
 } from '../../lib/supabase/server';
 
-import { withUserContext } from '../../lib/neon/context';
 import { syncUser, ensureProfile } from '../../lib/neon/users';
 
 /**
@@ -36,50 +35,6 @@ export async function signUp(formData: FormData) {
   return { success: true };
 }
 
-/**
- * SIGN IN
- * - Supabase login
- * - Sync user + profile sang Neon
- * - RLS bắt đầu hoạt động
- */
-/*
-export async function signIn(formData: FormData) {
-  const supabase = supabaseServerAction();
-
-  const email = formData.get('email') as string;
-  const password = formData.get('password') as string;
-
-  const { error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
-
-  if (error) {
-    return { error: error.message };
-  }
-
-  // 🔐 LẤY USER TỪ COOKIE SESSION
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return { error: 'Auth session not found' };
-  }
-
-  // 🔁 SYNC SUPABASE → NEON
-  await withUserContext(user.id, async () => {
-    await syncUser({
-      id: user.id,
-      email: user.email!,
-    });
-
-    await ensureProfile(user.id);
-  });
-
-  redirect('/dashboard');
-}
-*/
 export async function signIn(formData: FormData) {
   const supabase = supabaseServerAction();
 
@@ -113,10 +68,6 @@ export async function signIn(formData: FormData) {
 
   redirect('/dashboard');
 }
-
-
-
-
 
 /**
  * SIGN OUT
