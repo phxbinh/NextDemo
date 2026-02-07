@@ -20,11 +20,23 @@ export async function withUserContext<T>(
 // lib/neon/context.ts
 //import { sql } from "./sql";
 
+// lib/neon/context.ts
+
+
 export async function withUserContext<T>(
   userId: string,
   fn: () => Promise<T>
 ): Promise<T> {
-  // ⚠️ SET KHÔNG ĐƯỢC DÙNG BIND PARAM
-  await sql.unsafe(`SET app.user_id = '${userId}'`);
-  return fn();
+  // Neon cho phép SET LOCAL trong transaction
+  await sql`BEGIN`;
+  await sql`SET LOCAL app.user_id = ${userId}`;
+
+  try {
+    const result = await fn();
+    await sql`COMMIT`;
+    return result;
+  } catch (err) {
+    await sql`ROLLBACK`;
+    throw err;
+  }
 }
