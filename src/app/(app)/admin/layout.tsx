@@ -1,5 +1,6 @@
 // app/(app)/admin/layout.tsx
 import { redirect } from 'next/navigation';
+import Link from "next/link";
 import { supabaseServerComponent } from '../../../lib/supabase/server';
 import { requireAdmin } from '../../../lib/auth/requireAdmin';
 
@@ -27,6 +28,13 @@ export default async function AdminLayout({
       <header className="border-b p-4 font-bold">
         Admin Panel
       </header>
+
+      <Link
+        href="/admin/profiles"
+        className="rounded-md bg-black px-4 py-2 text-white hover:opacity-80"
+      >
+        Profiles users
+      </Link>
 
       <main className="p-6">{children}</main>
     </div>
