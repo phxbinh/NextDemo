@@ -104,6 +104,7 @@ export async function signIn(formData: FormData) {
   `;
 
   const role = (rows as { role: string }[])[0]?.role;
+console.log('role', role)
 
   if (role === 'admin') {
     redirect('/admin');
