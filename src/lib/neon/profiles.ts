@@ -1,3 +1,4 @@
+// lib/neon/profiles.ts
 import { sql } from './sql';
 
 export type Profile = {
@@ -9,7 +10,7 @@ export type Profile = {
 };
 
 export async function getAllProfiles(): Promise<Profile[]> {
-  const rows = await sql<Profile[]>`
+  const rows = await sql`
     select
       user_id,
       role,
@@ -19,5 +20,6 @@ export async function getAllProfiles(): Promise<Profile[]> {
     from profiles
     order by created_at desc
   `;
-  return rows;
+
+  return rows as Profile[];
 }
