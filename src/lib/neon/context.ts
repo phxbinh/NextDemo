@@ -22,7 +22,7 @@ export async function withUserContext<T>(
 
 // lib/neon/context.ts
 
-/*
+
 export async function withUserContext<T>(
   userId: string,
   fn: () => Promise<T>
@@ -40,4 +40,3 @@ export async function withUserContext<T>(
     throw err;
   }
 }
-*/
