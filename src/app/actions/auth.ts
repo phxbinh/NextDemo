@@ -35,6 +35,7 @@ export async function signUp(formData: FormData) {
   return { success: true };
 }
 
+/*
 export async function signIn(formData: FormData) {
   const supabase = supabaseServerAction();
 
@@ -68,6 +69,54 @@ export async function signIn(formData: FormData) {
 
   redirect('/dashboard');
 }
+*/
+
+export async function signIn(formData: FormData) {
+  const supabase = supabaseServerAction();
+
+  const email = formData.get('email') as string;
+  const password = formData.get('password') as string;
+
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return { error: 'Auth session not found' };
+  }
+
+  // 🔎 LẤY ROLE TỪ NEON
+  const rows = await sql`
+    select role
+    from profiles
+    where user_id = ${user.id}
+    limit 1
+  `;
+
+  const role = (rows as { role: string }[])[0]?.role;
+
+  if (role === 'admin') {
+    redirect('/admin');
+  }
+
+  redirect('/dashboard');
+}
+
+
+
+
+
+
+
 
 /**
  * SIGN OUT
