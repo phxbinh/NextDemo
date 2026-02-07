@@ -6,6 +6,7 @@ import {
   supabaseServerAction,
   supabaseServerComponent,
 } from '../../lib/supabase/server';
+import { sql } from '../../lib/neon/sql';
 
 import { syncUser, ensureProfile } from '../../lib/neon/users';
 
