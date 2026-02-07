@@ -72,7 +72,7 @@ export async function middleware(req: NextRequest) {
 
   // 🔁 ĐÃ LOGIN → KHÔNG QUAY LẠI LOGIN / SIGNUP
   if (user && (pathname === '/login' || pathname === '/signup')) {
-    return NextResponse.redirect(new URL('/admin', req.url));
+    return NextResponse.redirect(new URL('/dashboard', req.url));
   }
 
   return res;
