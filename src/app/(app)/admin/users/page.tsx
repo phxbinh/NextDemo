@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 
 type User = {
   user_id: string;
-  email: string;
+  avatar_url: string;
   role: string;
 };
 
@@ -36,7 +36,7 @@ export default function AdminUsersPage() {
     <ul>
       {users.map((u) => (
         <li key={u.user_id}>
-          {u.email} — {u.role}
+          {u.avatar_url} — {u.role}
         </li>
       ))}
     </ul>
