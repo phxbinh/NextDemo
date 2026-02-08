@@ -23,6 +23,7 @@ export default async function AdminLayout({
   // 2️⃣ Check role admin bằng Neon
   //await requireAdmin(user.id);
 
+/* thay bằng cái dưới do requireAdmin return boolean
 try {
     await requireAdmin(user.id);
   } catch (err) {
@@ -31,7 +32,10 @@ try {
     }
     throw err;
   }
-
+*/
+if (!(await requireAdmin(user.id))) {
+  redirect('/403');
+}
 
 
 
