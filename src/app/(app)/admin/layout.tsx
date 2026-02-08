@@ -53,6 +53,12 @@ if (!(await requireAdmin(user.id))) {
       >
         Profiles users
       </Link>
+      <Link
+        href="/admin/users"
+        className="rounded-md bg-green px-4 py-2 text-white hover:opacity-80"
+      >
+        GET Method: get all users in profiles
+      </Link>
 
       <main className="p-6">{children}</main>
     </div>
