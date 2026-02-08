@@ -56,9 +56,7 @@ type User = {
 };
 
 export default async function AdminUsersPage() {
-  const res = await fetch('/api/admin/users', {
-    cache: 'no-store',
-  });
+  const res = await fetch('/api/admin/users');
 
   if (res.status === 401) redirect('/login');
   if (res.status === 403) redirect('/403');
