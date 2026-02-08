@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import Link from "next/link";
 import { supabaseServerComponent } from '../../../lib/supabase/server';
 import { requireAdmin } from '../../../lib/auth/requireAdmin';
+import { ForbiddenError } from '../../../lib/errors';
 
 export default async function AdminLayout({
   children,
@@ -20,7 +21,20 @@ export default async function AdminLayout({
   }
 
   // 2️⃣ Check role admin bằng Neon
-  await requireAdmin(user.id);
+  //await requireAdmin(user.id);
+
+try {
+    await requireAdmin(userId);
+  } catch (err) {
+    if (err instanceof ForbiddenError) {
+      redirect('/403');
+    }
+    throw err;
+  }
+
+
+
+
 
   // 3️⃣ OK → render toàn bộ admin routes
   return (
