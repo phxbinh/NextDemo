@@ -24,7 +24,7 @@ export default async function AdminLayout({
   //await requireAdmin(user.id);
 
 try {
-    await requireAdmin(userId);
+    await requireAdmin(user.id);
   } catch (err) {
     if (err instanceof ForbiddenError) {
       redirect('/403');
