@@ -57,7 +57,8 @@ type User = {
 
 export default async function AdminUsersPage() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SITE_URL}/api/admin/users`,
+    //`${process.env.NEXT_PUBLIC_SITE_URL}/api/admin/users`,
+    `/api/admin/users`,
     {
       cache: 'no-store',
     }
