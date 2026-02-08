@@ -1,5 +1,6 @@
 // lib/auth/requireAdmin.ts
 import { sql } from '../neon/sql';
+import { ForbiddenError } from '../errors';
 
 export async function requireAdmin(userId: string) {
   const rows = await sql`
@@ -12,6 +13,14 @@ export async function requireAdmin(userId: string) {
   const role = (rows as { role: string }[])[0]?.role;
 
   if (role !== 'admin') {
-    throw new Error('FORBIDDEN');
+    // trả về error của vercel
+    //throw new Error('FORBIDDEN');
+
+    // Trả về error custom
+    throw new ForbiddenError();
   }
 }
+
+
+
+
