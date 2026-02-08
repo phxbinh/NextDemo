@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 type User = {
-  id: string;
+  user_id: string;
   email: string;
   role: string;
 };
@@ -35,7 +35,7 @@ export default function AdminUsersPage() {
   return (
     <ul>
       {users.map((u) => (
-        <li key={u.id}>
+        <li key={u.user_id}>
           {u.email} — {u.role}
         </li>
       ))}
