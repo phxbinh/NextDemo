@@ -203,8 +203,11 @@ const PricingCardCaNhanPlus = () => {
         </div>
       </div>
       {/* Nút */}
-      <div className="px-6 md:px-8 pb-10">
-        <button className="w-full py-4 bg-gradient-to-r from-teal-500 via-cyan-500 to-teal-500 hover:from-teal-600 hover:via-cyan-600 hover:to-teal-600 text-white font-bold text-lg rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-cyan-300">
+      <div className="px-6 pb-8">
+        <button
+          className="w-full py-3.5 bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white font-semibold rounded-xl shadow-lg transform hover:scale-[1.02] transition-all duration-200"
+          onClick={() => alert('Đã thêm vào giỏ hàng! (demo)')}
+        >
           Thêm vào giỏ hàng
         </button>
       </div>
