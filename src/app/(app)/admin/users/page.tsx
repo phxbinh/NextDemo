@@ -47,6 +47,8 @@ export default function AdminUsersPage() {
 }
 */
 
+
+/*
 import { redirect } from 'next/navigation';
 
 type User = {
@@ -55,7 +57,6 @@ type User = {
   role: string;
 };
 
-/*
 export default async function AdminUsersPage_() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
 
@@ -80,6 +81,17 @@ const res = await fetch(`${baseUrl}/api/admin/users`, {
   );
 }
 */
+
+
+
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
+
+type User = {
+  user_id: string;
+  avatar_url: string;
+  role: string;
+};
 
 export default async function AdminUsersPage() {
   const h = headers();
