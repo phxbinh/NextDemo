@@ -56,7 +56,11 @@ type User = {
 };
 
 export default async function AdminUsersPage() {
-  const res = await fetch('/api/admin/users');
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+
+const res = await fetch(`${baseUrl}/api/admin/users`, {
+  cache: 'no-store', // hoặc tùy nhu cầu
+});
 
   if (res.status === 401) redirect('/login');
   if (res.status === 403) redirect('/403');
