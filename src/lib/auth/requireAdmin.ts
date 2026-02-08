@@ -17,8 +17,10 @@ export async function requireAdmin(userId: string) {
     //throw new Error('FORBIDDEN');
 
     // Trả về error custom
-    throw new ForbiddenError();
+    //throw new ForbiddenError();
   }
+
+  return role === 'admin';
 }
 
 
