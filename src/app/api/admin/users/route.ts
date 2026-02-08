@@ -27,7 +27,7 @@ export async function GET() {
 
     // ✅ chỉ admin mới tới đây
     const users = await sql`
-      select id, email, role
+      select user_id, email, role
       from profiles
       order by created_at desc
     `;
