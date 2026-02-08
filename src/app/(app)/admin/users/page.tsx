@@ -94,20 +94,18 @@ type User = {
 };
 
 export default async function AdminUsersPage() {
-  const h = headers();
+  const h = await headers();
+
   const host = h.get('host')!;
   const protocol =
     process.env.NODE_ENV === 'development' ? 'http' : 'https';
 
-  const res = await fetch(
-    `${protocol}://${host}/api/admin/users`,
-    {
-      cache: 'no-store',
-      headers: {
-        cookie: h.get('cookie') ?? '',
-      },
-    }
-  );
+  const res = await fetch(`${protocol}://${host}/api/admin/users`, {
+    cache: 'no-store',
+    headers: {
+      cookie: h.get('cookie') ?? '',
+    },
+  });
 
   if (res.status === 401) redirect('/login');
   if (res.status === 403) redirect('/403');
@@ -125,7 +123,6 @@ export default async function AdminUsersPage() {
     </ul>
   );
 }
-
 
 
 
