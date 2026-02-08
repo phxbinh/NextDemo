@@ -114,13 +114,13 @@ export default async function AdminUsersPage() {
   const users: User[] = await res.json();
 
   return (
-    <ul>
+    <ol>
       {users.map((u) => (
         <li key={u.user_id}>
-          {u.avatar_url} — {u.role}
+          {u.user_id} : {u.avatar_url} — {u.role}
         </li>
       ))}
-    </ul>
+    </ol>
   );
 }
 
