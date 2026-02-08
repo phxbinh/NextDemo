@@ -95,6 +95,15 @@ export async function signIn(formData: FormData) {
     return { error: 'Auth session not found' };
   }
 
+  // Đồn bộ data Auth user supabase sang neon
+  // ✅ SYNC SUPABASE → NEON (KHÔNG CONTEXT)
+  await syncUser({
+    id: user.id,
+    email: user.email!,
+  });
+
+  await ensureProfile(user.id);
+
   // 🔎 LẤY ROLE TỪ NEON
   const rows = await sql`
     select role
