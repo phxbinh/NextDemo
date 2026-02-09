@@ -27,7 +27,7 @@ export default async function TodosPage() {
 */
 
 
-const [state, formAction] = useFormState(handleAdd, initialState);
+const [state, formAction] = useFormState(addTodoAction, initialState);
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-0">
