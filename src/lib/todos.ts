@@ -1,6 +1,6 @@
 import { sql } from "./neon/sql";
 import { cookies } from "next/headers";
-import { createServerClient } from "@supabase/auth-helpers-nextjs";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
 export type Todo = {
   id: string;
@@ -9,11 +9,15 @@ export type Todo = {
   created_at: string;
 };
 
+function getSupabase() {
+  return createServerComponentClient({ cookies });
+}
+
 /**
  * Lấy todos của user hiện tại
  */
 export async function getTodos(): Promise<Todo[]> {
-  const supabase = createServerClient({ cookies });
+  const supabase = getSupabase();
 
   const {
     data: { user },
@@ -25,7 +29,7 @@ export async function getTodos(): Promise<Todo[]> {
 
   const rows = await sql<Todo[]>`
     select id, title, content, created_at
-    from todoimages
+    from todosimages
     where user_id = ${user.id}
     order by created_at desc
   `;
@@ -43,7 +47,7 @@ export async function addTodo({
   title: string;
   content?: string | null;
 }) {
-  const supabase = createServerClient({ cookies });
+  const supabase = getSupabase();
 
   const {
     data: { user },
@@ -54,7 +58,7 @@ export async function addTodo({
   }
 
   await sql`
-    insert into todoimages (user_id, title, content)
+    insert into todosimages (user_id, title, content)
     values (${user.id}, ${title}, ${content})
   `;
 }
