@@ -5,4 +5,6 @@ export const sidebarLinks = [
     { name: 'Settings', href: '/settings', showInSidebar: true },
     { name: 'About', href: '/about', showInSidebar: true },
     { name: 'Products', href: '/products', showInSidebar: true },
+  { name: 'Todo images', href: '/todoimages', showInSidebar: true },
+
   ];
