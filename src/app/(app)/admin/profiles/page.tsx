@@ -4,24 +4,7 @@ import { requireAdmin } from '../../../../lib/auth/requireAdmin';
 import { getAllProfiles } from '../../../../lib/neon/profiles';
 
 export default async function AdminProfilesPage() {
-/*
-  const supabase = supabaseServerComponent();
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect('/login');
-  }
-
-  // 🔐 CHECK ADMIN
-  try {
-    await requireAdmin(user.id);
-  } catch {
-    redirect('/dashboard');
-  }
-*/
   const profiles = await getAllProfiles();
 
   return (
