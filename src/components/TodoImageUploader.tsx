@@ -73,7 +73,7 @@ export default function TodoImageUploader({ todoId }: { todoId: string }) {
 'use client';
 
 import { useState } from 'react';
-import { supabase } from './lib/supabase/clientSupabase';
+import { supabase } from '../lib/supabase/clientSupabase';
 
 export default function TodoImageUploader({ todoId }: { todoId: string }) {
   const [loading, setLoading] = useState(false);
