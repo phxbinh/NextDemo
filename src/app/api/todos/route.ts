@@ -1,4 +1,4 @@
-import { sql } from "../../../../lib/neon/sql";
+import { sql } from "../../../lib/neon/sql";
 
 export async function POST(req: Request) {
   const { todoId, paths } = await req.json();
