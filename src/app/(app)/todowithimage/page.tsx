@@ -1,4 +1,6 @@
 import TodoImageUploader from "../../../components/TodoImageUploader";
+import { TodoImage } from "../../../components/TodoImage";
+
 import { getTodos, addTodo } from "../../../lib/todos";
 import { revalidatePath } from "next/cache";
 
@@ -57,6 +59,13 @@ export default async function TodosPage() {
               {todo.content && (
                 <p className="text-sm text-gray-600">{todo.content}</p>
               )}
+
+{todo.images.map((img) => (
+  <TodoImage
+    key={img.image_path}
+    path={img.image_path}
+  />
+))}
 
               {/* Upload ảnh cho todo này */}
               <TodoImageUploader todoId={todo.id} />
