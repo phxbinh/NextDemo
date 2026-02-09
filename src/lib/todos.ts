@@ -1,4 +1,4 @@
-import { sql } from "@/lib/neon/sql";
+import { sql } from "./neon/sql";
 import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/auth-helpers-nextjs";
 
