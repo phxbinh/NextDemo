@@ -4,10 +4,16 @@ import { TodoImage } from "../../../components/TodoImage";
 import { getTodosWithImages, addTodo } from "../../../lib/todos";
 import { revalidatePath } from "next/cache";
 
+import { useFormState } from "react-dom";
+
+
+
+
 export default async function TodosPage() {
   const todos = (await getTodosWithImages()) ?? [];
 
   // Server Action: add todo
+/*
   async function handleAdd(formData: FormData) {
     "use server";
 
@@ -17,6 +23,27 @@ export default async function TodosPage() {
     await addTodo({ title });
     revalidatePath("/todoimages");
   }
+*/
+
+async function handleAdd(formData: FormData) {
+  "use server";
+
+  try {
+    const title = formData.get("title")?.toString().trim();
+    if (!title) return;
+
+    await addTodo({ title });
+    revalidatePath("/todowithimage");
+  } catch (err) {
+    // không throw tiếp
+    return {
+      error: "Bạn cần đăng nhập để đăng bài",
+    };
+  }
+}
+
+const initialState = { error: "" };
+const [state, formAction] = useFormState(handleAdd, initialState);
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-0">
@@ -25,6 +52,7 @@ export default async function TodosPage() {
       </h1>
 
       {/* ADD TODO */}
+{/*
       <form action={handleAdd} className="mb-10 flex gap-2">
         <input
           name="title"
@@ -38,6 +66,30 @@ export default async function TodosPage() {
           Add
         </button>
       </form>
+*/}
+
+<form action={formAction} className="mb-10 space-y-3">
+  <input
+    name="title"
+    placeholder="Nhập todo mới..."
+    className="w-full border rounded px-3 py-2"
+  />
+
+  {state.error && (
+    <p className="text-sm text-red-600">
+      {state.error}
+    </p>
+  )}
+
+  <button className="px-4 py-2 bg-blue-600 text-white rounded">
+    Add
+  </button>
+</form>
+
+
+
+
+
 
       {/* TODO LIST */}
       {todos.length === 0 ? (
