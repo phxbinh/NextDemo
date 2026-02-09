@@ -1,5 +1,5 @@
 // src/app/(app)/todoimages/page.tsx
-import { TodoImageUploader } from '../../../components/TodoImageUploader';
+import  TodoImageUploader from '../../../components/TodoImageUploader';
 
 export default async function Todos() {
   const todos = await getTodos();  // Fetch data server-side
