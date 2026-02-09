@@ -1,14 +1,14 @@
-"use client"
+
 import TodoImageUploader from "../../../components/TodoImageUploader";
 import { TodoImage } from "../../../components/TodoImage";
+import { addTodoAction } from '../../../lib/actions/addTodoAction';
 
 import { getTodosWithImages, addTodo } from "../../../lib/todos";
 import { revalidatePath } from "next/cache";
 
 import { useFormState } from "react-dom";
 
-// comments
-
+const initialState = { error: "" };
 
 export default async function TodosPage() {
   const todos = (await getTodosWithImages()) ?? [];
@@ -26,24 +26,7 @@ export default async function TodosPage() {
   }
 */
 
-async function handleAdd(formData: FormData) {
-  "use server";
 
-  try {
-    const title = formData.get("title")?.toString().trim();
-    if (!title) return;
-
-    await addTodo({ title });
-    revalidatePath("/todowithimage");
-  } catch (err) {
-    // không throw tiếp
-    return {
-      error: "Bạn cần đăng nhập để đăng bài",
-    };
-  }
-}
-
-const initialState = { error: "" };
 const [state, formAction] = useFormState(handleAdd, initialState);
 
   return (
