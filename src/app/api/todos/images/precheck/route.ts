@@ -49,7 +49,7 @@ export async function POST(req: Request) {
 
   const rows = await sql`
     select 1
-    from todoimages
+    from todosimages
     where id = ${todoId}
       and user_id = ${user.id}
       and status = 'active'
