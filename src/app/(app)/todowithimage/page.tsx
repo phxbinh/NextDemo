@@ -1,11 +1,11 @@
 import TodoImageUploader from "../../../components/TodoImageUploader";
 import { TodoImage } from "../../../components/TodoImage";
 
-import { getTodos, addTodo } from "../../../lib/todos";
+import { getTodosWithImages, addTodo } from "../../../lib/todos";
 import { revalidatePath } from "next/cache";
 
 export default async function TodosPage() {
-  const todos = (await getTodos()) ?? [];
+  const todos = (await getTodosWithImages()) ?? [];
 
   // Server Action: add todo
   async function handleAdd(formData: FormData) {
