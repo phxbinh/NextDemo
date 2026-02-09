@@ -13,9 +13,6 @@ function getSupabase() {
   return createServerComponentClient({ cookies });
 }
 
-/**
- * Lấy todos của user hiện tại
- */
 export async function getTodos(): Promise<Todo[]> {
   const supabase = getSupabase();
 
@@ -23,23 +20,18 @@ export async function getTodos(): Promise<Todo[]> {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) {
-    return [];
-  }
+  if (!user) return [];
 
-  const rows = await sql<Todo[]>`
+  const rows = (await sql`
     select id, title, content, created_at
     from todosimages
     where user_id = ${user.id}
     order by created_at desc
-  `;
+  `) as Todo[];
 
   return rows;
 }
 
-/**
- * Thêm todo mới cho user hiện tại
- */
 export async function addTodo({
   title,
   content = null,
