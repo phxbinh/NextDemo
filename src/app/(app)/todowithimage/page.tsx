@@ -1,3 +1,4 @@
+"use client"
 import TodoImageUploader from "../../../components/TodoImageUploader";
 import { TodoImage } from "../../../components/TodoImage";
 
