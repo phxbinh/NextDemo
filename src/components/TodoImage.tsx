@@ -23,9 +23,10 @@ export function TodoImage({
   path: string;
   className?: string;
 }) {
+  const url = getPublicImageUrl(path);
   return (
     <img
-      src={path}
+      src={url}
       alt=""
       className={className}
       loading="lazy"
