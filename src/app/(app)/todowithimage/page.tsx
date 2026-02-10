@@ -100,12 +100,42 @@ export default async function TodosPage() {
                 <p className="text-sm text-gray-600">{todo.content}</p>
               )}
 
+{/*
 {todo.images.map((img) => (
   <TodoImage
     key={img.image_path}
     path={img.image_path}
   />
 ))}
+*/}
+
+
+<div className="grid grid-cols-3 gap-1 rounded-lg overflow-hidden">
+  {todo.images.slice(0, 6).map((img, i) => (
+    <div
+      key={img.image_path}
+      className={`relative aspect-square overflow-hidden ${
+        i === 0 ? 'col-span-2 row-span-2' : ''
+      }`}
+    >
+      <TodoImage
+        path={img.image_path}
+        className="h-full w-full object-cover"
+      />
+
+      {i === 5 && todo.images.length > 6 && (
+        <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-white text-xl font-semibold">
+          +{todo.images.length - 6}
+        </div>
+      )}
+    </div>
+  ))}
+</div>
+
+
+
+
+
 
               {/* Upload ảnh cho todo này */}
               <TodoImageUploader todoId={todo.id} />
