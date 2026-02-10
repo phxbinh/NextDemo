@@ -120,7 +120,7 @@ export default async function TodosPage() {
     >
       <TodoImage
         path={img.image_path}
-        className="h-full w-full object-cover"
+        className="block w-full h-full object-cover"
       />
 
       {i === 5 && todo.images.length > 6 && (
