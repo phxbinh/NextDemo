@@ -6,9 +6,10 @@ import { addTodoAction } from '../../../lib/actions/addTodoAction';
 import { getTodosWithImages, addTodo } from "../../../lib/todos";
 import { revalidatePath } from "next/cache";
 
-import { useFormState } from "react-dom";
+//import { useFormState } from "react-dom";
+import TodoAddForm from '../../actions/TodoAddForm';
 
-const initialState = { error: "" };
+//const initialState = { error: "" };
 
 export default async function TodosPage() {
   const todos = (await getTodosWithImages()) ?? [];
@@ -27,7 +28,7 @@ export default async function TodosPage() {
 */
 
 
-const [state, formAction] = useFormState(addTodoAction, initialState);
+//const [state, formAction] = useFormState(addTodoAction, initialState);
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-0">
@@ -52,6 +53,8 @@ const [state, formAction] = useFormState(addTodoAction, initialState);
       </form>
 */}
 
+
+{/*
 <form action={formAction} className="mb-10 space-y-3">
   <input
     name="title"
@@ -69,8 +72,9 @@ const [state, formAction] = useFormState(addTodoAction, initialState);
     Add
   </button>
 </form>
+*/}
 
-
+<TodoAddForm />
 
 
 
