@@ -53,7 +53,7 @@ return (
     </main>
 */}
 
-<main className="flex-1 overflow-y-auto overflow-x-hidden px-0 py-6">
+<main className="flex-1 overflow-y-auto overflow-x-hidden px-2 py-6">
   {children}
 </main>
 
