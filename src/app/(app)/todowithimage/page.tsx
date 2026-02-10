@@ -110,7 +110,7 @@ export default async function TodosPage() {
 */}
 
 
-<div className="grid grid-cols-3 gap-1 rounded-lg overflow-hidden">
+<div className="grid grid-cols-3 auto-rows-[1fr] gap-1 rounded-lg overflow-hidden">
   {todo.images.slice(0, 6).map((img, i) => (
     <div
       key={img.image_path}
