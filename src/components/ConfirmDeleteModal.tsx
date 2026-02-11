@@ -4,20 +4,18 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 
+/*
  function ConfirmDeleteModal_({ action, todoId }) {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      {/* Nút mở modal */}
       <button
         onClick={() => setOpen(true)}
         className="text-red-400 hover:text-red-300 font-medium"
       >
         Xóa
       </button>
-
-      {/* Modal */}
       {open && (
         <div className="fixed inset-0 z-550 flex items-center justify-center bg-black/60">
           <div className="bg-zinc-900 rounded-2xl p-6 w-full max-w-sm shadow-xl">
@@ -53,11 +51,18 @@ import { createPortal } from 'react-dom';
     </>
   );
 }
+*/
 
+interface ConfirmDeleteModalProps {
+  action: (formData: FormData) => void | Promise<void>;
+  todoId: number;
+}
 
+export function ConfirmDeleteModal({
+  action,
+  todoId,
+}: ConfirmDeleteModalProps) {
 
-
-export function ConfirmDeleteModal({ action, todoId }) {
   const [open, setOpen] = useState(false);
 
   if (!open) {
