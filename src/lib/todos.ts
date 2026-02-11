@@ -1,3 +1,4 @@
+'use server'
 import { sql } from "./neon/sql";
 import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
