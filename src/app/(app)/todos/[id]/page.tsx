@@ -19,11 +19,14 @@ interface TodoDetailProps {
 export default async function TodoDetail({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const todo = await getTodoById(Number(params.id));
+  const { id } = await params;
+
+  const todo = await getTodoById(Number(id));
 
   if (!todo) notFound();
+
   return (
     <div className="max-w-xl mx-auto mt-20 space-y-6">
       <h1 className="text-3xl font-bold text-white">Todo Detail</h1>
