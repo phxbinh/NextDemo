@@ -3,8 +3,21 @@ import { updateTodoAction, deleteTodoFromDetail } from '../../../actions';
 import { notFound, redirect } from 'next/navigation';
 import { ConfirmDeleteModal } from '../../../../components/ConfirmDeleteModal';
 
+/*
 export default async function TodoDetail({ params }) {
   const todo = await getTodoById(params.id);
+
+  if (!todo) notFound();
+*/
+
+interface TodoDetailProps {
+  params: {
+    id: string;
+  };
+}
+
+export default async function TodoDetail({ params }: TodoDetailProps) {
+  const todo = await getTodoById(Number(params.id));
 
   if (!todo) notFound();
 
