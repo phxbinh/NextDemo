@@ -11,6 +11,7 @@ export default async function Todos() {
   const todos = await getTodos();  // Fetch data server-side
 
   // Inline Server Action cho form add (cách đơn giản, không cần file actions riêng nếu muốn)
+/*
   async function handleAdd(formData) {
     'use server';
     const title = formData.get('title')?.toString().trim();
@@ -19,6 +20,23 @@ export default async function Todos() {
     await addTodo({ title });   // GỌI DB TRỰC TIẾP
     revalidatePath('/');
   }
+*/
+
+
+async function handleAdd(formData: FormData) {
+  'use server';
+
+  const title = formData.get('title')?.toString().trim();
+  if (!title) return;
+
+  await addTodo({ title });
+  revalidatePath('/');
+}
+
+
+
+
+
   return (
  
     <div className="max-w-2xl mx-auto px-0 sm:px-0">
