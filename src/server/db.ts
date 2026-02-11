@@ -9,10 +9,6 @@ if (!process.env.DATABASE_URL) {
 
 const sql = neon(process.env.DATABASE_URL);
 
-// ======================
-// Types
-// ======================
-
 export interface Todo {
   id: number;
   title: string;
@@ -25,10 +21,12 @@ export interface Todo {
 
 export const getTodos = async (): Promise<Todo[]> => {
   noStore();
-  const rows = await sql<Todo>`
-    SELECT * FROM todosnew ORDER BY id DESC
+  const rows = await sql`
+    SELECT id, title, completed
+    FROM todosnew
+    ORDER BY id DESC
   `;
-  return rows;
+  return rows as Todo[];
 };
 
 export const addTodo = async ({
@@ -40,13 +38,13 @@ export const addTodo = async ({
     throw new Error("Title is required");
   }
 
-  const rows = await sql<Todo>`
+  const rows = await sql`
     INSERT INTO todosnew (title)
     VALUES (${title})
-    RETURNING *;
+    RETURNING id, title, completed;
   `;
 
-  return rows[0];
+  return rows[0] as Todo;
 };
 
 export const deleteTodo = async ({
@@ -54,13 +52,10 @@ export const deleteTodo = async ({
 }: {
   id: number;
 }): Promise<void> => {
-  const todoId = Number(id);
-  if (!todoId) {
-    throw new Error("ID is required");
-  }
+  if (!id) throw new Error("ID is required");
 
   await sql`
-    DELETE FROM todosnew WHERE id = ${todoId};
+    DELETE FROM todosnew WHERE id = ${id};
   `;
 };
 
@@ -69,34 +64,31 @@ export const toggleTodo = async ({
 }: {
   id: number;
 }): Promise<Pick<Todo, "id" | "completed">> => {
-  const todoId = Number(id);
-  if (!todoId) {
-    throw new Error("ID is required");
-  }
+  if (!id) throw new Error("ID is required");
 
-  const rows = await sql<Pick<Todo, "id" | "completed">>`
+  const rows = await sql`
     UPDATE todosnew
     SET completed = NOT completed
-    WHERE id = ${todoId}
+    WHERE id = ${id}
     RETURNING id, completed;
   `;
 
-  return rows[0];
+  return rows[0] as Pick<Todo, "id" | "completed">;
 };
 
-export const getTodoById = async (id: number): Promise<Todo | null> => {
+export const getTodoById = async (
+  id: number
+): Promise<Todo | null> => {
   noStore();
+  if (!id) throw new Error("Invalid ID");
 
-  const todoId = Number(id);
-  if (!todoId) {
-    throw new Error("Invalid ID");
-  }
-
-  const rows = await sql<Todo>`
-    SELECT * FROM todosnew WHERE id = ${todoId};
+  const rows = await sql`
+    SELECT id, title, completed
+    FROM todosnew
+    WHERE id = ${id};
   `;
 
-  return rows[0] ?? null;
+  return rows[0] ? (rows[0] as Todo) : null;
 };
 
 export const updateTodo = async ({
@@ -106,18 +98,16 @@ export const updateTodo = async ({
   id: number;
   title: string;
 }): Promise<Todo> => {
-  const todoId = Number(id);
-
-  if (!todoId || !title?.trim()) {
+  if (!id || !title?.trim()) {
     throw new Error("Invalid data");
   }
 
-  const rows = await sql<Todo>`
+  const rows = await sql`
     UPDATE todosnew
     SET title = ${title}
-    WHERE id = ${todoId}
-    RETURNING *;
+    WHERE id = ${id}
+    RETURNING id, title, completed;
   `;
 
-  return rows[0];
+  return rows[0] as Todo;
 };
