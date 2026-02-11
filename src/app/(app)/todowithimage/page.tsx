@@ -31,7 +31,7 @@ export default async function TodosPage() {
 //const [state, formAction] = useFormState(addTodoAction, initialState);
 
   return (
-    <div className="max-w-2xl mx-auto px-2 sm:px-0">
+    <div className="max-w-2xl mx-auto px-0 sm:px-0">
       <h1 className="text-5xl md:text-6xl font-extrabold mb-10 text-center tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 drop-shadow-lg">
         Todo App Neon JS
       </h1>
