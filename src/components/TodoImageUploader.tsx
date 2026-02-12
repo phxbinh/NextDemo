@@ -129,6 +129,9 @@ export default function TodoImageUploader({ todoId }: { todoId: string }) {
     e.target.value = '';
   }
 
+const { data } = await supabase.auth.getSession();
+console.log('check session:',data.session);
+
   return (
     <input
       type="file"
