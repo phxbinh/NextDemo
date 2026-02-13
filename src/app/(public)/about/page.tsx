@@ -1,20 +1,8 @@
 
-/*
-export default function About() {
-  return (
-    <main className="p-8">
-      <h1 className="text-4xl font-bold">Về Todo App Neon JS</h1>
-      <p className="mt-4">Ứng dụng todo với vibe neon cyberpunk...</p>
-    </main>
-  );
-}
-*/
-
-
 // app/page.tsx (hoặc bất kỳ trang nào)
 import PricingCardCaNhanPlus from '../../../components/PricingCardCaNhanPlus';
 
-export default function Home() {
+export default function About() {
   return (
       <>        
         <h1 className="text-3xl font-bold text-center mb-10">Các gói hosting</h1>
