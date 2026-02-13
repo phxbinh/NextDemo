@@ -1,3 +1,50 @@
+
+
+
+
+
+/*
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
+
+type User = {
+  user_id: string;
+  avatar_url: string;
+  role: string;
+};
+
+export default async function AdminUsersPage() {
+  const h = await headers();
+
+  const host = h.get('host')!;
+  const protocol =
+    process.env.NODE_ENV === 'development' ? 'http' : 'https';
+
+  const res = await fetch(`${protocol}://${host}/api/admin/users`, {
+    cache: 'no-store',
+    headers: {
+      cookie: h.get('cookie') ?? '',
+    },
+  });
+
+  if (res.status === 401) redirect('/login');
+  if (res.status === 403) redirect('/403');
+  if (!res.ok) throw new Error('Failed to fetch users');
+
+  const users: User[] = await res.json();
+*/
+
+
+
+
+
+
+
+
+
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
+
 import Link from "next/link"
 
 interface Product {
@@ -10,6 +57,8 @@ interface Product {
 }
 
 async function getProducts(): Promise<Product[]> {
+
+/*
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_APP_URL}/api/admin/products`,
     {
@@ -20,6 +69,23 @@ async function getProducts(): Promise<Product[]> {
   if (!res.ok) {
     throw new Error("Failed to fetch products")
   }
+*/
+
+  const h = await headers();
+
+  const host = h.get('host')!;
+  const protocol =
+    process.env.NODE_ENV === 'development' ? 'http' : 'https';
+
+  const res = await fetch(`${protocol}://${host}/api/admin/products`, {
+    cache: 'no-store',
+    headers: {
+      cookie: h.get('cookie') ?? '',
+    },
+  });
+  if (res.status === 401) redirect('/login');
+  if (res.status === 403) redirect('/403');
+  if (!res.ok) throw new Error('Failed to fetch users');
 
   return res.json()
 }
