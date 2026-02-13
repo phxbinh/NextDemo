@@ -101,7 +101,7 @@ export default async function ProductsPage() {
         </h1>
 
         <Link
-          href="/admin/products/create"
+          href="/admin/products/new"
           className="bg-black text-white px-4 py-2 rounded"
         >
           + Create Product
