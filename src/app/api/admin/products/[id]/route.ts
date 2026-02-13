@@ -77,15 +77,17 @@ import { sql } from "@/lib/neon/sql"
 
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     //await assertAdmin()
 
+    const { id } = await context.params
+
     const result = await sql`
       select *
       from products
-      where id = ${params.id}
+      where id = ${id}
       limit 1
     `
 
@@ -108,10 +110,12 @@ export async function GET(
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     //await assertAdmin()
+
+    const { id } = await context.params
 
     const body = await req.json()
 
@@ -140,7 +144,7 @@ export async function PATCH(
         short_description = ${short_description},
         description = ${description},
         status = ${status}
-      where id = ${params.id}
+      where id = ${id}
       returning *
     `
 
@@ -153,7 +157,6 @@ export async function PATCH(
     )
   }
 }
-
 
 
 
