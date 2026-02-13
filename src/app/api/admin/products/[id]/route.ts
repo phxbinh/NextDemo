@@ -75,15 +75,9 @@ import { NextResponse } from "next/server"
 import { sql } from "@/lib/neon/sql"
 //import { assertAdmin } from "@/lib/auth/assertAdmin"
 
-type RouteParams = {
-  params: {
-    id: string
-  }
-}
-
 export async function GET(
   req: Request,
-  { params }: RouteParams
+  { params }: { params: { id: string } }
 ) {
   try {
     //await assertAdmin()
@@ -114,7 +108,7 @@ export async function GET(
 
 export async function PATCH(
   req: Request,
-  { params }: RouteParams
+  { params }: { params: { id: string } }
 ) {
   try {
     //await assertAdmin()
@@ -159,8 +153,6 @@ export async function PATCH(
     )
   }
 }
-
-
 
 
 
