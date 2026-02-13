@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server"
-import { neon } from "@neondatabase/serverless"
+import { sql } from '../../../../lib/neon/sql';
+//import { neon } from "@neondatabase/serverless"
 import slugify from "slugify"
 
-const sql = neon(process.env.DATABASE_URL!)
+//const sql = neon(process.env.DATABASE_URL!)
 
 export async function POST(req: Request) {
   try {
