@@ -4,7 +4,7 @@ export const sidebarLinks = [
     { name: 'Profile', href: '/profile', showInSidebar: true },
     { name: 'Settings', href: '/settings', showInSidebar: true },
     { name: 'About', href: '/about', showInSidebar: true },
-    { name: 'Products', href: '/products', showInSidebar: true },
+    { name: 'Products', href: '/admin/products', showInSidebar: true },
   { name: 'Todo no images', href: '/todoimages', showInSidebar: true },
   { name: 'Todo with images', href: '/todowithimage', showInSidebar: true },
   { name: 'Add products', href: '/admin/products/new', showInSidebar: true },
