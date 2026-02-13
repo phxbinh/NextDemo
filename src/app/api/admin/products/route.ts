@@ -1,13 +1,28 @@
 import { NextResponse } from "next/server"
 import { sql } from '../../../../lib/neon/sql';
+import { supabaseServerComponent } from '../../../../lib/supabase/server';
 //import { neon } from "@neondatabase/serverless"
 import slugify from "slugify"
+
 
 //const sql = neon(process.env.DATABASE_URL!)
 
 export async function POST(req: Request) {
   try {
     // TODO: check session + role admin ở đây
+
+const supabase = supabaseServerComponent();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return NextResponse.json(
+      { message: 'Unauthorized' },
+      { status: 401 }
+    );
+  }
 
     const body = await req.json()
 
