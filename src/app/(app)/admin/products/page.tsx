@@ -94,7 +94,7 @@ export default async function ProductsPage() {
   const products = await getProducts()
 
   return (
-    <div className="max-w-6xl mx-auto py-10 px-0">
+    <div className="max-w-6xl mx-0 py-10 px-0">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">
           Products
