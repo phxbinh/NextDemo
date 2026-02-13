@@ -1,24 +1,28 @@
 
-import { NextResponse } from "next/server"
-import { sql } from "@/lib/neon/sql"
-import { assertAdmin } from "@/lib/auth/assertAdmin"
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { NextResponse } from 'next/server';
+import { supabaseServerComponent } from '@/lib/supabase/server';
+import { assertAdmin } from '@/lib/auth/assertAdmin';
+import { sql } from '@/lib/neon/sql';
+import { ForbiddenError } from '@/lib/errors';
 
 export async function GET(
   req: Request,
   context: { params: Promise<{ id: string }> }
 ) {
-  const supabase = createServerComponentClient({ cookies });
-  try {
-    // Lấy thông tin từ cookies
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-  
-    if (!user) {
-      return new Response("Unauthorized", { status: 401 });
-    }
+  const supabase = supabaseServerComponent();
 
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return NextResponse.json(
+      { message: 'Unauthorized' },
+      { status: 401 }
+    );
+  }
+  try {
+  
     // Kiểm tra quyền admin
     await assertAdmin(user.id);
 
