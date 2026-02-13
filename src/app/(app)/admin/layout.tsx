@@ -60,7 +60,7 @@ if (!(await requireAdmin(user.id))) {
         GET Method: get all users in profiles
       </Link>
 
-      <main className="p-6">{children}</main>
+      <main className="p-0">{children}</main>
     </div>
   );
 }
