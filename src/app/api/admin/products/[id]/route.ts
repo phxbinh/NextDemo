@@ -46,6 +46,14 @@ export async function GET(
     return NextResponse.json(result[0])
   } catch (err) {
     console.error(err)
+    if (err instanceof ForbiddenError) {
+      return NextResponse.json(
+        { message: 'Forbidden' },
+        { status: 403 }
+      );
+    }
+
+    //throw err; // 500
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }
