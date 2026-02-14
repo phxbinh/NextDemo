@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { sql } from "@/lib/db" // chỉnh lại path nếu khác
+import { sql } from "@/lib/neon/sql" // chỉnh lại path nếu khác
 
 // GET: list product types
 export async function GET() {
