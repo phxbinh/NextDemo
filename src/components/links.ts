@@ -8,5 +8,6 @@ export const sidebarLinks = [
   { name: 'Todo no images', href: '/todoimages', showInSidebar: true },
   { name: 'Todo with images', href: '/todowithimage', showInSidebar: true },
   { name: 'Add products', href: '/admin/products/new', showInSidebar: true },
+     { name: 'Cre.Product types', href: '/admin/product-types', showInSidebar: true },
 
   ];
