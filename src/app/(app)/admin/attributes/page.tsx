@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Link from "next/link"
 
 type Attribute = {
   id: string
@@ -179,6 +180,7 @@ export default function AttributesPage() {
               <th className="border p-2">Name</th>
               <th className="border p-2">Type</th>
               <th className="border p-2">Actions</th>
+              <th className="border p-2">Values</th>
             </tr>
           </thead>
           <tbody>
@@ -187,6 +189,7 @@ export default function AttributesPage() {
                 <td className="border p-2">{item.code}</td>
                 <td className="border p-2">{item.name}</td>
                 <td className="border p-2">{item.type}</td>
+
                 <td className="border p-2 space-x-2">
                   <button
                     onClick={() => {
@@ -206,6 +209,15 @@ export default function AttributesPage() {
                   >
                     Delete
                   </button>
+                </td>
+
+                <td className="border p-2">
+                  <Link
+                    href={`/admin/attributes/${item.id}/values`}
+                    className="border px-3 py-1 inline-block"
+                  >
+                    Manage Values
+                  </Link>
                 </td>
               </tr>
             ))}
