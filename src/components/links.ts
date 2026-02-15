@@ -10,5 +10,5 @@ export const sidebarLinks = [
   { name: 'Add products', href: '/admin/products/new', showInSidebar: true },
      { name: 'Cre.Product types', href: '/admin/product-types', showInSidebar: true },
      { name: 'Cre.attributes', href: '/admin/attributes', showInSidebar: true },
-
+     { name: 'Products full', href: '/admin/products-full', showInSidebar: true },
   ];
