@@ -1,5 +1,29 @@
 import React from "react";
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
 
+async function getProducts(id: string) {
+  const h = await headers();
+
+  const host = h.get('host')!;
+  const protocol =
+    process.env.NODE_ENV === 'development' ? 'http' : 'https';
+
+  const res = await fetch(`${protocol}://${host}/api/admin/products/${id}/full`, {
+    cache: 'no-store',
+    headers: {
+      cookie: h.get('cookie') ?? '',
+    },
+  });
+
+  if (res.status === 401) redirect('/login');
+  if (res.status === 403) redirect('/403');
+  if (!res.ok) throw new Error('Failed to fetch users');
+
+  return res.json()
+
+}
+/*
 async function getProductFull(id: string) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/products/${id}/full`,
@@ -13,7 +37,19 @@ async function getProductFull(id: string) {
   }
 
   return res.json();
-}
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
 
 export default async function ProductDetailPage({
   params,
