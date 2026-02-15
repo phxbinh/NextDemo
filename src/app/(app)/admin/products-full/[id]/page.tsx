@@ -1,4 +1,5 @@
 
+/*
 import React from "react";
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -26,8 +27,9 @@ async function getProductFull(id: string) {
   return res.json()
 
 }
+*/
 
-/*
+/* Không dùng cái này -> Tham khảo cho error
 async function getProductFull(id: string) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/products/${id}/full`,
@@ -43,6 +45,7 @@ async function getProductFull(id: string) {
   return res.json();
 }*/
 
+/*
 export default async function ProductDetailPage({
   params,
 }: {
@@ -102,8 +105,14 @@ export default async function ProductDetailPage({
     </div>
   );
 }
+*/
 
-/*
+
+
+
+
+
+/* Cho test ----
 "use client"
 
 import { useEffect, useState } from "react"
@@ -291,6 +300,63 @@ export default function ProductDetailPage() {
   )
 }
 */
+
+
+
+
+
+
+
+// Dùng khi tách
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import FullProductClient from "./FullProductClient";
+
+export const dynamic = "force-dynamic";
+
+async function getProductFull(id: string) {
+  const h = await headers();
+
+  const host = h.get("host")!;
+  const protocol =
+    process.env.NODE_ENV === "development" ? "http" : "https";
+
+  const res = await fetch(
+    `${protocol}://${host}/api/admin/products/${id}/full`,
+    {
+      cache: "no-store",
+      headers: {
+        cookie: h.get("cookie") ?? "",
+      },
+    }
+  );
+
+  if (res.status === 401) redirect("/login");
+  if (res.status === 403) redirect("/403");
+
+  if (!res.ok) {
+    const text = await res.text();
+    console.error("API ERROR:", text);
+    throw new Error("Failed to fetch product");
+  }
+
+  return res.json();
+}
+
+export default async function ProductDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+
+  const data = await getProductFull(id);
+
+  return <FullProductClient data={data} />;
+}
+
+
+
 
 
 
