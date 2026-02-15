@@ -16,6 +16,39 @@ async function getProducts() {
 }
 */
 
+async function getProducts() {
+  const h = await headers();
+
+  const host = h.get('host')!;
+  const protocol =
+    process.env.NODE_ENV === 'development' ? 'http' : 'https';
+
+  const res = await fetch(`${protocol}://${host}/api/admin/products`, {
+    cache: 'no-store',
+    headers: {
+      cookie: h.get('cookie') ?? '',
+    },
+  });
+
+  if (res.status === 401) redirect('/login');
+  if (res.status === 403) redirect('/403');
+  if (!res.ok) throw new Error('Failed to fetch users');
+
+  return res.json()
+
+}
+
+
+/*
+interface Product {
+  id: string
+  name: string
+  slug: string
+  status: "draft" | "active" | "archived"
+  product_type: string
+  created_at: string
+}
+
 async function getProducts(): Promise<Product[]> {
 
   const h = await headers();
@@ -38,7 +71,7 @@ async function getProducts(): Promise<Product[]> {
   return res.json()
 }
 
-
+*/
 
 
 
