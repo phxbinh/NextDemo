@@ -77,7 +77,7 @@ const productRows = (await sql`
     left join attribute_values av
       on av.attribute_id = a.id
 
-    where pta.product_type_id = ${product.product_type_id}
+    where pta.product_type_id = ${productRows.product_type_id}
 
     group by a.id
     order by a.name asc
