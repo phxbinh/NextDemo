@@ -94,3 +94,88 @@ export async function POST(req: Request) {
     );
   }
 }
+
+//import { NextResponse } from "next/server";
+//import { sql } from "@neondatabase/serverless";
+
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const productId = searchParams.get("productId");
+
+  if (!productId) {
+    return NextResponse.json(
+      { error: "productId is required" },
+      { status: 400 }
+    );
+  }
+
+  try {
+    const rows = await sql`
+      select
+        v.id,
+        v.sku,
+        v.title,
+        v.price,
+        v.compare_at_price,
+        v.stock,
+        v.allow_backorder,
+        v.is_active,
+        v.created_at,
+        v.updated_at,
+
+        coalesce(
+          json_agg(
+            json_build_object(
+              'attribute_name', a.name,
+              'value', av.value
+            )
+          ) filter (where av.id is not null),
+          '[]'
+        ) as raw_attributes
+
+      from product_variants v
+      left join variant_attribute_values vav
+        on vav.variant_id = v.id
+      left join attribute_values av
+        on av.id = vav.attribute_value_id
+      left join attributes a
+        on a.id = av.attribute_id
+
+      where v.product_id = ${productId}
+
+      group by v.id
+      order by v.created_at asc
+    `;
+
+    // 🔥 reshape
+    const result = rows.map((row) => {
+      const attributesObject: Record<string, string> = {};
+
+      for (const attr of row.raw_attributes) {
+        attributesObject[attr.attribute_name] = attr.value;
+      }
+
+      return {
+        ...row,
+        attributes: attributesObject,
+      };
+    });
+
+    return NextResponse.json(result);
+  } catch (err) {
+    console.error(err);
+    return NextResponse.json(
+      { error: "Failed to fetch variants" },
+      { status: 500 }
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
