@@ -112,11 +112,11 @@ export default function AttributesPage() {
     setType("text")
   }
 
+/*
 return (
   <div className="p-4 sm:p-6 space-y-6 max-w-full overflow-x-auto">
     <h1 className="text-2xl font-bold">Attributes</h1>
 
-    {/* FORM */}
     <form
       onSubmit={
         editingId
@@ -174,7 +174,6 @@ return (
       </div>
     </form>
 
-    {/* TABLE */}
     {loading ? (
       <p className="text-center py-8">Loading...</p>
     ) : (
@@ -236,11 +235,9 @@ return (
   </div>
 )
 }
+*/
 
 
-
-
-/*
   return (
     <div className="p-6 space-y-6">
       <h1 className="text-2xl font-bold">Attributes</h1>
@@ -354,6 +351,5 @@ return (
   )
 }
 
-*/
 
 
