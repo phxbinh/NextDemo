@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-import { neon } from "@/lib/neon/sql";
-
-const sql = neon(process.env.DATABASE_URL!);
+import { sql } from "@/lib/neon/sql";
 
 export async function PUT(
   req: Request,
