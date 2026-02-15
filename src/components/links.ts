@@ -13,5 +13,5 @@ export const sidebarLinks = [
  
      { name: 'Cre.attributes', href: '/admin/attributes', showInSidebar: true },
      { name: 'Products full', href: '/admin/products-full', showInSidebar: true },
-    { name: 'Products view', href: '/admin/products-view', showInSidebar: true },
+    { name: 'Products view', href: '/admin/product-view', showInSidebar: true },
   ];
