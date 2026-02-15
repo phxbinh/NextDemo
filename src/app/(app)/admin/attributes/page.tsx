@@ -241,6 +241,7 @@ return (
   return (
     <div className="p-6 space-y-6">
       <h1 className="text-2xl font-bold">Attributes</h1>
+{/*
       <form
         onSubmit={
           editingId
@@ -292,6 +293,65 @@ return (
           </button>
         )}
       </form>
+*/}
+
+    <form
+      onSubmit={
+        editingId
+          ? (e) => {
+              e.preventDefault()
+              handleUpdate(editingId)
+            }
+          : handleCreate
+      }
+      className="flex flex-col sm:flex-row flex-wrap gap-3 items-start sm:items-center"
+    >
+      <input
+        placeholder="code (vd: size)"
+        value={code}
+        onChange={(e) => setCode(e.target.value)}
+        className="border rounded px-3 py-2 min-w-[140px] flex-1 sm:flex-none sm:w-44"
+      />
+
+      <input
+        placeholder="name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        className="border rounded px-3 py-2 min-w-[140px] flex-1 sm:flex-none sm:w-64"
+      />
+
+      <select
+        value={type}
+        onChange={(e) => setType(e.target.value)}
+        className="border rounded px-3 py-2 min-w-[140px] sm:w-40"
+      >
+        {ATTRIBUTE_TYPES.map((t) => (
+          <option key={t} value={t}>
+            {t}
+          </option>
+        ))}
+      </select>
+
+      <div className="flex gap-2 flex-wrap">
+        <button 
+          type="submit"
+          className="bg-black text-white px-5 py-2 rounded hover:bg-gray-800 transition-colors"
+        >
+          {editingId ? "Update" : "Create"}
+        </button>
+
+        {editingId && (
+          <button
+            type="button"
+            onClick={resetForm}
+            className="border border-gray-400 px-5 py-2 rounded hover:bg-gray-100 transition-colors"
+          >
+            Cancel
+          </button>
+        )}
+      </div>
+    </form>
+
 
       {loading ? (
         <p>Loading...</p>
