@@ -66,7 +66,7 @@ export default async function ProductDetailPage({
    
       <section className="border p-4 rounded">
         <h2 className="font-semibold mb-2">Product Info</h2>
-        <pre className="text-sm bg-gray-100 p-4 rounded overflow-auto">
+        <pre className="text-sm p-4 rounded overflow-auto">
           {JSON.stringify(data.product, null, 2)}
         </pre>
       </section>
