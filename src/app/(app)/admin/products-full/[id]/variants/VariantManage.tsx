@@ -76,6 +76,9 @@ export default function VariantManager({
       {/* 🔹 Attribute Selectors */}
       <div className="border p-4 rounded space-y-4">
         <h2 className="font-semibold">Attributes</h2>
+     <pre className="text-sm p-4 rounded overflow-auto">
+          {JSON.stringify(attributes, null, 2)}
+        </pre>
 
         {attributes.map((attr) => (
           <div key={attr.id}>
