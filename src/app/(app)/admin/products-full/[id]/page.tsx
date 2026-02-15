@@ -1,10 +1,10 @@
-/*
+
 import React from "react";
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 import { sql } from "@/lib/neon/sql";
-
+/*
 export const dynamic = "force-dynamic";
 
 async function getProductFull(id: string) {
@@ -121,14 +121,15 @@ function ProductDetailPage_({
 */
 
 
+import { useRouter, useParams } from "next/navigation"
 
-/*
-//export default async function ProductDetailPage__({
+export default async function ProductDetailPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = await params;
+const router = useRouter()
+  const { id } = useParams<{ id: string }>()
 
   const result = await sql`
     select *
@@ -155,10 +156,10 @@ function ProductDetailPage_({
     </div>
   );
 }
-*/
 
 
 
+/*
 "use client"
 
 import { useEffect, useState } from "react"
@@ -189,7 +190,7 @@ export default function ProductDetailPage() {
 
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`/api/admin/products/${id}/full`)
+        const res = await fetch(`/api/admin/products/${id}`)
 
         if (!res.ok) {
           throw new Error("Failed to fetch product")
@@ -345,7 +346,7 @@ export default function ProductDetailPage() {
     </div>
   )
 }
-
+*/
 
 
 
