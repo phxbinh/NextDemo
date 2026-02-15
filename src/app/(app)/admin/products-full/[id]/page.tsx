@@ -4,7 +4,6 @@ import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 
-export const dynamic = "force-dynamic";
 
 async function getProductFull(id: string) {
   const h = await headers();
