@@ -150,7 +150,7 @@ export default function ProductTypeAttributeManager() {
       </button>
 
       {message && (
-        <div className="bg-gray-100 p-3 rounded">
+        <div className="p-3 rounded">
           {message}
         </div>
       )}
