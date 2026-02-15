@@ -20,7 +20,7 @@ type Attribute = {
 export default async function VariantPage({
   params,
 }: {
-  params: { id: string }; // ❗ Không cần Promise ở đây
+  params: Promise<{ id: string }>; // ❗ Không cần Promise ở đây
 }) {
   const productId = params.id;
 
