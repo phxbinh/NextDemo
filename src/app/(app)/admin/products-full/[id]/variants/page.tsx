@@ -43,14 +43,11 @@ const productRows = (await sql`
   limit 1
 `) as ProductRow[];
 
+const product = productRows[0];
 
-
-
-
-
-  if (!productRows) {
-    return <div className="p-6">Product not found</div>;
-  }
+if (!product) {
+  return <div className="p-6">Product not found</div>;
+}
 
   // 🔥 2️⃣ Lấy attributes theo product_type
   const attributes = (await sql`
@@ -77,7 +74,7 @@ const productRows = (await sql`
     left join attribute_values av
       on av.attribute_id = a.id
 
-    where pta.product_type_id = ${productRows.product_type_id}
+    where pta.product_type_id = ${product.product_type_id}
 
     group by a.id
     order by a.name asc
