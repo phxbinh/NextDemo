@@ -123,8 +123,7 @@ function ProductDetailPage_({
 
 
 /*
-//export default async
-function ProductDetailPage__({
+//export default async function ProductDetailPage__({
   params,
 }: {
   params: Promise<{ id: string }>;
@@ -190,7 +189,7 @@ export default function ProductDetailPage() {
 
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`/api/admin/products/${id}`)
+        const res = await fetch(`/api/admin/products/${id}/full`)
 
         if (!res.ok) {
           throw new Error("Failed to fetch product")
