@@ -1,4 +1,4 @@
-/*
+
 import { NextResponse } from "next/server";
 import { sql } from "@/lib/neon/sql";
 
@@ -120,11 +120,11 @@ export async function GET(
   }
 }
 
-*/
 
 
 
 
+/*
 import { NextResponse } from "next/server";
 import { sql } from "@/lib/neon/sql";
 
@@ -246,7 +246,7 @@ export async function GET(
     );
   }
 }
-
+*/
 
 
 
