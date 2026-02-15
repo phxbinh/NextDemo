@@ -4,9 +4,10 @@ import VariantManager from "./VariantManage";
 export default async function VariantPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const productId = params.id;
+  const { id } = await params;
+  const productId = id;
 
   // 🔥 Load attributes + values
   const attributes = await sql`
