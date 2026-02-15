@@ -112,7 +112,7 @@ export default async function ProductsPage() {
               >
                 <td className="p-3 font-medium">
                   <Link
-                    href={`/admin/products/${product.id}`}
+                    href={`/admin/products-full/${product.id}`}
                     className="text-blue-600 hover:underline"
                   >
                     {product.name}
