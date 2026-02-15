@@ -26,21 +26,34 @@ export default async function VariantPage({
   const productId = id;
 
   // 🔥 1️⃣ Lấy product_type_id
+/*
   const productRows = await sql<ProductRow[]>`
     select id, product_type_id
     from products
     where id = ${productId}
     limit 1
   `;
-
   const product = productRows[0];
+*/
 
-  if (!product) {
+const productRows = (await sql`
+  select id, product_type_id
+  from products
+  where id = ${productId}
+  limit 1
+`) as ProductRow[];
+
+
+
+
+
+
+  if (!productRows) {
     return <div className="p-6">Product not found</div>;
   }
 
   // 🔥 2️⃣ Lấy attributes theo product_type
-  const attributes = await sql<Attribute[]>`
+  const attributes = (await sql`
     select
       a.id,
       a.code,
@@ -68,7 +81,7 @@ export default async function VariantPage({
 
     group by a.id
     order by a.name asc
-  `;
+  `) as Attribute[];
 
   return (
     <div className="p-6">
