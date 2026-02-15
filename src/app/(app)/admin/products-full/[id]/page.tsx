@@ -56,9 +56,9 @@ export default async function ProductDetailPage({
   const data = await getProductFull(id);
 
   return (
-<pre>{JSON.stringify(data, null, 2)}</pre>
-    <div className="p-6 space-y-8">
 
+    <div className="p-6 space-y-8">
+      <><pre>{JSON.stringify(data, null, 2)}</pre></>
       <h1 className="text-2xl font-bold">
         Product Detail Debug
       </h1>
