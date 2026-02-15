@@ -1,5 +1,5 @@
 
-/*
+
 import React from "react";
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -27,7 +27,7 @@ async function getProductFull(id: string) {
   return res.json()
 
 }
-*/
+
 
 /* Không dùng cái này -> Tham khảo cho error
 async function getProductFull(id: string) {
@@ -45,7 +45,7 @@ async function getProductFull(id: string) {
   return res.json();
 }*/
 
-/*
+
 export default async function ProductDetailPage({
   params,
 }: {
@@ -105,7 +105,7 @@ export default async function ProductDetailPage({
     </div>
   );
 }
-*/
+
 
 
 
@@ -306,7 +306,7 @@ export default function ProductDetailPage() {
 
 
 
-
+/*
 // Dùng khi tách
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
@@ -354,7 +354,7 @@ export default async function ProductDetailPage({
 
   return <FullProductClient data={data} />;
 }
-
+*/
 
 
 
