@@ -1,3 +1,4 @@
+/*
 import React from "react";
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -23,6 +24,8 @@ async function getProductFull(id: string) {
   return res.json()
 
 }
+
+*/
 /*
 async function getProductFull(id: string) {
   const res = await fetch(
@@ -51,7 +54,8 @@ async function getProductFull(id: string) {
 
 
 
-export default async function ProductDetailPage({
+//export default async
+function ProductDetailPage_({
   params,
 }: {
   params: Promise<{ id: string }>;
@@ -110,3 +114,48 @@ export default async function ProductDetailPage({
     </div>
   );
 }
+
+
+
+import { sql } from "@/lib/neon/sql";
+
+export const dynamic = "force-dynamic";
+
+export default async function ProductDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+
+  const result = await sql`
+    select *
+    from products
+    where id = ${id}
+    limit 1
+  `;
+
+  if (result.length === 0) {
+    return <div className="p-6">Product not found</div>;
+  }
+
+  const product = result[0];
+
+  return (
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">
+        Product Debug (Direct DB)
+      </h1>
+
+      <pre className="bg-gray-100 p-4 rounded overflow-auto text-sm">
+        {JSON.stringify(product, null, 2)}
+      </pre>
+    </div>
+  );
+}
+
+
+
+
+
+
