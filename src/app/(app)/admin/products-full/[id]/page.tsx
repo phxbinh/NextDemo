@@ -1,0 +1,76 @@
+import React from "react";
+
+async function getProductFull(id: string) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/products/${id}/full`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch product");
+  }
+
+  return res.json();
+}
+
+export default async function ProductDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+
+  const data = await getProductFull(id);
+
+  return (
+    <div className="p-6 space-y-8">
+
+      <h1 className="text-2xl font-bold">
+        Product Detail Debug
+      </h1>
+
+      {/* 🔹 Product Basic Info */}
+      <section className="border p-4 rounded">
+        <h2 className="font-semibold mb-2">Product Info</h2>
+        <pre className="text-sm bg-gray-100 p-4 rounded overflow-auto">
+          {JSON.stringify(data.product, null, 2)}
+        </pre>
+      </section>
+
+      {/* 🔹 Summary */}
+      <section className="border p-4 rounded">
+        <h2 className="font-semibold mb-2">Summary</h2>
+        <pre className="text-sm bg-gray-100 p-4 rounded overflow-auto">
+          {JSON.stringify(data.summary, null, 2)}
+        </pre>
+      </section>
+
+      {/* 🔹 Attributes */}
+      <section className="border p-4 rounded">
+        <h2 className="font-semibold mb-2">Attributes</h2>
+        <pre className="text-sm bg-gray-100 p-4 rounded overflow-auto">
+          {JSON.stringify(data.attributes, null, 2)}
+        </pre>
+      </section>
+
+      {/* 🔹 Variants */}
+      <section className="border p-4 rounded">
+        <h2 className="font-semibold mb-2">Variants</h2>
+        <pre className="text-sm bg-gray-100 p-4 rounded overflow-auto">
+          {JSON.stringify(data.variants, null, 2)}
+        </pre>
+      </section>
+
+      {/* 🔹 Images */}
+      <section className="border p-4 rounded">
+        <h2 className="font-semibold mb-2">Images</h2>
+        <pre className="text-sm bg-gray-100 p-4 rounded overflow-auto">
+          {JSON.stringify(data.images, null, 2)}
+        </pre>
+      </section>
+
+    </div>
+  );
+}
