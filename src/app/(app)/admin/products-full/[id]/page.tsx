@@ -1,7 +1,11 @@
-/*
+
 import React from "react";
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
+
+import { sql } from "@/lib/neon/sql";
+
+export const dynamic = "force-dynamic";
 
 async function getProductFull(id: string) {
   const h = await headers();
@@ -25,7 +29,7 @@ async function getProductFull(id: string) {
 
 }
 
-*/
+
 /*
 async function getProductFull(id: string) {
   const res = await fetch(
@@ -117,9 +121,7 @@ function ProductDetailPage_({
 
 
 
-import { sql } from "@/lib/neon/sql";
 
-export const dynamic = "force-dynamic";
 
 export default async function ProductDetailPage({
   params,
