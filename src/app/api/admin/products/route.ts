@@ -80,11 +80,6 @@ const supabase = supabaseServerComponent();
 }
 */
 
-import { NextResponse } from "next/server"
-import { sql } from "@/lib/neon/sql"
-import { supabaseServerComponent } from "@/lib/supabase/server"
-import slugify from "slugify"
-
 export async function POST(req: Request) {
   try {
     const supabase = supabaseServerComponent()
