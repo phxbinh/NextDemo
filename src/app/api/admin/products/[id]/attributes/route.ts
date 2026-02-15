@@ -3,7 +3,7 @@ import { sql } from "@/lib/neon/sql";
 
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   const productId = params.id;
 
