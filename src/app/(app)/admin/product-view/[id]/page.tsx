@@ -74,7 +74,7 @@ export default async function ProductDetailPage({
  
       <section className="border p-4 rounded">
         <h2 className="font-semibold mb-2">Summary</h2>
-        <pre className="text-sm bg-gray-100 p-4 rounded overflow-auto">
+        <pre className="text-sm p-4 rounded overflow-auto">
           {JSON.stringify(data.summary, null, 2)}
         </pre>
       </section>
@@ -82,7 +82,7 @@ export default async function ProductDetailPage({
 
       <section className="border p-4 rounded">
         <h2 className="font-semibold mb-2">Attributes</h2>
-        <pre className="text-sm bg-gray-100 p-4 rounded overflow-auto">
+        <pre className="text-sm p-4 rounded overflow-auto">
           {JSON.stringify(data.attributes, null, 2)}
         </pre>
       </section>
@@ -90,7 +90,7 @@ export default async function ProductDetailPage({
      
       <section className="border p-4 rounded">
         <h2 className="font-semibold mb-2">Variants</h2>
-        <pre className="text-sm bg-gray-100 p-4 rounded overflow-auto">
+        <pre className="text-sm p-4 rounded overflow-auto">
           {JSON.stringify(data.variants, null, 2)}
         </pre>
       </section>
@@ -98,7 +98,7 @@ export default async function ProductDetailPage({
     
       <section className="border p-4 rounded">
         <h2 className="font-semibold mb-2">Images</h2>
-        <pre className="text-sm bg-gray-100 p-4 rounded overflow-auto">
+        <pre className="text-sm p-4 rounded overflow-auto">
           {JSON.stringify(data.images, null, 2)}
         </pre>
       </section>
