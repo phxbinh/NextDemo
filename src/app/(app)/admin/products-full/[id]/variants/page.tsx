@@ -22,7 +22,8 @@ export default async function VariantPage({
 }: {
   params: Promise<{ id: string }>; // ❗ Không cần Promise ở đây
 }) {
-  const productId = params.id;
+  const { id } = await params;
+  const productId = id;
 
   // 🔥 1️⃣ Lấy product_type_id
   const productRows = await sql<ProductRow[]>`
