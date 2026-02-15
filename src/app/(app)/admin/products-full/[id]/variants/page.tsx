@@ -1,5 +1,5 @@
 import { sql } from "@/lib/neon/sql";
-import VariantManager from "./VariantManager";
+import VariantManager from "./VariantManage";
 
 export default async function VariantPage({
   params,
