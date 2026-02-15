@@ -5,9 +5,10 @@ export async function GET(
   req: Request,
   context: { params: Promise<{ id: string }> }
 ) {
-  const productId = params.id;
+  //const productId = params.id;
+const { id } = await context.params
 
-  if (!productId) {
+  if (!id) {
     return NextResponse.json(
       { error: "product id is required" },
       { status: 400 }
@@ -27,7 +28,7 @@ export async function GET(
         on av.id = vav.attribute_value_id
       join attributes a
         on a.id = av.attribute_id
-      where v.product_id = ${productId}
+      where v.product_id = ${id}
       order by a.sort_order asc, a.name asc
     `;
 
