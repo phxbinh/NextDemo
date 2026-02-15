@@ -2,7 +2,7 @@ import React from "react";
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-async function getProducts(id: string) {
+async function getProductFull(id: string) {
   const h = await headers();
 
   const host = h.get('host')!;
