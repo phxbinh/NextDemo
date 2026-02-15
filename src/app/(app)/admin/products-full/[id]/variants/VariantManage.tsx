@@ -4,7 +4,9 @@ import { useState } from "react";
 
 type Attribute = {
   id: string;
+  code: string;
   name: string;
+  type: string;
   values: { id: string; value: string }[];
 };
 
@@ -15,24 +17,31 @@ export default function VariantManager({
   productId: string;
   attributes: Attribute[];
 }) {
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
+  // 🔥 1 attribute = 1 selected value
+  const [selected, setSelected] = useState<Record<string, string>>({});
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("0");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  function handleSelect(valueId: string) {
-    setSelectedValues((prev) => {
-      if (prev.includes(valueId)) {
-        return prev.filter((id) => id !== valueId);
-      }
-      return [...prev, valueId];
-    });
+  function handleSelect(attributeId: string, valueId: string) {
+    setSelected((prev) => ({
+      ...prev,
+      [attributeId]: valueId,
+    }));
   }
 
   async function handleSubmit() {
     setLoading(true);
     setMessage("");
+
+    const attribute_value_ids = Object.values(selected);
+
+    if (attribute_value_ids.length !== attributes.length) {
+      setMessage("You must select all attributes");
+      setLoading(false);
+      return;
+    }
 
     const res = await fetch("/api/admin/product-variants", {
       method: "POST",
@@ -43,7 +52,7 @@ export default function VariantManager({
         product_id: productId,
         price: Number(price),
         stock: Number(stock),
-        attribute_value_ids: selectedValues,
+        attribute_value_ids,
       }),
     });
 
@@ -53,7 +62,7 @@ export default function VariantManager({
       setMessage(data.error || "Error");
     } else {
       setMessage("Variant created successfully");
-      setSelectedValues([]);
+      setSelected({});
       setPrice("");
       setStock("0");
     }
@@ -64,34 +73,35 @@ export default function VariantManager({
   return (
     <div className="space-y-6">
 
-      {/* 🔹 Attribute Selector */}
+      {/* 🔹 Attribute Selectors */}
       <div className="border p-4 rounded space-y-4">
-        <h2 className="font-semibold">Select Attributes</h2>
+        <h2 className="font-semibold">Attributes</h2>
 
         {attributes.map((attr) => (
           <div key={attr.id}>
-            <p className="font-medium">{attr.name}</p>
-            <div className="flex gap-2 flex-wrap mt-2">
+            <label className="block mb-2 font-medium">
+              {attr.name}
+            </label>
+
+            <select
+              value={selected[attr.id] || ""}
+              onChange={(e) =>
+                handleSelect(attr.id, e.target.value)
+              }
+              className="border px-3 py-2 w-full"
+            >
+              <option value="">Select {attr.name}</option>
               {attr.values.map((val) => (
-                <button
-                  key={val.id}
-                  type="button"
-                  onClick={() => handleSelect(val.id)}
-                  className={`px-3 py-1 rounded border ${
-                    selectedValues.includes(val.id)
-                      ? "bg-black text-white"
-                      : "bg-white"
-                  }`}
-                >
+                <option key={val.id} value={val.id}>
                   {val.value}
-                </button>
+                </option>
               ))}
-            </div>
+            </select>
           </div>
         ))}
       </div>
 
-      {/* 🔹 Price + Stock */}
+      {/* 🔹 Pricing */}
       <div className="border p-4 rounded space-y-4">
         <h2 className="font-semibold">Pricing</h2>
 
