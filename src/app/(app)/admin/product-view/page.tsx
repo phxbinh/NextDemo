@@ -1,4 +1,4 @@
-
+//src/app/(app)/product-view/page.tsx
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
@@ -37,7 +37,14 @@ export default async function ProductsPage() {
       <h1 className="text-2xl font-bold">
         Admin Products
       </h1>
-
+      <br/>
+      <Link
+        href={`/admin/product-variants`}
+        className="text-blue-600 hover:underline"
+      >
+        Goto Set Product-variants
+      </Link>
+      <br/>
       <div className="border rounded overflow-hidden">
         <table className="w-full text-sm">
           <thead className="bg-gray-100">
