@@ -1,14 +1,37 @@
-import Link from "next/link";
+//src/app/(app)/admin/product-variants/page.tsx
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
+import Link from "next/link"
 
-async function getProducts() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/products`,
-    { cache: "no-store" }
-  );
+interface Product {
+  id: string
+  name: string
+  slug: string
+  status: "draft" | "active" | "archived"
+  product_type: string
+  created_at: string
+}
 
-  if (!res.ok) throw new Error("Failed to fetch products");
+async function getProducts(): Promise<Product[]> {
 
-  return res.json();
+  const h = await headers();
+
+  const host = h.get('host')!;
+  const protocol =
+    process.env.NODE_ENV === 'development' ? 'http' : 'https';
+
+  const res = await fetch(`${protocol}://${host}/api/admin/products`, {
+    cache: 'no-store',
+    headers: {
+      cookie: h.get('cookie') ?? '',
+    },
+  });
+
+  if (res.status === 401) redirect('/login');
+  if (res.status === 403) redirect('/403');
+  if (!res.ok) throw new Error('Failed to fetch users');
+
+  return res.json()
 }
 
 export default async function ProductsPage() {
