@@ -114,3 +114,45 @@ export async function PUT(
     );
   }
 }
+
+
+export async function DELETE(
+  req: Request,
+  context: { params: Promise<{ id: string }> }
+) {
+  const { id } = await context.params;
+
+  try {
+    const rows = await sql`
+      delete from product_variants
+      where id = ${id}
+      returning id
+    `;
+
+    if (rows.length === 0) {
+      return NextResponse.json(
+        { error: "Variant not found" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      { success: true },
+      { status: 200 }
+    );
+
+  } catch (err) {
+    console.error("Delete variant error:", err);
+
+    return NextResponse.json(
+      { error: "Failed to delete variant" },
+      { status: 500 }
+    );
+  }
+}
+
+
+
+
+
+
