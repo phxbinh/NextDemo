@@ -53,7 +53,7 @@ export default async function ProductsPage() {
             <tr key={p.id} className="hover:bg-gray-50">
               <td className="p-2 border">
                 <Link
-                  href={`/admin/products/${p.id}/variants`}
+                  href={`/admin/product-variants/${p.id}/variants`}
                   className="text-blue-600 hover:underline"
                 >
                   {p.name}
