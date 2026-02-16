@@ -1,3 +1,4 @@
+//src/app/api/admin/products/route.ts
 import { NextResponse } from "next/server"
 import { sql } from '../../../../lib/neon/sql';
 import { supabaseServerComponent } from '../../../../lib/supabase/server';
