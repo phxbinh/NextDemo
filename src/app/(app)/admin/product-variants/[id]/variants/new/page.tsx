@@ -1,6 +1,6 @@
 import VariantForm from "@/components/product-variants/VariantForm";
 
-export default function NewVariantPage({
+export default async function NewVariantPage({
   params,
 }: {
   params: Promise<{ id: string }>;
