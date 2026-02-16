@@ -1,5 +1,5 @@
 
-
+// src/app/(app)/admin/product-variants/[id]/variants/page.tsx
 import React from "react";
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
