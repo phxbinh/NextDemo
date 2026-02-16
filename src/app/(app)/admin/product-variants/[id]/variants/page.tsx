@@ -44,7 +44,7 @@ export default async function VariantsPage({
         <h1 className="text-2xl font-bold">Product Variants</h1>
 
         <Link
-          href={`/admin/products/${id}/variants/new`}
+          href={`/admin/product-variants/${id}/variants/new`}
           className="px-4 py-2 bg-green-600 text-white rounded"
         >
           + Add Variant
