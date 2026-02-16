@@ -2,7 +2,7 @@
 // src/app/(app)/admin/product-variants/[id]/variants/[variantId]/pqge.tsx
 import VariantForm from "@/components/product-variants/VariantForm";
 
-export default function EditVariantPage({
+export default async function EditVariantPage({
   params,
 }: {
   params: Promise<{ id: string; variantId: string }>;
