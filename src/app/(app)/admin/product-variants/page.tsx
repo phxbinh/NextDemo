@@ -43,7 +43,7 @@ export default async function ProductsPage() {
 
       <table className="w-full border">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="font-bold">
             <th className="p-2 border">Name</th>
             <th className="p-2 border">Code</th>
           </tr>
@@ -59,7 +59,7 @@ export default async function ProductsPage() {
                   {p.name}
                 </Link>
               </td>
-              <td className="p-2 border">{p.code}</td>
+              <td className="p-2 border">{p.status}</td>
             </tr>
           ))}
         </tbody>
