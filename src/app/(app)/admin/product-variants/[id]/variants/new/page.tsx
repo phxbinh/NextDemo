@@ -1,5 +1,5 @@
 import VariantForm from "@/components/product-variants/VariantForm";
-import CteateVariant from "./CteateVariant";
+import VariantManager from "./CteateVariant";
 
 export default async function NewVariantPage({
   params,
@@ -12,7 +12,7 @@ export default async function NewVariantPage({
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Add Variant</h1>
 
-      <VariantForm productId={id} />
+      <VariantManager productId={id} />
     </div>
   );
 }
