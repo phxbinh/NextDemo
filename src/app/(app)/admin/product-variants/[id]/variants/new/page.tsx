@@ -1,6 +1,6 @@
 // src/app/(app)/admin/product-variants/[id]/variants/new/page.tsx
 import { sql } from "@/lib/neon/sql";
-import VariantManager from "./CteateVariant";
+import VariantManager from "./CreateVariant";
 
 type ProductRow = {
   id: string;
