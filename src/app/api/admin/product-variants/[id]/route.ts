@@ -151,6 +151,36 @@ export async function DELETE(
   }
 }
 
+export async function GET(
+  req: Request,
+  context: { params: Promise<{ id: string }> }
+) {
+  const { id } = await context.params;
+
+  try {
+    const rows = await sql`
+      select *
+      from product_variants
+      where id = ${id}
+    `;
+
+    if (rows.length === 0) {
+      return NextResponse.json(
+        { error: "Variant not found" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(rows[0]);
+
+  } catch (err) {
+    return NextResponse.json(
+      { error: "Failed to fetch variant" },
+      { status: 500 }
+    );
+  }
+}
+
 
 
 
