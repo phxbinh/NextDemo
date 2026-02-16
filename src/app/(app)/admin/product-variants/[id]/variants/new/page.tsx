@@ -1,4 +1,5 @@
 import VariantForm from "@/components/product-variants/VariantForm";
+import CteateVariant from "./CteateVariant";
 
 export default async function NewVariantPage({
   params,
