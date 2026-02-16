@@ -1,8 +1,9 @@
 import Link from "next/link";
+import {DeleteButton} from "@/components/product-variants/DeleteButton";
 
 async function getVariants(productId: string) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/product-variants?productId=${productId}`,
+    `/api/admin/product-variants?productId=${productId}`,
     { cache: "no-store" }
   );
 
