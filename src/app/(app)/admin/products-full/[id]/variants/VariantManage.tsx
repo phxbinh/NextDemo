@@ -231,7 +231,7 @@ export default function VariantManager({
       {/* Attributes selectors – giữ nguyên */}
       <div className="border p-4 rounded space-y-4">
         <h2 className="font-semibold">Thuộc tính</h2>
-        <pre className="text-sm p-4 rounded overflow-auto bg-gray-50">
+        <pre className="text-sm p-4 rounded overflow-auto">
           {JSON.stringify(attributes, null, 2)}
         </pre>
 
