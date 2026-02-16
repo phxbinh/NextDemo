@@ -92,7 +92,13 @@ async function handleSubmit(e: any) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-
+    if (res.ok) {
+      router.push(`/admin/product-variants/${productId}/variants`);
+      router.refresh();
+    } else {
+      alert("Save failed");
+    }
+  }
 
 
 
