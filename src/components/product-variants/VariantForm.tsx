@@ -32,6 +32,7 @@ export default function VariantForm({
       });
   }, [variantId]);
 
+/*
   async function handleSubmit(e: any) {
     e.preventDefault();
 
@@ -62,6 +63,41 @@ export default function VariantForm({
       alert("Save failed");
     }
   }
+*/
+
+
+async function handleSubmit(e: any) {
+  e.preventDefault();
+
+  const payload: any = {
+    sku: form.sku,
+    price: Number(form.price),
+    stock: Number(form.stock),
+  };
+
+  // chỉ gửi product_id khi create
+  if (!variantId) {
+    payload.product_id = productId;
+    payload.attribute_value_ids = []; // create bắt buộc có
+  }
+
+  const url = variantId
+    ? `/api/admin/product-variants/${variantId}`
+    : `/api/admin/product-variants`;
+
+  const method = variantId ? "PUT" : "POST";
+
+  const res = await fetch(url, {
+    method,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+
+
+
+
+
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 max-w-md">
