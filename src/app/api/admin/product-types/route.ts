@@ -1,5 +1,6 @@
+//src/app/api/admin/product-types/route.ts
 import { NextRequest, NextResponse } from "next/server"
-import { sql } from "@/lib/neon/sql" // chỉnh lại path nếu khác
+import { sql } from "@/lib/neon/sql";
 
 // GET: list product types
 export async function GET() {
