@@ -1,4 +1,4 @@
-
+//src/app/api/admin/products/[id]/route.ts
 import { NextResponse } from 'next/server';
 import { supabaseServerComponent } from '@/lib/supabase/server';
 import { assertAdmin } from '@/lib/auth/assertAdmin';
