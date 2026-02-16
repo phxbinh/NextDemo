@@ -68,7 +68,7 @@ export default async function VariantsPage({
 
       <table className="w-full border">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="font-bold">
             <th className="p-2 border">SKU</th>
             <th className="p-2 border">Price</th>
             <th className="p-2 border">Stock</th>
