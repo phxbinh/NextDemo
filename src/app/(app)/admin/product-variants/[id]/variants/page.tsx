@@ -13,7 +13,7 @@ async function getVariants(id: string) {
   const protocol =
     process.env.NODE_ENV === 'development' ? 'http' : 'https';
 
-  const res = await fetch(`${protocol}://${host}/api/admin/product-variants/${id}`, {
+  const res = await fetch(`${protocol}://${host}/api/admin/product-variants?${id}`, {
     cache: 'no-store',
     headers: {
       cookie: h.get('cookie') ?? '',
