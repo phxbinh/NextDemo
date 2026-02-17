@@ -1,3 +1,4 @@
+/*
 'use client';
 
 import Link from 'next/link';
@@ -37,6 +38,109 @@ export default function Sidebar({ onNavigate }: SidebarProps) {
               </Link>
             );
           })}
+      </nav>
+    </aside>
+  );
+}
+*/
+
+// components/Sidebar.tsx
+'use client';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+import { ChevronDown, ChevronRight } from 'lucide-react'; // hoặc dùng heroicons / icon nào bạn thích
+import { sidebarLinks, type SidebarLink } from './links';
+
+type SidebarProps = {
+  onNavigate?: () => void;
+};
+
+export default function Sidebar({ onNavigate }: SidebarProps) {
+  const pathname = usePathname();
+  const [openMenus, setOpenMenus] = useState<Set<string>>(new Set());
+
+  const toggleMenu = (name: string) => {
+    setOpenMenus((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(name)) {
+        newSet.delete(name);
+      } else {
+        newSet.add(name);
+      }
+      return newSet;
+    });
+  };
+
+  const isActive = (href?: string) =>
+    href && (pathname === href || pathname.startsWith(href + '/'));
+
+  const isSectionActive = (item: SidebarLink) => {
+    if (item.href && isActive(item.href)) return true;
+    if (item.children?.some((child) => isActive(child.href))) return true;
+    return false;
+  };
+
+  const renderLink = (link: SidebarLink, depth = 0) => {
+    const hasChildren = !!link.children?.length;
+    const active = isActive(link.href);
+    const sectionActive = isSectionActive(link);
+    const isOpen = openMenus.has(link.name);
+
+    const paddingLeft = depth * 12 + 16; // 1rem = 16px
+
+    if (hasChildren) {
+      return (
+        <div key={link.name} className="select-none">
+          <button
+            type="button"
+            onClick={() => toggleMenu(link.name)}
+            className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition
+              ${sectionActive ? 'text-cyan-300 bg-cyan-900/30' : 'text-gray-300 hover:bg-cyan-900/20'}`}
+            style={{ paddingLeft: `${paddingLeft}px` }}
+          >
+            <span>{link.name}</span>
+            {isOpen ? (
+              <ChevronDown size={18} className="transition-transform" />
+            ) : (
+              <ChevronRight size={18} className="transition-transform" />
+            )}
+          </button>
+
+          {isOpen && (
+            <div className="mt-1 mb-2 space-y-1">
+              {link.children!.map((child) => renderLink(child, depth + 1))}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    // Leaf link
+    return (
+      <Link
+        key={link.href}
+        href={link.href!}
+        onClick={onNavigate}
+        className={`block rounded-xl transition
+          ${active
+            ? 'bg-cyan-900/50 text-cyan-200 font-medium'
+            : 'text-gray-300 hover:bg-cyan-900/25 hover:text-cyan-200'
+          }`}
+        style={{ paddingLeft: `${paddingLeft}px`, paddingTop: '0.75rem', paddingBottom: '0.75rem', paddingRight: '1rem' }}
+      >
+        {link.name}
+      </Link>
+    );
+  };
+
+  return (
+    <aside className="h-full w-64 bg-black/50 backdrop-blur-xl border-r border-cyan-500/20 overflow-y-auto">
+      <nav className="p-6 space-y-1">
+        {sidebarLinks
+          .filter((l) => l.showInSidebar !== false)
+          .map((link) => renderLink(link, 0))}
       </nav>
     </aside>
   );
