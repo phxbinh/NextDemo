@@ -32,7 +32,7 @@ export default async function ProductsPage() {
   const products = await getProducts();
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-0 space-y-6">
 
       <h1 className="text-2xl font-bold">
         Admin Products
