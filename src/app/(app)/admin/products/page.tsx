@@ -55,7 +55,7 @@ export default async function ProductsPage() {
 
       <div className="border rounded overflow-hidden">
         <table className="w-full text-left">
-          <thead className="bg-gray-100">
+          <thead className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white">
             <tr>
               <th className="p-3">Name</th>
               <th className="p-3">Slug</th>
