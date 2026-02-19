@@ -106,7 +106,7 @@ export default function ProductTypesPage() {
         onSubmit={
           editingId ? (e) => { e.preventDefault(); handleUpdate(editingId) } : handleCreate
         }
-        className="flex gap-4"
+        className="flex gap-2"
       >
         <input
           placeholder="code (vd: shirt)"
