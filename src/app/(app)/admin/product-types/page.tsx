@@ -102,44 +102,48 @@ export default function ProductTypesPage() {
       <h1 className="text-2xl font-bold">Product Types</h1>
 
       {/* FORM */}
-      <form
-        onSubmit={
-          editingId ? (e) => { e.preventDefault(); handleUpdate(editingId) } : handleCreate
-        }
-        className="flex gap-2"
-      >
-        <input
-          placeholder="code (vd: shirt)"
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-          className="border px-3 py-2"
-        />
+<form
+  onSubmit={
+    editingId 
+      ? (e) => { e.preventDefault(); handleUpdate(editingId) } 
+      : handleCreate
+  }
+  className="flex flex-wrap gap-2 items-center"
+>
+  <input
+    placeholder="code (vd: shirt)"
+    value={code}
+    onChange={(e) => setCode(e.target.value)}
+    className="border px-3 py-2 flex-1 min-w-[120px]"
+  />
 
-        <input
-          placeholder="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="border px-3 py-2"
-        />
+  <input
+    placeholder="name"
+    value={name}
+    onChange={(e) => setName(e.target.value)}
+    className="border px-3 py-2 flex-1 min-w-[180px]"
+  />
 
-        <button className="bg-black text-white px-4 py-2">
-          {editingId ? "Update" : "Create"}
-        </button>
+  <button 
+    className="bg-black text-white px-4 py-2 whitespace-nowrap"
+  >
+    {editingId ? "Update" : "Create"}
+  </button>
 
-        {editingId && (
-          <button
-            type="button"
-            onClick={() => {
-              setEditingId(null)
-              setCode("")
-              setName("")
-            }}
-            className="border px-4 py-2"
-          >
-            Cancel
-          </button>
-        )}
-      </form>
+  {editingId && (
+    <button
+      type="button"
+      onClick={() => {
+        setEditingId(null)
+        setCode("")
+        setName("")
+      }}
+      className="border px-4 py-2 whitespace-nowrap"
+    >
+      Cancel
+    </button>
+  )}
+</form>
 
       {/* TABLE */}
       {/*
