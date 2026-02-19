@@ -1,8 +1,9 @@
 // src/app/layout.js
 
+import type { Metadata } from 'next';
 import './globals.css';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Todo App Neon + Next.js',
   description: 'Simple Todo with Neon DB',
 };
