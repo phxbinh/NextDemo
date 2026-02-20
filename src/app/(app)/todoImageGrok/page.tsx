@@ -6,6 +6,8 @@ import { addTodoAction } from '../../../lib/actions/addTodoAction';
 import { getTodosWithImages, addTodo } from "../../../lib/todos";
 import { revalidatePath } from "next/cache";
 
+import TodoItem from '@/components/TodoItem';
+
 import TodoAddForm from '../../actions/TodoAddForm';
 
 export default async function TodosPage() {
@@ -30,6 +32,7 @@ export default async function TodosPage() {
         </div>
       ) : (
         <div className="space-y-6">
+{/*
           {todos.map((todo) => (
             <div
               key={todo.id}
@@ -61,6 +64,11 @@ export default async function TodosPage() {
                     )}
                   </div>
                 ))}
+*/}
+       {todos.map((todo) => (
+            <TodoItem key={todo.id} todo={todo} />
+          ))}
+
               </div>
 
               {/* Upload ảnh cho todo này */}
