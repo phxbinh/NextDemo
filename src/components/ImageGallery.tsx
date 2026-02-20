@@ -41,6 +41,7 @@ export default function ImageGallery({
           <TodoImage
             path={currentImage.path}
             alt={currentImage.alt}
+            fill
             className="absolute inset-0 w-full h-full object-cover"
           />
         )}
@@ -131,6 +132,7 @@ export default function ImageGallery({
           <TodoImage
             path={img.path}
             alt={img.alt || 'Thumbnail'}
+            fill
             className="w-full h-full object-cover"  // giữ nguyên, nhưng đảm bảo div cha có overflow-hidden
           />
         </button>
