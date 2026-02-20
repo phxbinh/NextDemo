@@ -307,10 +307,11 @@ useEffect(() => {
 */}
 
 {images.length > 1 && (
-  <div className="w-[420px] overflow-x-hidden min-w-0">
+  <div className="w-full overflow-x-hidden min-w-0">
     <div
       ref={thumbnailsRef}
       className="
+        w-full
         flex flex-nowrap gap-1
         overflow-x-auto
         pb-4 pt-1 pr-2
