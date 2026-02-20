@@ -1,54 +1,85 @@
-// Ví dụ: components/TodoCard.tsx hoặc ProductCard.tsx
+// components/TodoCard.tsx
 'use client';
 
 import { useRouter } from 'next/navigation';
-import TodoImage from '@/components/TodoImage'; // component hiển thị ảnh của bạn
+import { TodoImage } from '@/components/TodoImage';
+
+interface ImageItem {
+  image_path: string;
+  alt?: string;
+}
 
 interface Todo {
   id: string;
-  slug?: string;       // nếu dùng slug cho URL đẹp
-  images: { image_path: string; alt?: string }[];
-  // các field khác...
+  slug?: string;           // optional, nếu có slug thì dùng cho URL đẹp hơn
+  images: ImageItem[];
+  // các field khác như title, description... nếu cần hiển thị
 }
 
-export default function TodoCard({ todo }: { todo: Todo }) {
+interface TodoCardProps {
+  todo: Todo;
+}
+
+export default function TodoCard({ todo }: TodoCardProps) {
   const router = useRouter();
 
-  const handleImageClick = (index: number) => {
-    // Chuyển đến trang chi tiết + truyền index ảnh qua query
-    const url = todo.slug 
-      ? `/todos/${todo.slug}?img=${index}`
-      : `/todos/${todo.id}?img=${index}`;
-    
+  // Click vào ảnh cụ thể → chuyển trang chi tiết + focus đúng ảnh qua query ?img=
+  const handleImageClick = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
+    e.stopPropagation(); // ngăn lan ra toàn card
+
+    const basePath = todo.slug ? `/todos/${todo.slug}` : `/todos/${todo.id}`;
+    router.push(`${basePath}?img=${index}`);
+  };
+
+  // Click vào phần còn lại của card → chuyển trang chi tiết bình thường (không focus ảnh)
+  const handleCardClick = () => {
+    const url = todo.slug ? `/todos/${todo.slug}` : `/todos/${todo.id}`;
     router.push(url);
   };
 
   const displayedImages = todo.images.slice(0, 6);
+  const hasMore = todo.images.length > 6;
+
+  // Trường hợp không có ảnh
+  if (displayedImages.length === 0) {
+    return (
+      <div
+        className="cursor-pointer rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-gray-50 h-48 flex items-center justify-center text-gray-500 text-sm"
+        onClick={handleCardClick}
+      >
+        Chưa có ảnh
+      </div>
+    );
+  }
 
   return (
-    <div className="cursor-pointer" onClick={() => router.push(todo.slug ? `/todos/${todo.slug}` : `/todos/${todo.id}`)}>
-      {/* ... phần header, title, etc của card */}
+    <div
+      className="cursor-pointer rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 bg-white"
+      onClick={handleCardClick}
+    >
+      {/* Nếu có title hoặc mô tả, thêm ở đây */}
+      {/* <div className="p-3 border-b">
+        <h3 className="font-medium line-clamp-1">{todo.title || 'Todo không tên'}</h3>
+      </div> */}
 
-      <div className="grid grid-cols-3 auto-rows-[1fr] gap-1 rounded-lg overflow-hidden">
-        {displayedImages.map((img, i) => (
+      <div className="grid grid-cols-3 auto-rows-fr gap-1">
+        {displayedImages.map((img, index) => (
           <div
             key={img.image_path}
-            className={`relative aspect-square overflow-hidden ${
-              i === 0 ? 'col-span-2 row-span-2' : ''
+            className={`relative overflow-hidden aspect-square cursor-pointer group ${
+              index === 0 ? 'col-span-2 row-span-2' : ''
             }`}
-            onClick={(e) => {
-              e.stopPropagation(); // Ngăn click card chuyển trang, chỉ mở gallery
-              handleImageClick(i);
-            }}
+            onClick={(e) => handleImageClick(e, index)}
           >
             <TodoImage
               path={img.image_path}
-              alt={img.alt || `Ảnh ${i + 1}`}
-              className="block w-full h-full object-cover transition-transform hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              // alt nên có để accessibility tốt hơn
+              alt={img.alt || `Ảnh ${index + 1}`}
             />
 
-            {i === 5 && todo.images.length > 6 && (
-              <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-white text-xl font-semibold">
+            {index === 5 && hasMore && (
+              <div className="absolute inset-0 bg-black/50 flex items-center justify-center text-white text-lg font-bold">
                 +{todo.images.length - 6}
               </div>
             )}
@@ -56,7 +87,10 @@ export default function TodoCard({ todo }: { todo: Todo }) {
         ))}
       </div>
 
-      {/* ... phần footer của card */}
+      {/* Footer nếu cần: ngày tạo, số like, comment... */}
+      {/* <div className="p-3 text-xs text-gray-500 flex justify-between">
+        <span>{new Date(todo.created_at).toLocaleDateString('vi-VN')}</span>
+      </div> */}
     </div>
   );
 }
