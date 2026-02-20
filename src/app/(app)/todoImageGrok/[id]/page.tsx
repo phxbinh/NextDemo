@@ -83,7 +83,7 @@ console.log('D_P: inIdx:', initialIndex);
 
 
   return (
-   <div className="w-full mx-auto px-1 py-8">
+   <div className="w-full mx-auto py-8">
 
       <h1 className="text-3xl font-bold mb-4">{todo.title}</h1>
 
@@ -97,7 +97,7 @@ console.log('D_P: inIdx:', initialIndex);
 
       {/* Gallery ảnh */}
       {galleryImages.length > 0 ? (
-        <div className="w-[400px] mx-auto mb-2 px-1 overflow-hidden">
+        <div className="w-[400px] mx-auto mb-2 overflow-hidden">
           <h2 className="text-2xl font-semibold mb-4">Ảnh đính kèm</h2>
           <ImageGallery images={galleryImages} initialIndex={initialIndex} />
         </div>
