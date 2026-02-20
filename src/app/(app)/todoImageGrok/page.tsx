@@ -64,12 +64,13 @@ export default async function TodosPage() {
                     )}
                   </div>
                 ))}
+              </div>
 */}
        {todos.map((todo) => (
             <TodoItem key={todo.id} todo={todo} />
           ))}
 
-              </div>
+
 
               {/* Upload ảnh cho todo này */}
               <TodoImageUploader todoId={todo.id} />
