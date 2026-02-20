@@ -24,14 +24,15 @@ export default function ImageGallery({
 
   const currentImage = images[currentIndex];
 
-/*
+
   useEffect(() => {
     if (thumbnailsRef.current) {
       const active = thumbnailsRef.current.children[currentIndex] as HTMLElement;
       active?.scrollIntoView({ behavior: 'smooth', inline: 'center' });
     }
   }, [currentIndex]);
-*/
+
+/*
 useEffect(() => {
   if (!thumbnailsRef.current) return;
 
@@ -54,7 +55,7 @@ useEffect(() => {
     behavior: 'smooth',
   });
 }, [currentIndex]);
-
+*/
 
 
 
