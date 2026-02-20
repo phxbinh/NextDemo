@@ -83,8 +83,8 @@ console.log('D_P: inIdx:', initialIndex);
 
 
   return (
-   {/* <div className="max-w-4xl mx-auto px-0 py-8">*/}
-<div className="w-full max-w-4xl mx-auto px-4 py-8">
+   <div className="w-full max-w-4xl mx-auto px-4 py-8">
+
       <h1 className="text-3xl font-bold mb-4">{todo.title}</h1>
 
       {todo.content && (
