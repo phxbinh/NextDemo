@@ -60,7 +60,7 @@ useEffect(() => {
   if (images.length === 0) return null;
 
   return (
-    <div className="min-w-0 space-y-4">
+    <div className="w-full min-w-0 space-y-4">
       {/* Main image */}
       <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-gray-100 shadow-sm">
         {currentImage && (
