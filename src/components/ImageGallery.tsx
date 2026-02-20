@@ -40,7 +40,7 @@ export default function ImageGallery({
         {currentImage && (
           <TodoImage
             path={currentImage.path}
-            alt=''
+            alt={currentImage.alt}
             className="w-full h-full object-contain"
           />
         )}
@@ -65,7 +65,7 @@ export default function ImageGallery({
               >
                 <TodoImage
                   path={img.path}
-                  alt=''
+                  alt={img.path}
                   className="w-full h-full object-cover"
                 />
               </button>
