@@ -41,7 +41,7 @@ export default function ImageGallery({
           <TodoImage
             path={currentImage.path}
             alt={currentImage.alt}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 object-cover"
           />
         )}
       </div>
