@@ -138,7 +138,7 @@ export default function ImageGallery({
     </div>
   </div>
 )}*/}
-{/* Thumbnails */}
+{/* Thumbnails */} {/*
 {images.length > 1 && (
   <div className="w-full overflow-hidden">
     <div
@@ -171,7 +171,47 @@ export default function ImageGallery({
       ))}
     </div>
   </div>
+)}*/}
+
+
+{/* Thumbnails */}
+{images.length > 1 && (
+  <div className="w-full overflow-hidden">
+    <div
+      ref={thumbnailsRef}
+      className="
+        flex gap-3
+        overflow-x-auto
+        whitespace-nowrap
+        pb-4 pt-1
+      "
+      style={{ WebkitOverflowScrolling: 'touch' }}
+    >
+      {images.map((img, idx) => (
+        <button
+          key={img.id}
+          onClick={() => setCurrentIndex(idx)}
+          className={`
+            inline-block flex-none w-20 h-20
+            rounded-md overflow-hidden border-2
+            transition-all duration-200
+            ${idx === currentIndex 
+              ? 'border-blue-600 shadow-md'
+              : 'border-gray-200'
+            }
+          `}
+        >
+          <TodoImage
+            path={img.path}
+            alt={img.alt || 'Thumbnail'}
+            className="w-full h-full object-cover"
+          />
+        </button>
+      ))}
+    </div>
+  </div>
 )}
+
 
 
 
