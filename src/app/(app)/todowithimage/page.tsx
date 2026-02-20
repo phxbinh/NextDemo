@@ -51,6 +51,7 @@ export default async function TodosPage() {
                   >
                     <TodoImage
                       path={img.image_path}
+                      alt=''
                       className="block w-full h-full object-cover"
                     />
               
