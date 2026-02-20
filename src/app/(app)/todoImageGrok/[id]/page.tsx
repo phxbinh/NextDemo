@@ -95,7 +95,7 @@ console.log('D_P: inIdx:', initialIndex);
         Tạo lúc: {new Date(todo.created_at).toLocaleString('vi-VN')}
       </div>
 
-      {/* Gallery ảnh  dổid w-[400px] chống tràn trang */}
+      {/* Gallery ảnh  đổi w-[400px] chống tràn trang */}
       {galleryImages.length > 0 ? (
         <div className="w-[410px] mx-auto mb-2 overflow-hidden">
           <h2 className="text-2xl font-semibold mb-4">Ảnh đính kèm</h2>
