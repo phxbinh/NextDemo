@@ -32,51 +32,9 @@ export default async function TodosPage() {
         </div>
       ) : (
         <div className="space-y-6">
-{/*
           {todos.map((todo) => (
-            <div
-              key={todo.id}
-              className="border border-gray-200 rounded-lg p-2 space-y-3"
-            >
-              <h2 className="text-lg font-semibold">{todo.title}</h2>
-
-              {todo.content && (
-                <p className="text-sm text-gray-600">{todo.content}</p>
-              )}
-
-              <div className="grid grid-cols-3 auto-rows-[1fr] gap-1 rounded-lg overflow-hidden">
-                {todo.images.slice(0, 6).map((img, i) => (
-                  <div
-                    key={img.image_path}
-                    className={`relative aspect-square overflow-hidden ${
-                      i === 0 ? 'col-span-2 row-span-2' : ''
-                    }`}
-                  >
-                    <TodoImage
-                      path={img.image_path}
-                      className="block w-full h-full object-cover"
-                    />
-              
-                    {i === 5 && todo.images.length > 6 && (
-                      <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-white text-xl font-semibold">
-                        +{todo.images.length - 6}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-              
-              <TodoImageUploader todoId={todo.id} />
-            </div>
-          ))}
-*/}
-       {todos.map((todo) => (
             <TodoItem key={todo.id} todo={todo} />
           ))}
-
-
-
-
         </div>
       )}
     </div>
