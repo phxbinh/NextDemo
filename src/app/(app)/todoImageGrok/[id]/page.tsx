@@ -104,11 +104,10 @@ console.log('D_P: inIdx:', initialIndex);
 */}
 
       {galleryImages.length > 0 ? (
-<div className="mb-10 overflow-hidden">
-  <h2 className="text-2xl font-semibold mb-4">Ảnh đính kèm</h2>
-  <ImageGallery images={galleryImages} initialIndex={initialIndex} />
-</div>
-
+        <div className="mb-2 px-1 overflow-hidden">
+          <h2 className="text-2xl font-semibold mb-4">Ảnh đính kèm</h2>
+          <ImageGallery images={galleryImages} initialIndex={initialIndex} />
+        </div>
       ) : (
         <div className="text-center py-12 text-gray-500">
           Todo này chưa có ảnh nào
