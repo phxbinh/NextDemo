@@ -311,7 +311,7 @@ useEffect(() => {
     <div
       ref={thumbnailsRef}
       className="
-        flex flex-nowrap gap-3
+        flex flex-nowrap gap-1
         overflow-x-auto
         pb-4 pt-1 pr-2
         min-w-0
