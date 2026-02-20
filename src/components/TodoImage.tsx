@@ -19,6 +19,7 @@ export function TodoImage({ path }: { path: string }) {
 export function TodoImage({
   path,
   className = '',
+  alt=''
 }: {
   path: string;
   className?: string;
@@ -27,7 +28,7 @@ export function TodoImage({
   return (
     <img
       src={url}
-      alt=""
+      alt={alt}
       className={className}
       loading="lazy"
     />
