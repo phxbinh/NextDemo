@@ -22,6 +22,7 @@ export function TodoImage({
   alt=''
 }: {
   path: string;
+  alt: string;
   className?: string;
 }) {
   const url = getPublicImageUrl(path);
