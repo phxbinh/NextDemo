@@ -60,7 +60,7 @@ useEffect(() => {
   if (images.length === 0) return null;
 
   return (
-    <div className="w-full min-w-0 space-y-4">
+    <div className="w-[400px] min-w-0 space-y-4">
       {/* Main image */}
       <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-gray-100 shadow-sm">
         {currentImage && (
@@ -73,7 +73,7 @@ useEffect(() => {
       </div>
       {/* Thumbnails */}
       {images.length > 1 && (
-        <div className="w-full max-w-[400px] mx-auto overflow-hidden">
+        <div className="w-full  mx-auto overflow-hidden">
           <div
             ref={thumbnailsRef}
             className="
