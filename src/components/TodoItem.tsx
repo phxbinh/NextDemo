@@ -16,11 +16,11 @@ export default function TodoItem({ todo }: TodoItemProps) {
 
   const handleImageClick = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
     e.stopPropagation(); // Ngăn click lan ra toàn card
-    router.push(`/todoWithImage/${todo.id}?img=${index}`);
+    router.push(`/todoImageGrok/${todo.id}?img=${index}`);
   };
 
   const handleCardClick = () => {
-    router.push(`/todoWithImage/${todo.id}`);
+    router.push(`/todoImageGrok/${todo.id}`);
   };
 
   const displayedImages = todo.images.slice(0, 6);
