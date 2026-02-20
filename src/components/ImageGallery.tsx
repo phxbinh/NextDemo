@@ -83,7 +83,7 @@ useEffect(() => {
 
 
 {/* Main image */}
-<div className="relative aspect-[4/3] relative rounded-lg overflow-hidden bg-gray-100 shadow-sm">
+<div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-gray-100 shadow-sm">
   {currentImage && (
     <TodoImage
       path={currentImage.path}
@@ -307,7 +307,7 @@ useEffect(() => {
 */}
 
 {images.length > 1 && (
-  <div className="w-[410px] overflow-x-hidden min-w-0">
+  <div className="w-full relative overflow-x-hidden min-w-0">
     <div
       ref={thumbnailsRef}
       className="
