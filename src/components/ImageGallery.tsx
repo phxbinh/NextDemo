@@ -235,7 +235,7 @@ export default function ImageGallery({
 
 
 {images.length > 1 && (
-  <div className="w-[430px] overflow-hidden min-w-0">
+  <div className="w-[400px] overflow-hidden min-w-0">
     <div
       ref={thumbnailsRef}
       className="
