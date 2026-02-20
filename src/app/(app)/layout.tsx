@@ -19,7 +19,7 @@ export default function DashboardLayout({
   }, [pathname]);
 
 return (
-<div className="flex min-h-screen relative overflow-x-hidden">
+<div className="flex min-h-screen w-full overflow-x-hidden">
   {isSidebarOpen && (
     <div
       className="fixed inset-0 z-40 bg-black/50 md:hidden"
@@ -53,7 +53,7 @@ return (
     </main>
 */}
 
-<main className="flex-1 overflow-y-auto overflow-x-hidden px-2 py-6">
+<main className="flex-1 min-w-0 overflow-y-auto overflow-x-hidden px-4 py-6">
   {children}
 </main>
 
@@ -61,6 +61,9 @@ return (
 </div>
 )
 }
+
+
+
 
 
 
