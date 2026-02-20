@@ -73,7 +73,7 @@ useEffect(() => {
       </div>
       {/* Thumbnails */}
       {images.length > 1 && (
-        <div className="w-full max-w-[400px] mx-auto overflow-hidden">
+        <div className="w-full max-w-[600px] mx-auto overflow-hidden">
           <div
             ref={thumbnailsRef}
             className="
