@@ -48,9 +48,11 @@ return (
       </div>
     </header>
 
+  <div className="flex-1 flex flex-col overflow-hidden">  {/* thêm overflow-hidden để an toàn */}
     <main className="flex-1 min-w-0 overflow-y-auto overflow-x-hidden px-2 py-6">
       {children}
     </main>
+  </div>
 
   </div>
 </div>
