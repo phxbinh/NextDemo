@@ -51,10 +51,13 @@ export default async function TodoDetailPage({
   params,
   searchParams,
 }: {
-  params: { id: string };
-  searchParams: { img?: string };
+  params: Promise<{ id: string }>;          // ← Thêm Promise ở đây
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const todo = await getTodoById(params.id);
+  // Await params để lấy giá trị thực
+  const { id } = await params;
+
+  const todo = await getTodoById(id);
 
   if (!todo) {
     notFound();
