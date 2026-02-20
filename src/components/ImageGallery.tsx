@@ -76,30 +76,15 @@ useEffect(() => {
         <div className="w-[420px] overflow-x-hidden min-w-0">
           <div
             ref={thumbnailsRef}
-{/*
             className="
               w-full
-              flex flex-nowrap gap-1
+              flex flex-nowrap gap-2           {/* tăng gap lên 2 cho đẹp hơn */}
               overflow-x-auto
-              pb-4 pt-1 pr-2
+              pb-4 pt-1 px-1                   {/* thêm px-1 thay vì chỉ pr-2 */}
+              scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100
               min-w-0
             "
             style={{ WebkitOverflowScrolling: 'touch' }}
-*/}
-      className="
-        w-full
-        flex flex-nowrap gap-2           {/* tăng gap lên 2 cho đẹp hơn */}
-        overflow-x-auto
-        pb-4 pt-1 px-1                   {/* thêm px-1 thay vì chỉ pr-2 */}
-        scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100
-        min-w-0
-      "
-      style={{ WebkitOverflowScrolling: 'touch' }}
-
-
-
-
-
           >
             {images.map((img, idx) => (
               <button
