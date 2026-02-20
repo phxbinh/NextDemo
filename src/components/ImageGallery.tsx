@@ -49,7 +49,7 @@ export default function ImageGallery({
 
 
 {/* Main image */}
-<div className="relative w-[400px] h-[350px] sm:w-full sm:aspect-[4/3] mx-auto rounded-lg overflow-hidden bg-gray-100 shadow-sm">
+<div className="relative aspect-[4/3] relative rounded-lg overflow-hidden bg-gray-100 shadow-sm">
   {currentImage && (
     <TodoImage
       path={currentImage.path}
