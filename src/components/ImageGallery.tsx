@@ -39,7 +39,7 @@ export default function ImageGallery({
       <div className="aspect-[4/3] relative rounded-lg overflow-hidden bg-gray-100 shadow-sm">
         {currentImage && (
           <img
-            path={currentImage.path}
+            src={currentImage.path}
             alt={currentImage.alt}
             className="absolute inset-0 object-cover"
           />
