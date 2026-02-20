@@ -2,7 +2,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import TodoImage from '@/components/TodoImage';
+import {TodoImage} from '@/components/TodoImage';
 import TodoImageUploader from '@/components/TodoImageUploader'; // giữ nguyên nếu có
 
 import { TodoWithImages } from '@/lib/todos';
