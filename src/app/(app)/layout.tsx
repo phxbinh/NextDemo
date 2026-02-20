@@ -47,15 +47,10 @@ return (
         <span className="ml-4 font-bold">Neon JS</span>
       </div>
     </header>
-{/*
-    <main className="flex-1 overflow-y-auto px-4 py-6">
+
+    <main className="flex-1 min-w-0 overflow-y-auto overflow-x-hidden px-0 py-6">
       {children}
     </main>
-*/}
-
-<main className="flex-1 min-w-0 overflow-y-auto overflow-x-hidden px-0 py-6">
-  {children}
-</main>
 
   </div>
 </div>
