@@ -72,6 +72,8 @@ export default async function TodoDetailPage({
       )
     : 0;
 
+console.log('Detail page: parsed initialIndex from query:', initialIndex);
+
   // Chuẩn bị data cho gallery: chỉ truyền path (TodoImage sẽ tự resolve public URL)
   const galleryImages = todo.images.map((img, idx) => ({
     id: idx.toString(),
