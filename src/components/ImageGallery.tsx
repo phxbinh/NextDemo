@@ -266,7 +266,7 @@ useEffect(() => {
 )}*/}
 
 
-
+{/*
 {images.length > 1 && (
   <div className="w-full overflow-hidden min-w-0">
     <div
@@ -303,7 +303,45 @@ useEffect(() => {
     </div>
   </div>
 )}
+*/}
 
+{images.length > 1 && (
+  <div className="w-full overflow-hidden min-w-0">
+    <div
+      ref={thumbnailsRef}
+      className="
+        flex flex-nowrap gap-3
+        overflow-x-auto
+        pb-4 pt-1 pr-2
+        min-w-0
+      "
+      style={{ WebkitOverflowScrolling: 'touch' }}
+    >
+      {images.map((img, idx) => (
+        <button
+          key={img.id}
+          onClick={() => setCurrentIndex(idx)}
+          className={`
+            flex-shrink-0 w-20 h-20
+            rounded-md overflow-hidden
+            border-2
+            transition-colors duration-200
+            ${idx === currentIndex 
+              ? 'border-blue-600'
+              : 'border-transparent'
+            }
+          `}
+        >
+          <TodoImage
+            path={img.path}
+            alt={img.alt || 'Thumbnail'}
+            className="w-full h-full object-cover"
+          />
+        </button>
+      ))}
+    </div>
+  </div>
+)}
 
 
 
