@@ -30,8 +30,9 @@ export function TodoImage({
     <img
       src={url}
       alt={alt}
-      className={className}
+      className={`max-w-full ${className}`}
       loading="lazy"
+      decoding="async"
     />
   );
 }
