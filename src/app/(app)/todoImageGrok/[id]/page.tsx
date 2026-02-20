@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { sql } from '@/lib/neon/sql';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import {TodoImage} from '@/components/TodoImage';
+import { TodoImage } from '@/components/TodoImage';
 import ImageGallery from '@/components/ImageGallery'; // component gallery bạn đã có hoặc mình sẽ định nghĩa bên dưới
 
 // Type (tái sử dụng)
@@ -81,7 +81,7 @@ export default async function TodoDetailPage({
 
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto px-0 py-8">
       <h1 className="text-3xl font-bold mb-4">{todo.title}</h1>
 
       {todo.content && (
@@ -107,7 +107,7 @@ export default async function TodoDetailPage({
       {/* Có thể thêm nút quay lại, edit, delete, v.v. */}
       <div className="flex gap-4 mt-8">
         <a
-          href="/todoWithImage"
+          href="/todoImageGrok"
           className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition"
         >
           Quay lại danh sách
