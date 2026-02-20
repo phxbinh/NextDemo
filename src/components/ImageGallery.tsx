@@ -38,8 +38,8 @@ export default function ImageGallery({
       {/* Main image */}
       <div className="aspect-[4/3] relative rounded-lg overflow-hidden bg-gray-100 shadow-sm">
         {currentImage && (
-          <img
-            src={currentImage.path}
+          <TodoImage
+            path={currentImage.path}
             alt={currentImage.alt}
             className="absolute inset-0 object-cover"
           />
@@ -103,13 +103,13 @@ export default function ImageGallery({
 )} */}
 
 
-{/* Thumbnails */}
+{/* Thumbnails */}{/*
 {images.length > 1 && (
-  <div className="w-full">  {/* wrapper quan trọng: giới hạn full width */}
+  <div className="w-full">  
     <div
       ref={thumbnailsRef}
       className="
-        flex gap-3 overflow-x-auto pb-4 pt-1 -mx-1 px-1   /* -mx-1 + px-1 để bù padding nếu cần */
+        flex gap-3 overflow-x-auto pb-4 pt-1 -mx-1 px-1   
         snap-x snap-mandatory
         scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100
         scrollbar-thumb-rounded-full hover:scrollbar-thumb-gray-500
@@ -132,6 +132,40 @@ export default function ImageGallery({
             path={img.path}
             alt={img.alt || 'Thumbnail'}
             className="w-full h-full object-cover"  // giữ nguyên, nhưng đảm bảo div cha có overflow-hidden
+          />
+        </button>
+      ))}
+    </div>
+  </div>
+)}*/}
+{/* Thumbnails */}
+{images.length > 1 && (
+  <div className="w-full overflow-hidden">
+    <div
+      ref={thumbnailsRef}
+      className="
+        flex gap-3 overflow-x-auto pb-4 pt-1
+        snap-x snap-mandatory
+        min-w-0
+      "
+    >
+      {images.map((img, idx) => (
+        <button
+          key={img.id}
+          onClick={() => setCurrentIndex(idx)}
+          className={`
+            flex-shrink-0 w-20 h-20 rounded-md overflow-hidden border-2 
+            transition-all duration-200 snap-center
+            ${idx === currentIndex 
+              ? 'border-blue-600 scale-110 shadow-md' 
+              : 'border-gray-200 opacity-80 hover:opacity-100 hover:border-gray-400 hover:scale-105'
+            }
+          `}
+        >
+          <TodoImage
+            path={img.path}
+            alt={img.alt || 'Thumbnail'}
+            className="w-full h-full object-cover"
           />
         </button>
       ))}
