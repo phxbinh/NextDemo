@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { sql } from '@/lib/neon/sql';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import TodoImage from '@/components/TodoImage';
+import {TodoImage} from '@/components/TodoImage';
 import ImageGallery from '@/components/ImageGallery'; // component gallery bạn đã có hoặc mình sẽ định nghĩa bên dưới
 
 // Type (tái sử dụng)
