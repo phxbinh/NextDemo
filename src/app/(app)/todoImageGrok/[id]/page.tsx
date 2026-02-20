@@ -51,17 +51,26 @@ export default async function TodoDetailPage({
   params,
   searchParams,
 }: {
-  params: Promise<{ id: string }>;          // ← Thêm Promise ở đây
+  params: Promise<{ id: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  // Await params để lấy giá trị thực
+  // Await params và searchParams trước khi dùng
   const { id } = await params;
+  const resolvedSearchParams = await searchParams;
 
   const todo = await getTodoById(id);
 
   if (!todo) {
     notFound();
   }
+
+  // Bây giờ mới truy cập img an toàn
+  const initialIndex = resolvedSearchParams?.img
+    ? Math.min(
+        Math.max(Number(resolvedSearchParams.img), 0),
+        todo.images.length - 1
+      )
+    : 0;
 
   // Chuẩn bị data cho gallery: chỉ truyền path (TodoImage sẽ tự resolve public URL)
   const galleryImages = todo.images.map((img, idx) => ({
@@ -70,10 +79,6 @@ export default async function TodoDetailPage({
     alt: `Ảnh ${idx + 1} của todo "${todo.title}"`,
   }));
 
-  // Lấy index từ query ?img= (nếu có)
-  const initialIndex = searchParams.img
-    ? Math.min(Math.max(Number(searchParams.img), 0), galleryImages.length - 1)
-    : 0;
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
