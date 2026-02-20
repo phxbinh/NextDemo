@@ -30,6 +30,7 @@ export function TodoImage({
     <img
       src={url}
       alt={alt}
+      fill
       className={className}
       loading="lazy"
     />
