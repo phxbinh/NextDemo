@@ -65,6 +65,10 @@ export default async function TodosPage() {
                   </div>
                 ))}
               </div>
+              
+              <TodoImageUploader todoId={todo.id} />
+            </div>
+          ))}
 */}
        {todos.map((todo) => (
             <TodoItem key={todo.id} todo={todo} />
@@ -72,10 +76,7 @@ export default async function TodosPage() {
 
 
 
-              {/* Upload ảnh cho todo này */}
-              <TodoImageUploader todoId={todo.id} />
-            </div>
-          ))}
+
         </div>
       )}
     </div>
