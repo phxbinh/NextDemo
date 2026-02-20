@@ -46,7 +46,7 @@ export default function ImageGallery({
         )}
       </div>
 
-      {/* Thumbnails */}
+      {/* Thumbnails */} {/*
       {images.length > 1 && (
         <div className="relative">
           <div
@@ -72,7 +72,38 @@ export default function ImageGallery({
             ))}
           </div>
         </div>
-      )}
+      )} */}
+
+{/* Thumbnails */}
+{images.length > 1 && (
+  <div className="relative w-full">
+    <div
+      ref={thumbnailsRef}
+      className="flex gap-2 overflow-x-auto pb-4 px-2 snap-x snap-mandatory scrollbar-thin scrollbar-gutter-stable"
+    >
+      {images.map((img, idx) => (
+        <button
+          key={img.id}
+          onClick={() => setCurrentIndex(idx)}
+          className={`flex-shrink-0 w-20 h-20 rounded-md overflow-hidden border-2 transition-all duration-200 snap-center ${
+            idx === currentIndex
+              ? 'border-blue-600 scale-105 shadow-sm'
+              : 'border-gray-200 opacity-80 hover:opacity-100 hover:border-gray-300'
+          }`}
+        >
+          <TodoImage
+            path={img.path}
+            alt={img.alt}
+            className="w-full h-full object-cover"
+          />
+        </button>
+      ))}
+    </div>
+  </div>
+)}
+
+
+
     </div>
   );
 }
