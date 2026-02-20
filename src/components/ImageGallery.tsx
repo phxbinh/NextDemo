@@ -34,8 +34,7 @@ export default function ImageGallery({
   if (images.length === 0) return null;
 
   return (
-    {/*<div className="w-full space-y-4"> */}
-<div className="relative w-[400px] h-[350px] sm:w-full sm:aspect-[4/3] mx-auto rounded-lg">
+    <div className="w-full space-y-4">
       {/* Main image */} {/*
       <div className="aspect-[4/3] relative rounded-lg overflow-hidden bg-gray-100 shadow-sm">
         {currentImage && (
