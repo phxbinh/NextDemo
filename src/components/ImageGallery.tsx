@@ -306,7 +306,7 @@ useEffect(() => {
 */}
 
 {images.length > 1 && (
-  <div className=" overflow-x-hidden min-w-0">
+  <div className="w-[410px] overflow-hidden min-w-0">
     <div
       ref={thumbnailsRef}
       className="
