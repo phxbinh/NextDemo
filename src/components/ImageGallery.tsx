@@ -2,7 +2,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import TodoImage from '@/components/TodoImage';
+import {TodoImage} from '@/components/TodoImage';
 
 interface GalleryImage {
   id: string;
