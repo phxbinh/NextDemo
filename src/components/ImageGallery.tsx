@@ -35,7 +35,7 @@ export default function ImageGallery({
 
   return (
     <div className="w-full space-y-4">
-      {/* Main image */}
+      {/* Main image */} {/*
       <div className="aspect-[4/3] relative rounded-lg overflow-hidden bg-gray-100 shadow-sm">
         {currentImage && (
           <TodoImage
@@ -45,6 +45,26 @@ export default function ImageGallery({
           />
         )}
       </div>
+*/}
+
+
+{/* Main image */}
+<div className="relative w-full rounded-lg overflow-hidden bg-gray-100 shadow-sm aspect-square sm:aspect-[4/3]">
+  {currentImage && (
+    <TodoImage
+      path={currentImage.path}
+      alt={currentImage.alt}
+      className="w-full h-full object-cover"
+    />
+  )}
+</div>
+
+
+
+
+
+
+
 
       {/* Thumbnails */} {/*
       {images.length > 1 && (
