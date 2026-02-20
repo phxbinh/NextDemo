@@ -97,7 +97,7 @@ console.log('D_P: inIdx:', initialIndex);
 
       {/* Gallery ảnh */}
       {galleryImages.length > 0 ? (
-        <div className="w-full mb-2 px-1 overflow-hidden">
+        <div className="w-full mx-auto mb-2 px-1 overflow-hidden">
           <h2 className="text-2xl font-semibold mb-4">Ảnh đính kèm</h2>
           <ImageGallery images={galleryImages} initialIndex={initialIndex} />
         </div>
