@@ -170,7 +170,7 @@ const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
 
         {/* Swipe layer chỉ nằm trên image */}
         <div
-          className="className="absolute inset-0 select-none touch-pan-y""
+          className="absolute inset-0 select-none touch-pan-y"
           onTouchStart={hasMultipleImages ? handleTouchStart : undefined}
           onTouchEnd={hasMultipleImages ? handleTouchEnd : undefined}
         >
