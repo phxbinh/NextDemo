@@ -72,15 +72,12 @@ export default async function TodoDetailPage({
       )
     : 0;
 
-console.log('D_P: inIdx:', initialIndex);
-
   // Chuẩn bị data cho gallery: chỉ truyền path (TodoImage sẽ tự resolve public URL)
   const galleryImages = todo.images.map((img, idx) => ({
     id: idx.toString(),
     path: img.image_path,
     alt: `Ảnh ${idx + 1} của todo "${todo.title}"`,
   }));
-
 
   return (
    <div className="w-full mx-auto py-8">
