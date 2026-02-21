@@ -118,7 +118,10 @@ type="button"
         {hasMultipleImages && (
           <button
 type="button"
-            onClick={goToNext}
+            onClick={(e) => {
+    e.stopPropagation();
+    goToNext();
+  }}
             className="
               absolute right-3 top-1/2 -translate-y-1/2
               bg-black/50 hover:bg-black/70 text-white
