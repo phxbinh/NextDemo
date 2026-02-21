@@ -42,12 +42,42 @@ export default function ImageGallery({
   // =========================
   // Center active thumbnail
   // =========================
+/*
   useEffect(() => {
     if (!thumbnailsRef.current) return;
 
     const active = thumbnailsRef.current.children[currentIndex] as HTMLElement;
     active?.scrollIntoView({ behavior: 'smooth', inline: 'center' });
   }, [currentIndex]);
+*/
+useEffect(() => {
+  if (!thumbnailsRef.current) return;
+
+  const container = thumbnailsRef.current;
+  const active = container.children[currentIndex] as HTMLElement;
+
+  if (!active) return;
+
+  const containerRect = container.getBoundingClientRect();
+  const activeRect = active.getBoundingClientRect();
+
+  const offset =
+    activeRect.left -
+    containerRect.left -
+    containerRect.width / 2 +
+    activeRect.width / 2;
+
+  container.scrollBy({
+    left: offset,
+    behavior: 'smooth',
+  });
+}, [currentIndex]);
+
+
+
+
+
+
 
   // =========================
   // Swipe logic (image only)
