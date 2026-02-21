@@ -4,7 +4,7 @@ import { sql } from '@/lib/neon/sql';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { TodoImage } from '@/components/TodoImage';
-import ImageGallery from '@/components/ImageGalleryN'; // component gallery bạn đã có hoặc mình sẽ định nghĩa bên dưới
+import ImageGallery from '@/components/ImageGalleryM'; // component gallery bạn đã có hoặc mình sẽ định nghĩa bên dưới
 
 // Type (tái sử dụng)
 type TodoWithImages = {
