@@ -41,7 +41,7 @@ export default function ImageGallery({
   };
 
   const goToNext = () => {
-console.log('NEXT');
+alert('NEXT');
     setCurrentIndex((prev) =>
       prev === images.length - 1 ? 0 : prev + 1
     );
@@ -73,7 +73,7 @@ const goToNext = () => {
   const handleTouchEnd = () => {
     const diff = touchStartX.current - touchEndX.current;
     const SWIPE_THRESHOLD = 60; // pixel để coi là swipe thật
-console.log('TOUCH END');
+alert('TOUCH END');
     if (Math.abs(diff) > SWIPE_THRESHOLD) {
       if (diff > 0) {
         // gạt sang trái → next
