@@ -98,6 +98,7 @@ export default function ImageGallery({
         {/* Nút Previous */}
         {hasMultipleImages && (
           <button
+type="button"
             onClick={goToPrevious}
             className="
               absolute left-3 top-1/2 -translate-y-1/2
@@ -116,6 +117,7 @@ export default function ImageGallery({
         {/* Nút Next */}
         {hasMultipleImages && (
           <button
+type="button"
             onClick={goToNext}
             className="
               absolute right-3 top-1/2 -translate-y-1/2
