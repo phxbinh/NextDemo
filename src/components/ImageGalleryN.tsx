@@ -73,12 +73,6 @@ useEffect(() => {
   });
 }, [currentIndex]);
 
-
-
-
-
-
-/*
   // =========================
   // Swipe logic (image only)
   // =========================
@@ -106,57 +100,6 @@ useEffect(() => {
 
     touchStartX.current = null;
   };
-*/
-// =========================
-// Swipe logic (image only)
-// =========================
-const touchStartX = useRef<number | null>(null);
-const touchStartY = useRef<number | null>(null);
-
-const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-  // Ignore multi-touch (pinch zoom)
-  if (e.touches.length !== 1) return;
-
-  touchStartX.current = e.touches[0].clientX;
-  touchStartY.current = e.touches[0].clientY;
-};
-
-const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-  // Ignore multi-touch
-  if (e.changedTouches.length !== 1) {
-    touchStartX.current = null;
-    touchStartY.current = null;
-    return;
-  }
-
-  if (touchStartX.current === null || touchStartY.current === null) return;
-
-  const endX = e.changedTouches[0].clientX;
-  const endY = e.changedTouches[0].clientY;
-
-  const diffX = touchStartX.current - endX;
-  const diffY = touchStartY.current - endY;
-
-  const SWIPE_THRESHOLD = 60;
-
-  // Chỉ xử lý nếu là swipe ngang rõ ràng
-  if (
-    Math.abs(diffX) > SWIPE_THRESHOLD &&
-    Math.abs(diffX) > Math.abs(diffY)
-  ) {
-    if (diffX > 0) {
-      goToNext();
-    } else {
-      goToPrevious();
-    }
-  }
-
-  touchStartX.current = null;
-  touchStartY.current = null;
-};
-
-
-
 
   if (images.length === 0) return null;
 
@@ -170,7 +113,7 @@ const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
 
         {/* Swipe layer chỉ nằm trên image */}
         <div
-          className="absolute inset-0 select-none touch-pan-y"
+          className="absolute inset-0 select-none"
           onTouchStart={hasMultipleImages ? handleTouchStart : undefined}
           onTouchEnd={hasMultipleImages ? handleTouchEnd : undefined}
         >
