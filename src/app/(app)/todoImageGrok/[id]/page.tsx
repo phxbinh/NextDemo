@@ -4,7 +4,7 @@ import { sql } from '@/lib/neon/sql';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { TodoImage } from '@/components/TodoImage';
-import ImageGalleryN from '@/components/ImageGallery'; // component gallery bạn đã có hoặc mình sẽ định nghĩa bên dưới
+import ImageGallery from '@/components/ImageGalleryN'; // component gallery bạn đã có hoặc mình sẽ định nghĩa bên dưới
 
 // Type (tái sử dụng)
 type TodoWithImages = {
@@ -99,7 +99,7 @@ console.log('D_P: inIdx:', initialIndex);
       {galleryImages.length > 0 ? (
         <div className="w-full mx-auto mb-2 overflow-hidden">
           <h2 className="text-2xl font-semibold mb-4">Ảnh đính kèm</h2>
-          <ImageGalleryN images={galleryImages} initialIndex={initialIndex} />
+          <ImageGallery images={galleryImages} initialIndex={initialIndex} />
         </div>
       ) : (
         <div className="text-center py-12 text-gray-500">
