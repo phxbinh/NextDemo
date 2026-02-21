@@ -41,10 +41,25 @@ export default function ImageGallery({
   };
 
   const goToNext = () => {
+console.log('NEXT');
     setCurrentIndex((prev) =>
       prev === images.length - 1 ? 0 : prev + 1
     );
   };
+/*
+const handleTouchEnd = () => {
+  
+  ...
+}
+
+const goToNext = () => {
+  console.log('NEXT');
+  ...
+}
+
+*/
+
+
 
   // Xử lý swipe
   const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
@@ -58,7 +73,7 @@ export default function ImageGallery({
   const handleTouchEnd = () => {
     const diff = touchStartX.current - touchEndX.current;
     const SWIPE_THRESHOLD = 60; // pixel để coi là swipe thật
-
+console.log('TOUCH END');
     if (Math.abs(diff) > SWIPE_THRESHOLD) {
       if (diff > 0) {
         // gạt sang trái → next
