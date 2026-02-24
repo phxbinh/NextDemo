@@ -269,6 +269,9 @@ export default function Sidebar({ onNavigate }: SidebarProps) {
 */
 
 
+// src/components/Sidebar.tsx
+// full chuẩn
+/*
 'use client';
 
 import Link from 'next/link';
@@ -281,7 +284,7 @@ type SidebarProps = {
   onNavigate?: () => void;
 };
 
-/* ------------------ Animated Height Component ------------------ */
+// ------------------ Animated Height Component ------------------ 
 
 function AnimatedSubmenu({
   isOpen,
@@ -323,7 +326,7 @@ function AnimatedSubmenu({
   );
 }
 
-/* ------------------ Sidebar ------------------ */
+// ------------------ Sidebar ------------------ 
 
 export default function Sidebar({ onNavigate }: SidebarProps) {
   const pathname = usePathname();
@@ -427,6 +430,40 @@ export default function Sidebar({ onNavigate }: SidebarProps) {
           .filter((l) => l.showInSidebar !== false)
           .map((link) => renderLink(link, 0))}
       </nav>
+    </aside>
+  );
+}
+*/
+
+
+// Tách server render và client render
+// sec/components/Sidebar.tsx
+import SidebarClient from './SidebarClient'
+import { sidebarLinks } from './links'
+
+type SidebarProps = {
+  onNavigate?: () => void;
+};
+
+export default function Sidebar({ onNavigate }: SidebarProps) {
+  const visibleLinks = sidebarLinks.filter(
+    (l) => l.showInSidebar !== false
+  );
+
+  return (
+    <aside
+      className="
+        h-full w-64 
+        bg-gradient-to-b from-black/60 to-black/80 
+        backdrop-blur-xl 
+        border-r border-cyan-500/15 
+        overflow-y-auto
+      "
+    >
+      <SidebarClient
+        links={visibleLinks}
+        onNavigate={onNavigate}
+      />
     </aside>
   );
 }
