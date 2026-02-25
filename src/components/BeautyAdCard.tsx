@@ -8,7 +8,7 @@ interface BeautyAdCardProps {
 }
 
 const BeautyAdCard: React.FC<BeautyAdCardProps> = ({
-  imageUrl = "https://example.com/perfect-diary-eyes.jpg",
+  imageUrl = "./IMG_4117.jpeg",
   shopeeLink = "https://s.shopee.vn/4AuM7gCugL",
 }) => {
   return (
