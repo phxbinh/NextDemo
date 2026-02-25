@@ -3,10 +3,6 @@
 import { sql } from "./lib/neon/sql";
 import { unstable_noStore as noStore } from "next/cache";
 
-if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL is not defined");
-}
-
 export interface Todo {
   id: number;
   title: string;
