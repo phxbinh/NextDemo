@@ -6,7 +6,7 @@ import slugify from "slugify"
 
 export async function POST(req: Request) {
   try {
-    const supabase = supabaseServerComponent()
+    const supabase = await supabaseServerComponent()
 
     const {
       data: { user },
