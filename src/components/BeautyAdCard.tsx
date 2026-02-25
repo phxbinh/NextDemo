@@ -1,4 +1,5 @@
 // BeautyAdCard.tsx
+'use client'
 import React from 'react'; // Có thể bỏ nếu dự án React 17+ và tsconfig cho phép
 
 interface BeautyAdCardProps {
