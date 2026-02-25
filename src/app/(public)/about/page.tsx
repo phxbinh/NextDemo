@@ -1,6 +1,7 @@
 
 // app/page.tsx (hoặc bất kỳ trang nào)
 import PricingCardCaNhanPlus from '../../../components/PricingCardCaNhanPlus';
+import BeautyAdCard from '@/components/BeautyAdCard';
 
 export default function About() {
   return (
@@ -9,11 +10,7 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-8">
           <PricingCardCaNhanPlus />
           <PricingCardCaNhanPlus />
-          <PricingCardCaNhanPlus />
-          <PricingCardCaNhanPlus />
-          <PricingCardCaNhanPlus />
-          <PricingCardCaNhanPlus />
-          <PricingCardCaNhanPlus />
+          <BeautyAdCard />
           {/* Thêm các card khác nếu có */}
         </div>
       </>
