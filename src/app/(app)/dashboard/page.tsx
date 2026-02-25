@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 import { LogoutButton } from '../../../components/signout';
 
 export default async function DashboardPage() {
-  const supabase = supabaseServerComponent();
+  const supabase = await supabaseServerComponent();
 
   const {
     data: { user },
