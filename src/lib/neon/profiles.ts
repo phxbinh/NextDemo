@@ -27,12 +27,19 @@ await sqlApp`COMMIT`
 console.log(rowss)
 */
 
+/*
 await sqlApp`BEGIN`
 await sqlApp`SET LOCAL app.user_id = '11111111-1111-1111-1111-111111111111'`
 const rowss = await sqlApp`SELECT * FROM rls_test`
 await sqlApp`COMMIT`
 console.log(rowss)
+*/
 
+await sqlApp.transaction(async (tx) => {
+  await tx`SET LOCAL app.user_id = '11111111-1111-1111-1111-111111111111'`
+  const rowss = await tx`SELECT * FROM rls_test`
+  console.log("result: ", rowss)
+})
 
 
 
