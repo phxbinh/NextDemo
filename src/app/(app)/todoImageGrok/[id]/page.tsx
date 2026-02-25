@@ -2,9 +2,63 @@
 import { notFound } from 'next/navigation';
 import { sql } from '@/lib/neon/sql';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { TodoImage } from '@/components/TodoImage';
 import ImageGallery from '@/components/ImageGalleryN'; // component gallery bạn đã có hoặc mình sẽ định nghĩa bên dưới
+
+
+
+async function supabaseServerAction() {
+  const cookieStore = await cookies()
+
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name: string) {
+          return cookieStore.get(name)?.value
+        },
+        set(
+          name: string,
+          value: string,
+          options: {
+            path?: string
+            maxAge?: number
+            expires?: Date
+            httpOnly?: boolean
+            secure?: boolean
+            sameSite?: 'lax' | 'strict' | 'none'
+          }
+        ) {
+          cookieStore.set({ name, value, ...options })
+        },
+        remove(
+          name: string,
+          options: {
+            path?: string
+            maxAge?: number
+            expires?: Date
+            httpOnly?: boolean
+            secure?: boolean
+            sameSite?: 'lax' | 'strict' | 'none'
+          }
+        ) {
+          cookieStore.set({ name, value: '', ...options })
+        },
+      },
+    }
+  )
+}
+
+
+
+
+
+
+
+
 
 // Type (tái sử dụng)
 type TodoWithImages = {
@@ -17,8 +71,8 @@ type TodoWithImages = {
 
 // Fetch todo theo id + kiểm tra quyền user
 async function getTodoById(id: string): Promise<TodoWithImages | null> {
-  const supabase = createServerComponentClient({ cookies });
-
+  //const supabase = createServerComponentClient({ cookies });
+  const supabase = await supabaseServerAction();
   const {
     data: { user },
   } = await supabase.auth.getUser();
