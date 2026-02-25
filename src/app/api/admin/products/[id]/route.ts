@@ -9,7 +9,7 @@ export async function GET(
   req: Request,
   context: { params: Promise<{ id: string }> }
 ) {
-  const supabase = supabaseServerComponent();
+  const supabase = await supabaseServerComponent();
 
   const {
     data: { user },
