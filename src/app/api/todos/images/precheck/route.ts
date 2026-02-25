@@ -1,10 +1,9 @@
 // src/app/api/todos/images/precheck/route.ts
-import { sql } from "../../../../../lib/neon/sql";
-import { cookies } from "next/headers";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { sql } from "@/lib/neon/sql";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export async function POST(req: Request) {
-  const supabase = await createServerComponentClient({ cookies });
+  const supabase = await createSupabaseServerClient();
 
   const {
     data: { user },
