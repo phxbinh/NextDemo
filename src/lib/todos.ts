@@ -111,7 +111,8 @@ export type TodoWithImages = Todo & {
 };
 
 export async function getTodosWithImages(): Promise<TodoWithImages[]> {
-  const supabase = getSupabase();
+  //const supabase = getSupabase();
+  const supabase = await supabaseServerAction();
 
   const {
     data: { user },
