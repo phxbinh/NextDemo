@@ -7,7 +7,7 @@ import { sql } from "@/lib/neon/sql"
 export async function GET() {
   try {
     const result = await sql`
-      select id, code, name, created_at
+      select id, code, name, type, created_at
       from attributes
       order by created_at desc
     `
