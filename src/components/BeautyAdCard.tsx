@@ -74,6 +74,7 @@ const BeautyAdCard: React.FC<BeautyAdCardProps> = ({
 
         .ad-image-container {
           position: relative;
+          padding: 16px;
         }
 
         .ad-overlay {
