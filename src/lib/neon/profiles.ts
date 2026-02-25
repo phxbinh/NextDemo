@@ -1,5 +1,5 @@
 // lib/neon/profiles.ts
-import { sql } from './sql';
+import { sql, sqlApp } from './sql';
 
 export type Profile = {
   user_id: string;
@@ -10,6 +10,8 @@ export type Profile = {
 };
 
 export async function getAllProfiles(): Promise<Profile[]> {
+  const result = await sqlApp`SELECT current_user`
+console.log(result)
   const rows = await sql`
     select
       user_id,
