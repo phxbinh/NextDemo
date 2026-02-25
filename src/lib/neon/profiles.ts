@@ -11,10 +11,23 @@ export type Profile = {
 
 export async function getAllProfiles(): Promise<Profile[]> {
   //const result = await sqlApp`SELECT current_user`
-//console.log(result)
+  //console.log(result) //-> app_user
 
+//const rowss = await sqlApp`SELECT * FROM rls_test`
+//console.log(rowss) //-> []
+
+
+await sqlApp`BEGIN`
+await sqlApp`SET LOCAL app.user_id = '11111111-1111-1111-1111-111111111111'`
 const rowss = await sqlApp`SELECT * FROM rls_test`
+await sqlApp`COMMIT`
+
 console.log(rowss)
+
+
+
+
+
 
   const rows = await sql`
     select
