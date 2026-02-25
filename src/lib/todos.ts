@@ -1,8 +1,8 @@
+
+// src/lib/todos.ts
 'use server'
 import { sql } from "./neon/sql";
-import { cookies } from "next/headers";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { createServerClient } from "@supabase/ssr";
+import { createSupabaseServerClient } from "./supabase/server";
 
 export type Todo = {
   id: string;
@@ -11,62 +11,8 @@ export type Todo = {
   created_at: string;
 };
 
-
-
-async function supabaseServerAction() {
-  const cookieStore = await cookies()
-
-  return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value
-        },
-        set(
-          name: string,
-          value: string,
-          options: {
-            path?: string
-            maxAge?: number
-            expires?: Date
-            httpOnly?: boolean
-            secure?: boolean
-            sameSite?: 'lax' | 'strict' | 'none'
-          }
-        ) {
-          cookieStore.set({ name, value, ...options })
-        },
-        remove(
-          name: string,
-          options: {
-            path?: string
-            maxAge?: number
-            expires?: Date
-            httpOnly?: boolean
-            secure?: boolean
-            sameSite?: 'lax' | 'strict' | 'none'
-          }
-        ) {
-          cookieStore.set({ name, value: '', ...options })
-        },
-      },
-    }
-  )
-}
-
-
-
-
-function getSupabase() {
-  return createServerComponentClient({ cookies });
-}
-
-
 export async function getTodos(): Promise<Todo[]> {
-  //const supabase = getSupabase();
-  const supabase = await supabaseServerAction();
+  const supabase = await createSupabaseServerClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -90,7 +36,7 @@ export async function addTodo({
   title: string;
   content?: string | null;
 }) {
-  const supabase = getSupabase();
+  const supabase = await createSupabaseServerClient();
 
   const {
     data: { user },
@@ -111,8 +57,7 @@ export type TodoWithImages = Todo & {
 };
 
 export async function getTodosWithImages(): Promise<TodoWithImages[]> {
-  //const supabase = getSupabase();
-  const supabase = await supabaseServerAction();
+  const supabase = await createSupabaseServerClient();
 
   const {
     data: { user },
