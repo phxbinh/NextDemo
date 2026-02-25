@@ -8,7 +8,7 @@ import { sql } from '../../../../lib/neon/sql';
 import { ForbiddenError } from '../../../../lib/errors';
 
 export async function GET() {
-  const supabase = supabaseServerComponent();
+  const supabase = await supabaseServerComponent();
 
   const {
     data: { user },
