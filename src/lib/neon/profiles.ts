@@ -10,8 +10,12 @@ export type Profile = {
 };
 
 export async function getAllProfiles(): Promise<Profile[]> {
-  const result = await sqlApp`SELECT current_user`
-console.log(result)
+  //const result = await sqlApp`SELECT current_user`
+//console.log(result)
+
+const rows = await sqlApp`SELECT * FROM rls_test`
+console.log(rows)
+
   const rows = await sql`
     select
       user_id,
