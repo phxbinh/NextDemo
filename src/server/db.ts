@@ -1,6 +1,6 @@
 // src/server/db.ts
 
-import { sql } from "./lib/neon/sql";
+import { sql } from "@/lib/neon/sql";
 import { unstable_noStore as noStore } from "next/cache";
 
 export interface Todo {
