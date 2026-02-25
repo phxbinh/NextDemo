@@ -1,13 +1,11 @@
 // src/server/db.ts
 
-import { neon } from "@neondatabase/serverless";
+import { sql } from "./lib/neon/sql";
 import { unstable_noStore as noStore } from "next/cache";
 
 if (!process.env.DATABASE_URL) {
   throw new Error("DATABASE_URL is not defined");
 }
-
-const sql = neon(process.env.DATABASE_URL);
 
 export interface Todo {
   id: number;
