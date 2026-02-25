@@ -2,6 +2,7 @@
 import { sql } from "./neon/sql";
 import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createServerClient } from "@supabase/ssr";
 
 export type Todo = {
   id: string;
