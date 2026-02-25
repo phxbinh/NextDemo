@@ -71,7 +71,7 @@ export function supabaseServerAction() {
 
 // src/lib/supabase/server.ts
 export function supabaseServerComponent() {
-  const cookieStore = cookies()
+  const cookieStore = await cookies()
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -115,7 +115,7 @@ export function supabaseServerComponent() {
 
 
 export function supabaseServerAction() {
-  const cookieStore = cookies()
+  const cookieStore = await cookies()
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
