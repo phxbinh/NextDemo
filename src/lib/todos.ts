@@ -10,13 +10,62 @@ export type Todo = {
   created_at: string;
 };
 
+
+
+async function supabaseServerAction() {
+  const cookieStore = await cookies()
+
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name: string) {
+          return cookieStore.get(name)?.value
+        },
+        set(
+          name: string,
+          value: string,
+          options: {
+            path?: string
+            maxAge?: number
+            expires?: Date
+            httpOnly?: boolean
+            secure?: boolean
+            sameSite?: 'lax' | 'strict' | 'none'
+          }
+        ) {
+          cookieStore.set({ name, value, ...options })
+        },
+        remove(
+          name: string,
+          options: {
+            path?: string
+            maxAge?: number
+            expires?: Date
+            httpOnly?: boolean
+            secure?: boolean
+            sameSite?: 'lax' | 'strict' | 'none'
+          }
+        ) {
+          cookieStore.set({ name, value: '', ...options })
+        },
+      },
+    }
+  )
+}
+
+
+
+
 function getSupabase() {
   return createServerComponentClient({ cookies });
 }
 
-export async function getTodos(): Promise<Todo[]> {
-  const supabase = getSupabase();
 
+export async function getTodos(): Promise<Todo[]> {
+  //const supabase = getSupabase();
+  const supabase = await supabaseServerAction();
   const {
     data: { user },
   } = await supabase.auth.getUser();
