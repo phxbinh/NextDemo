@@ -70,7 +70,7 @@ export function supabaseServerAction() {
 
 
 // src/lib/supabase/server.ts
-export function supabaseServerComponent() {
+export async function supabaseServerComponent() {
   const cookieStore = await cookies()
 
   return createServerClient(
@@ -114,7 +114,7 @@ export function supabaseServerComponent() {
 }
 
 
-export function supabaseServerAction() {
+export async function supabaseServerAction() {
   const cookieStore = await cookies()
 
   return createServerClient(
