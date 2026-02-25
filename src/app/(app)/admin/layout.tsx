@@ -11,7 +11,7 @@ export default async function AdminLayout({
   children: React.ReactNode;
 }) {
   // 1️⃣ Lấy user từ Supabase session
-  const supabase = supabaseServerComponent();
+  const supabase = await supabaseServerComponent();
   const {
     data: { user },
   } = await supabase.auth.getUser();
