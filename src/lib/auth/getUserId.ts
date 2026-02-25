@@ -2,7 +2,7 @@ import { supabaseServerComponent } from '@/lib/supabase/server';
 import { UnauthorizedError } from '@/lib/errors';
 
 export async function getCurrentUserId(): Promise<string> {
-  const supabase = supabaseServerComponent();
+  const supabase = await supabaseServerComponent();
 
   const {
     data: { user },
