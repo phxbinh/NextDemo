@@ -16,7 +16,7 @@ import { syncUser, ensureProfile } from '../../lib/neon/users';
  * - KHÔNG sync Neon ở đây (chưa login / chưa verify email)
  */
 export async function signUp(formData: FormData) {
-  const supabase = supabaseServerComponent();
+  const supabase = await supabaseServerComponent();
 
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
@@ -37,7 +37,7 @@ export async function signUp(formData: FormData) {
 }
 
 export async function signIn(formData: FormData) {
-  const supabase = supabaseServerAction();
+  const supabase = await supabaseServerAction();
 
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
@@ -99,7 +99,7 @@ console.log('role', role)
  * - Neon tự chặn bằng RLS
  */
 export async function signOut() {
-  const supabase = supabaseServerAction();
+  const supabase = await supabaseServerAction();
 
   await supabase.auth.signOut();
 
