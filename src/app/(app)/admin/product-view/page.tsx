@@ -1,4 +1,4 @@
-//src/app/(app)/product-view/page.tsx
+//src/app/(app)/admin/product-view/page.tsx
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
