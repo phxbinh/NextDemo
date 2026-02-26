@@ -42,9 +42,6 @@ const result = await sqlApp.transaction((tx) => [
 
 console.log("result: ", result[1])
 
-
-
-
   const rows = await sql`
     select
       user_id,
@@ -58,3 +55,57 @@ console.log("result: ", result[1])
 
   return rows as Profile[];
 }
+
+
+
+
+
+
+
+// lib/neon/profiles.ts
+//import { withUserContext } from './userContext'
+/*
+export type Profile = {
+  user_id: string
+  role: 'admin' | 'user'
+  avatar_url: string | null
+  created_at: string
+  updated_at: string
+}
+*/
+
+export async function withUserContext<T>(
+  userId: string,
+  queryFn: (tx: any) => any
+): Promise<T> {
+  const results = await sqlApp.transaction((tx) => [
+    tx`SET LOCAL app.user_id = ${userId}`,
+    queryFn(tx),
+  ])
+
+  // index 0 = SET LOCAL
+  // index 1 = actual query result
+  return results[1] as T
+}
+
+
+export async function getAllProfiles_(
+  userId: string
+): Promise<Profile[]> {
+  return withUserContext<Profile[]>(userId, (tx) =>
+    tx`
+      select
+        user_id,
+        role,
+        avatar_url,
+        created_at,
+        updated_at
+      from profiles
+      order by created_at desc
+    `
+  )
+}
+
+
+
+
