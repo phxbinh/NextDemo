@@ -74,6 +74,7 @@ export type Profile = {
 }
 */
 
+/*
 export async function withUserContext<T>(
   userId: string,
   queryFn: (tx: any) => any
@@ -87,6 +88,23 @@ export async function withUserContext<T>(
   // index 1 = actual query result
   return results[1] as T
 }
+*/
+
+export async function withUserContext<T>(
+  userId: string,
+  queryFn: (tx: any) => any
+): Promise<T> {
+  const results = await sqlApp.transaction((tx) => [
+    tx.unsafe(`SET LOCAL app.user_id = '${userId}'`),
+    queryFn(tx),
+  ])
+
+  return results[1] as T
+}
+
+
+
+
 
 
 export async function getAllProfiles_(
