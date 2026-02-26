@@ -1,11 +1,11 @@
 //src/app/api/admin/product-type-attributes/route.ts
 import { NextResponse } from "next/server"
 import { sql } from "@/lib/neon/sql"
-import { supabaseServerComponent } from "@/lib/supabase/server"
+import { createSupabaseServerClient } from "@/lib/supabase/server"
 
 export async function POST(req: Request) {
   try {
-    const supabase = await supabaseServerComponent()
+    const supabase = await createSupabaseServerClient()
 
     const {
       data: { user },
