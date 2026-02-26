@@ -40,7 +40,7 @@ const result = await sqlApp.transaction((tx) => [
   tx`SELECT * FROM rls_test`
 ])
 
-console.log("result: ", result[1])
+//console.log("result: ", result[1])
 
   const rows = await sql`
     select
@@ -99,7 +99,7 @@ export async function withUserContext_<T>(
     tx`SELECT set_config('app.user_id', ${userId}, true)`,
     queryFn(tx),
   ])
-console.log("userId: ", userId);
+  console.log("userId: ", userId);
   return results[1] as T
 }
 
@@ -112,7 +112,7 @@ export async function withUserContext<T>(
     tx(`SET LOCAL app.user_id = '${userId}'`),
     queryFn(tx),
   ])
-
+  console.log("userId: ", userId);
   return results[1] as T
 }
 
