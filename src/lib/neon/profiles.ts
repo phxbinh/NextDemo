@@ -30,19 +30,36 @@ export async function getAllProfiles(): Promise<Profile[]> {
 
 // Lấy toàn bộ data ở bảng profiles có RLS admin
 // Bằng cách truyền auth role xuống để DB xử lý quyền
+export async function withUserContext_<T>(
+  userId: string,
+  queryFn: (tx: any) => any
+): Promise<T> {
+
+  const results = await sqlApp.transaction((tx) => [
+    tx(`SET LOCAL app.user_id = '${userId}'`),
+    queryFn(tx),
+  ])
+  console.log("userId: ", userId);
+  return results[1] as T
+}
+
 export async function withUserContext<T>(
   userId: string,
   queryFn: (tx: any) => any
 ): Promise<T> {
 
   const results = await sqlApp.transaction((tx) => [
-    //tx(`SET LOCAL app.user_id = '${userId}'`),
-    tx(`SET LOCAL app.user_id = ${userId}`),
+    tx`SELECT set_config('app.user_id', ${userId}, true)`,
     queryFn(tx),
   ])
   console.log("userId: ", userId);
   return results[1] as T
 }
+
+
+
+
+
 
 export async function getAllProfiles_(
   userId: string
