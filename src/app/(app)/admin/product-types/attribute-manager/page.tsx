@@ -1,3 +1,5 @@
+
+// src/app/(app)/admin/product-types/attribute-manage/page.tsx
 "use client"
 
 import { useEffect, useState } from "react"
