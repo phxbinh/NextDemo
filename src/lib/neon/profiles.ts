@@ -1,6 +1,7 @@
 // lib/neon/profiles.ts
-import { sql, sqlApp } from './sql';
+import { sql, sqlAdmin, sqlApp } from './sql';
 // sql: dùng quyền cao nhất bỏ qua rls
+// sqlAdmin: dùng quyền cao nhất bỏ qua rls
 // sqlApp: được kiểm soát bởi RLS auth role
 
 export type Profile = {
@@ -11,7 +12,7 @@ export type Profile = {
   updated_at: string;
 };
 
-// Lấy trực tiếp api ở server không truyền auth check role vào DB neon
+// ✳️1. Lấy trực tiếp api ở server không truyền auth check role vào DB neon
 export async function getAllProfiles(): Promise<Profile[]> {
   const rows = await sql`
     select
@@ -28,7 +29,7 @@ export async function getAllProfiles(): Promise<Profile[]> {
 }
 
 
-// Lấy toàn bộ data ở bảng profiles có RLS admin
+// ✳️2. Lấy toàn bộ data ở bảng profiles có RLS admin
 // Bằng cách truyền auth role xuống để DB xử lý quyền
 export async function withUserContext<T>(
   userId: string,
@@ -42,7 +43,6 @@ export async function withUserContext<T>(
   //console.log("userId: ", userId);
   return results[1] as T
 }
-
 
 export async function getAllProfiles_(
   userId: string
@@ -60,6 +60,22 @@ export async function getAllProfiles_(
     `
   )
 }
+
+
+// ✳️3. byPass RLS
+export async function withAdminContext<T>(
+  queryFn: (sql: typeof sqlAdmin) => Promise<T>
+): Promise<T> {
+  return queryFn(sqlAdmin)
+}
+
+export async function getAllProfiles__() {
+  return withAdminContext((sql) =>
+    sql`SELECT * FROM profiles`
+  )
+}
+
+
 
 
 
