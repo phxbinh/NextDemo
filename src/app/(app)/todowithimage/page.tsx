@@ -8,6 +8,8 @@ import { revalidatePath } from "next/cache";
 
 import TodoAddForm from '../../actions/TodoAddForm';
 
+export const dynamic = 'force-dynamic';
+
 export default async function TodosPage() {
   const todos = (await getTodosWithImages()) ?? [];
 
