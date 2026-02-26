@@ -2,13 +2,13 @@
 // src/app/api/admin/users/route.ts
 
 import { NextResponse } from 'next/server';
-import { supabaseServerComponent } from '../../../../lib/supabase/server';
-import { assertAdmin } from '../../../../lib/auth/assertAdmin';
-import { sql } from '../../../../lib/neon/sql';
-import { ForbiddenError } from '../../../../lib/errors';
+import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { assertAdmin } from '@/lib/auth/assertAdmin';
+import { sql } from '@/lib/neon/sql';
+import { ForbiddenError } from '@/lib/errors';
 
 export async function GET() {
-  const supabase = await supabaseServerComponent();
+  const supabase = await createSupabaseServerClient();
 
   const {
     data: { user },
