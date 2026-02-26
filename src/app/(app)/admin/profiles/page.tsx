@@ -1,6 +1,6 @@
+
+// src/app/(app)/admin/profiles/page.tsx 
 import { redirect } from 'next/navigation';
-import { supabaseServerComponent } from '../../../../lib/supabase/server';
-import { requireAdmin } from '../../../../lib/auth/requireAdmin';
 import { getAllProfiles } from '../../../../lib/neon/profiles';
 
 export default async function AdminProfilesPage() {
