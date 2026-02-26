@@ -1,5 +1,5 @@
 
-
+// src/app/(app)/admin/products/[id]/page.tsx
 "use client"
 
 import { useEffect, useState } from "react"
