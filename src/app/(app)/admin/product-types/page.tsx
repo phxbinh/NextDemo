@@ -1,3 +1,4 @@
+// src/app/(app)/admin/poduct-types/page.tsx
 "use client"
 
 import { useEffect, useState } from "react"
@@ -145,48 +146,7 @@ export default function ProductTypesPage() {
   )}
 </form>
 
-      {/* TABLE */}
-      {/*
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <table className="w-full border-collapse border">
-          <thead>
-            <tr>
-              <th className="border p-2">Code</th>
-              <th className="border p-2">Name</th>
-              <th className="border p-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((item) => (
-              <tr key={item.id}>
-                <td className="border p-2">{item.code}</td>
-                <td className="border p-2">{item.name}</td>
-                <td className="border p-2 space-x-2">
-                  <button
-                    onClick={() => {
-                      setEditingId(item.id)
-                      setCode(item.code)
-                      setName(item.name)
-                    }}
-                    className="border px-3 py-1"
-                  >
-                    Edit
-                  </button>
 
-                  <button
-                    onClick={() => handleDelete(item.id)}
-                    className="border px-3 py-1 text-red-600"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )} */}
 {/* TABLE */}
 {loading ? (
   <p>Loading...</p>
