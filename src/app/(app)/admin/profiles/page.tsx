@@ -1,7 +1,7 @@
 
 // src/app/(app)/admin/profiles/page.tsx 
 import { redirect } from 'next/navigation';
-import { getAllProfiles, getAllProfiles_ } from '@/lib/neon/profiles';
+import { getAllProfiles, getAllProfiles_, getAllProfiles__ } from '@/lib/neon/profiles';
 
 import { createSupabaseServerClient } from '@/lib/supabase/server';
 
@@ -17,11 +17,15 @@ export default async function AdminProfilesPage() {
   if (!user) {
     redirect('/login')
   }
-  // ✳️Lấy data toàn bộ profiles sử dụng RLS
-  const profiles = await getAllProfiles_(user.id);
+  // ✳️1. Lấy data toàn bộ profiles sử dụng RLS
+  //const profiles = await getAllProfiles_(user.id);
 
-  // Lấy data ở profile byPass RLS
-  //const profiles_ = await getAllProfiles();
+  // ✳️2. Lấy data ở profile byPass RLS
+  //const profiles = await getAllProfiles();
+
+  // 3. Sử dụng withAdminContext()
+  const profiles = await getAllProfiles__();
+
 
   return (
     <div className="p-6">
