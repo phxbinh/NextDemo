@@ -96,13 +96,14 @@ export async function withUserContext<T>(
 ): Promise<T> {
 
   const results = await sqlApp.transaction((tx) => [
-    tx(`SET LOCAL app.user_id = '${userId}'`),
+    tx`SELECT set_config('app.user_id', ${userId}, true)`,
     queryFn(tx),
   ])
 console.log("userId: ", userId);
   return results[1] as T
 }
 
+  
 
 
 
