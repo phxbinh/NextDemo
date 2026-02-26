@@ -15,8 +15,12 @@ export default async function AdminProfilesPage() {
       data: { user },
     } = await supabase.auth.getUser()
 
+ if (!user) {
+    redirect('/login')
+  }
+
   const profiles_ = await getAllProfiles();
-const profiles = await getAllProfiles_(userId: user.id);
+const profiles = await getAllProfiles_(user.id);
 
   return (
     <div className="p-6">
