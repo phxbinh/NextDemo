@@ -5,22 +5,23 @@ import { getAllProfiles, getAllProfiles_ } from '@/lib/neon/profiles';
 
 import { createSupabaseServerClient } from '@/lib/supabase/server';
 
-
-
 export default async function AdminProfilesPage() {
 
+  // Sử dụng cho✳️
   const supabase = await createSupabaseServerClient()
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
- if (!user) {
+  if (!user) {
     redirect('/login')
   }
+  // ✳️Lấy data toàn bộ profiles sử dụng RLS
+  const profiles = await getAllProfiles_(user.id);
 
-  const profiles_ = await getAllProfiles();
-const profiles = await getAllProfiles_(user.id);
+  // Lấy data ở profile byPass RLS
+  //const profiles_ = await getAllProfiles();
 
   return (
     <div className="p-6">
