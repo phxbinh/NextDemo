@@ -94,14 +94,14 @@ export async function withUserContext<T>(
   userId: string,
   queryFn: (tx: any) => any
 ): Promise<T> {
+
   const results = await sqlApp.transaction((tx) => [
-    tx.unsafe(`SET LOCAL app.user_id = '${userId}'`),
+    tx(`SET LOCAL app.user_id = '${userId}'`),
     queryFn(tx),
   ])
 
   return results[1] as T
 }
-
 
 
 
