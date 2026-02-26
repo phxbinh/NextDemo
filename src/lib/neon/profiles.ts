@@ -39,7 +39,7 @@ export async function withUserContext<T>(
     tx(`SET LOCAL app.user_id = '${userId}'`),
     queryFn(tx),
   ])
-  console.log("userId: ", userId);
+  //console.log("userId: ", userId);
   return results[1] as T
 }
 
