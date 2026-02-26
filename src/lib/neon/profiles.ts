@@ -90,7 +90,7 @@ export async function withUserContext<T>(
 }
 */
 
-export async function withUserContext<T>(
+export async function withUserContext_<T>(
   userId: string,
   queryFn: (tx: any) => any
 ): Promise<T> {
@@ -103,7 +103,18 @@ console.log("userId: ", userId);
   return results[1] as T
 }
 
-  
+export async function withUserContext<T>(
+  userId: string,
+  queryFn: (tx: any) => any
+): Promise<T> {
+
+  const results = await sqlApp.transaction((tx) => [
+    tx(`SET LOCAL app.user_id = '${userId}'`),
+    queryFn(tx),
+  ])
+
+  return results[1] as T
+}
 
 
 
