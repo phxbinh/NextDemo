@@ -1,24 +1,8 @@
-
+// src/app/(app)/admin/product-full/page.tsx
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 import Link from "next/link";
-
-
-/*
-async function getProducts() {
-  const res = await fetch(
-    "http://localhost:3000/api/admin/products",
-    { cache: "no-store" }
-  );
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch products");
-  }
-
-  return res.json();
-}
-*/
 
 async function getProducts() {
   const h = await headers();
