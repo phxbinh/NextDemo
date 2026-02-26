@@ -1,11 +1,22 @@
 
 // src/app/(app)/admin/profiles/page.tsx 
 import { redirect } from 'next/navigation';
-import { getAllProfiles } from '../../../../lib/neon/profiles';
+import { getAllProfiles, getAllProfiles_ } from '@/lib/neon/profiles';
+
+import { createSupabaseServerClient } from '@/lib/supabase/server';
+
+
 
 export default async function AdminProfilesPage() {
 
-  const profiles = await getAllProfiles();
+  const supabase = await createSupabaseServerClient()
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+  const profiles_ = await getAllProfiles();
+const profiles = await getAllProfiles_(user.id);
 
   return (
     <div className="p-6">
