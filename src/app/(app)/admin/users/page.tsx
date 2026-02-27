@@ -1,4 +1,4 @@
-
+// src/app/(app)/admin/users/page.tsx
 // Chạy phía client với useEffect
 /*
 'use client';
@@ -48,7 +48,7 @@ export default function AdminUsersPage() {
 */
 
 
-
+// src/app/(app)/admin/users/page.tsx
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
