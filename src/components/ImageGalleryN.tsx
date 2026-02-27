@@ -20,6 +20,10 @@ export default function ImageGallery({
   initialIndex = 0,
 }: ImageGalleryProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
+useEffect(() => {
+  setCurrentIndex(initialIndex);
+}, [initialIndex]);
+
   const thumbnailsRef = useRef<HTMLDivElement>(null);
 
   const hasMultipleImages = images.length > 1;
