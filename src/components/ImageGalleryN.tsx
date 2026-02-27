@@ -23,6 +23,11 @@ export default function ImageGallery({
 useEffect(() => {
   setCurrentIndex(initialIndex);
 }, [initialIndex]);
+useEffect(() => {
+  console.log("initialIndex:", initialIndex);
+  console.log("currentIndex:", currentIndex);
+}, [initialIndex, currentIndex]);
+
 
   const thumbnailsRef = useRef<HTMLDivElement>(null);
 
