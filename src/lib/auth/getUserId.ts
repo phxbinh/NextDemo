@@ -1,8 +1,9 @@
 import { supabaseServerComponent } from '@/lib/supabase/server';
+import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { UnauthorizedError } from '@/lib/errors';
 
 export async function getCurrentUserId(): Promise<string> {
-  const supabase = await supabaseServerComponent();
+  const supabase = await createSupabaseServerClient();
 
   const {
     data: { user },
