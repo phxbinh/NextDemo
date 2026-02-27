@@ -1,7 +1,7 @@
 // src/app/(app)/todoImageGrok/[id]/page.tsx
 import { notFound } from 'next/navigation';
 import { sql } from '@/lib/neon/sql';
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createSupabaseServerClient } from '@/lib/neon/server';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { TodoImage } from '@/components/TodoImage';
@@ -72,7 +72,7 @@ type TodoWithImages = {
 // Fetch todo theo id + kiểm tra quyền user
 async function getTodoById(id: string): Promise<TodoWithImages | null> {
   //const supabase = createServerComponentClient({ cookies });
-  const supabase = await supabaseServerAction();
+  const supabase = await createSupabaseServerClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
