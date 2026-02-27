@@ -24,8 +24,8 @@ useEffect(() => {
   setCurrentIndex(initialIndex);
 }, [initialIndex]);
 useEffect(() => {
-  console.log("initialIndex:", initialIndex);
-  console.log("currentIndex:", currentIndex);
+  alert("initialIndex:", initialIndex);
+  alert("currentIndex:", currentIndex);
 }, [initialIndex, currentIndex]);
 
 
