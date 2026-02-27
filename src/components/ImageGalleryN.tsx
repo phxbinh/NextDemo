@@ -17,7 +17,7 @@ interface ImageGalleryProps {
 
 export default function ImageGallery({
   images,
-  initialIndex,
+  initialIndex=0,
 }: ImageGalleryProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 useEffect(() => {
