@@ -2,10 +2,6 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import {
-  supabaseServerAction,
-  supabaseServerComponent,
-} from '@/lib/supabase/server';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
 
 import { sql } from '@/lib/neon/sql';
