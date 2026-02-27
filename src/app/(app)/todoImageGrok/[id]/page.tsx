@@ -1,7 +1,7 @@
 // src/app/(app)/todoImageGrok/[id]/page.tsx
 import { notFound } from 'next/navigation';
 import { sql } from '@/lib/neon/sql';
-import { createSupabaseServerClient } from '@/lib/neon/server';
+import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { TodoImage } from '@/components/TodoImage';
