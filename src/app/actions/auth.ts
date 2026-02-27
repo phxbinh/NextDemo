@@ -5,10 +5,12 @@ import { redirect } from 'next/navigation';
 import {
   supabaseServerAction,
   supabaseServerComponent,
-} from '../../lib/supabase/server';
-import { sql } from '../../lib/neon/sql';
+} from '@/lib/supabase/server';
+import { createSupabaseServerClient } from '@/lib/supabase/server';
 
-import { syncUser, ensureProfile } from '../../lib/neon/users';
+import { sql } from '@/lib/neon/sql';
+
+import { syncUser, ensureProfile } from '@/lib/neon/users';
 
 /**
  * SIGN UP
@@ -16,7 +18,7 @@ import { syncUser, ensureProfile } from '../../lib/neon/users';
  * - KHÔNG sync Neon ở đây (chưa login / chưa verify email)
  */
 export async function signUp(formData: FormData) {
-  const supabase = await supabaseServerComponent();
+  const supabase = await createSupabaseServerClient();
 
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
@@ -37,7 +39,7 @@ export async function signUp(formData: FormData) {
 }
 
 export async function signIn(formData: FormData) {
-  const supabase = await supabaseServerAction();
+  const supabase = await createSupabaseServerClient();
 
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
@@ -99,7 +101,7 @@ console.log('role', role)
  * - Neon tự chặn bằng RLS
  */
 export async function signOut() {
-  const supabase = await supabaseServerAction();
+  const supabase = await createSupabaseServerClient();
 
   await supabase.auth.signOut();
 
