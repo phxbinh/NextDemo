@@ -2,63 +2,8 @@
 import { notFound } from 'next/navigation';
 import { sql } from '@/lib/neon/sql';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
-import { createServerClient } from '@supabase/ssr';
-import { cookies } from 'next/headers';
 import { TodoImage } from '@/components/TodoImage';
-import ImageGallery from '@/components/ImageGalleryN'; // component gallery bạn đã có hoặc mình sẽ định nghĩa bên dưới
-
-
-
-async function supabaseServerAction() {
-  const cookieStore = await cookies()
-
-  return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value
-        },
-        set(
-          name: string,
-          value: string,
-          options: {
-            path?: string
-            maxAge?: number
-            expires?: Date
-            httpOnly?: boolean
-            secure?: boolean
-            sameSite?: 'lax' | 'strict' | 'none'
-          }
-        ) {
-          cookieStore.set({ name, value, ...options })
-        },
-        remove(
-          name: string,
-          options: {
-            path?: string
-            maxAge?: number
-            expires?: Date
-            httpOnly?: boolean
-            secure?: boolean
-            sameSite?: 'lax' | 'strict' | 'none'
-          }
-        ) {
-          cookieStore.set({ name, value: '', ...options })
-        },
-      },
-    }
-  )
-}
-
-
-
-
-
-
-
-
+import ImageGallery from '@/components/ImageGalleryN';
 
 // Type (tái sử dụng)
 type TodoWithImages = {
@@ -71,7 +16,6 @@ type TodoWithImages = {
 
 // Fetch todo theo id + kiểm tra quyền user
 async function getTodoById(id: string): Promise<TodoWithImages | null> {
-  //const supabase = createServerComponentClient({ cookies });
   const supabase = await createSupabaseServerClient();
   const {
     data: { user },
@@ -162,7 +106,7 @@ export default async function TodoDetailPage({
       <div className="flex gap-4 mt-8">
         <a
           href="/todoImageGrok"
-          className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition"
+          className="px-4 py-2 rounded hover:bg-gray-300 transition"
         >
           Quay lại danh sách
         </a>
