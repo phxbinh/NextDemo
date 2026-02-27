@@ -87,12 +87,23 @@ export default async function TodoDetailPage({
   }
 
   // Bây giờ mới truy cập img an toàn
+/*
   const initialIndex = resolvedSearchParams?.img
     ? Math.min(
         Math.max(Number(resolvedSearchParams.img), 0),
         todo.images.length - 1
       )
     : 0;
+*/
+const imgParamRaw = resolvedSearchParams?.img;
+const imgParam = Array.isArray(imgParamRaw) ? imgParamRaw[0] : imgParamRaw;
+const initialIndex = Math.min(
+  Math.max(Number(imgParam ?? 0), 0),
+  todo.images.length - 1
+);
+
+
+
 
   // Chuẩn bị data cho gallery: chỉ truyền path (TodoImage sẽ tự resolve public URL)
   const galleryImages = todo.images.map((img, idx) => ({
