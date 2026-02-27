@@ -81,7 +81,7 @@ export async function getTodosWithImages(): Promise<TodoWithImages[]> {
     left join todo_images i on i.todo_id = t.id
     where t.user_id = ${user.id}
     group by t.id
-    order by t.created_at desc
+    order by t.created_at asc
   `;
 
   return rows as TodoWithImages[];
