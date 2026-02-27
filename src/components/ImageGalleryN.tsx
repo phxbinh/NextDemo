@@ -20,15 +20,6 @@ export default function ImageGallery({
   initialIndex=0,
 }: ImageGalleryProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
-useEffect(() => {
-  setCurrentIndex(initialIndex);
-}, [initialIndex]);
-useEffect(() => {
-  alert("initialIndex:"+initialIndex);
-  alert("currentIndex:"+currentIndex);
-}, [initialIndex, currentIndex]);
-
-
   const thumbnailsRef = useRef<HTMLDivElement>(null);
 
   const hasMultipleImages = images.length > 1;
@@ -88,11 +79,10 @@ useEffect(() => {
   const touchStartX = useRef<number | null>(null);
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    //touchStartX.current = e.touches[0].clientX;
+    touchStartX.current = e.touches[0].clientX;
   };
 
-  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-/*
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => { 
     if (touchStartX.current === null) return;
 
     const endX = e.changedTouches[0].clientX;
@@ -109,7 +99,6 @@ useEffect(() => {
     }
 
     touchStartX.current = null;
-*/
   };
 
   if (images.length === 0) return null;
