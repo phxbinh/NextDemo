@@ -88,10 +88,11 @@ useEffect(() => {
   const touchStartX = useRef<number | null>(null);
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    touchStartX.current = e.touches[0].clientX;
+    //touchStartX.current = e.touches[0].clientX;
   };
 
   const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+/*
     if (touchStartX.current === null) return;
 
     const endX = e.changedTouches[0].clientX;
@@ -108,6 +109,7 @@ useEffect(() => {
     }
 
     touchStartX.current = null;
+*/
   };
 
   if (images.length === 0) return null;
