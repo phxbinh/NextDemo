@@ -1,8 +1,7 @@
 // src/app/(app)/todoImageGrok/[id]/page.tsx
 import { notFound } from 'next/navigation';
-import { sql } from '@/lib/neon/sql';
+import { sqlApp } from '@/lib/neon/sql';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
-import { TodoImage } from '@/components/TodoImage';
 import ImageGallery from '@/components/ImageGalleryN';
 
 // Type (tái sử dụng)
@@ -23,7 +22,7 @@ async function getTodoById(id: string): Promise<TodoWithImages | null> {
 
   if (!user) return null;
 
-  const rows = await sql`
+  const rows = await sqlApp`
     SELECT
       t.id,
       t.title,
