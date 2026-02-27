@@ -89,10 +89,10 @@ export default async function TodoDetailPage({
   // Bây giờ mới truy cập img an toàn
   const initialIndex = resolvedSearchParams?.img
     ? Math.min(
-        Math.max(Number(resolvedSearchParams.img), 1),
-        todo.images.length
+        Math.max(Number(resolvedSearchParams.img), 0),
+        todo.images.length - 1
       )
-    : 1;
+    : 0;
 
   // Chuẩn bị data cho gallery: chỉ truyền path (TodoImage sẽ tự resolve public URL)
   const galleryImages = todo.images.map((img, idx) => ({
