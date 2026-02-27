@@ -22,6 +22,7 @@ async function getTodoById(id: string): Promise<TodoWithImages | null> {
 
   if (!user) return null;
 
+/*
   const rows = await sqlApp`
     SELECT
       t.id,
@@ -40,6 +41,30 @@ async function getTodoById(id: string): Promise<TodoWithImages | null> {
       AND t.user_id = ${user.id}
     GROUP BY t.id
   `;
+*/
+
+
+const rows = await sqlApp`
+  SELECT
+    t.id,
+    t.title,
+    t.content,
+    t.created_at,
+    COALESCE(
+      JSON_AGG(
+        JSON_BUILD_OBJECT('image_path', i.image_path)
+        ORDER BY i.created_at ASC
+      ) FILTER (WHERE i.id IS NOT NULL),
+      '[]'
+    ) AS images
+  FROM todosimages t
+  LEFT JOIN todo_images i ON i.todo_id = t.id
+  WHERE t.id = ${id}
+    AND t.user_id = ${user.id}
+  GROUP BY t.id
+`;
+
+
 
   return rows[0] as TodoWithImages | undefined ?? null;
 }
