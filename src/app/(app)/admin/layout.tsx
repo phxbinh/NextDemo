@@ -1,9 +1,9 @@
 // app/(app)/admin/layout.tsx
 import { redirect } from 'next/navigation';
 import Link from "next/link";
-import { supabaseServerComponent } from '../../../lib/supabase/server';
-import { requireAdmin } from '../../../lib/auth/requireAdmin';
-import { ForbiddenError } from '../../../lib/errors';
+import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { requireAdmin } from '@/lib/auth/requireAdmin';
+import { ForbiddenError } from '@/lib/errors';
 
 export default async function AdminLayout({
   children,
@@ -11,7 +11,7 @@ export default async function AdminLayout({
   children: React.ReactNode;
 }) {
   // 1️⃣ Lấy user từ Supabase session
-  const supabase = await supabaseServerComponent();
+  const supabase = await createSupabaseServerClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -23,22 +23,19 @@ export default async function AdminLayout({
   // 2️⃣ Check role admin bằng Neon
   //await requireAdmin(user.id);
 
-/* thay bằng cái dưới do requireAdmin return boolean
-try {
-    await requireAdmin(user.id);
-  } catch (err) {
-    if (err instanceof ForbiddenError) {
-      redirect('/403');
+  /* thay bằng cái dưới do requireAdmin return boolean
+  try {
+      await requireAdmin(user.id);
+    } catch (err) {
+      if (err instanceof ForbiddenError) {
+        redirect('/403');
+      }
+      throw err;
     }
-    throw err;
+  */
+  if (!(await requireAdmin(user.id))) {
+    redirect('/403');
   }
-*/
-if (!(await requireAdmin(user.id))) {
-  redirect('/403');
-}
-
-
-
 
   // 3️⃣ OK → render toàn bộ admin routes
   return (
