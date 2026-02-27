@@ -18,13 +18,13 @@ export default async function AdminProfilesPage() {
     redirect('/login')
   }
   // ✳️1. Lấy data toàn bộ profiles sử dụng RLS
-  //const profiles = await getAllProfiles_(user.id);
+  const profiles = await getAllProfiles_(user.id);
 
   // ✳️2. Lấy data ở profile byPass RLS
   //const profiles = await getAllProfiles();
 
   // 3. Sử dụng withAdminContext()
-  const profiles = await getAllProfiles__();
+  //const profiles = await getAllProfiles__();
 
 
   return (
