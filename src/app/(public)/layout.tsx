@@ -9,7 +9,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
 }
 */
 
-
+/*
 // app/(public)/layout.tsx
 'use client';
 
@@ -31,7 +31,7 @@ export default function PublicLayout({
   }, [pathname]);
 return (
   <div className="flex min-h-screen w-full overflow-x-hidden">
-    {/* Backdrop chỉ mobile */}
+   
     {isSidebarOpen && (
       <div
         className="fixed inset-0 z-40 bg-black/50 md:hidden"
@@ -39,7 +39,7 @@ return (
       />
     )}
 
-    {/* Sidebar */}
+ 
     <aside
       className={`
         fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 transform transition-transform duration-300
@@ -50,9 +50,9 @@ return (
       <Sidebar onNavigate={() => setIsSidebarOpen(false)} />
     </aside>
 
-    {/* Main content area */}
+    
     <div className="flex-1 flex flex-col min-w-0">
-      {/* Header chỉ mobile */}
+
       <header className="md:hidden sticky top-0 z-30 bg-black/70 backdrop-blur-md border-b border-white/10">
         <div className="flex items-center justify-between px-4 h-16">
           <button
@@ -63,11 +63,10 @@ return (
             ☰
           </button>
           <span className="font-bold text-lg">Neon JS</span>
-          <div className="w-10" /> {/* giả spacer bên phải */}
+          <div className="w-10" /> 
         </div>
       </header>
 
-      {/* Nội dung chính – đẩy sang phải khi sidebar mở trên desktop */}
       <main
         className={`
           flex-1 overflow-y-auto overflow-x-hidden
@@ -83,4 +82,22 @@ return (
   </div>
 );
 }
+*/
+
+
+// src/app/(public)/layout.tsx
+import PublicShell from './PublicShell';
+
+export default function PublicLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <PublicShell>{children}</PublicShell>;
+}
+
+
+
+
+
 
