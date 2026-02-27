@@ -49,6 +49,7 @@ export default function AdminUsersPage() {
 
 
 // src/app/(app)/admin/users/page.tsx
+// Chạy trên server
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
