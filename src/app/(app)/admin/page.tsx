@@ -1,5 +1,4 @@
 import { redirect } from 'next/navigation';
-import { supabaseServerComponent } from '../../../lib/supabase/server';
 import { requireAdmin } from '../../../lib/auth/requireAdmin';
 import { getAllProfiles } from '../../../lib/neon/profiles';
 
