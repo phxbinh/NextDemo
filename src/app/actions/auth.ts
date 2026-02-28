@@ -13,6 +13,7 @@ import { syncUser, ensureProfile } from '@/lib/neon/users';
  * - Supabase tạo user
  * - KHÔNG sync Neon ở đây (chưa login / chưa verify email)
  */
+/*
 export async function signUp(formData: FormData) {
   const supabase = await createSupabaseServerClient();
 
@@ -33,6 +34,52 @@ export async function signUp(formData: FormData) {
 
   return { success: true };
 }
+*/
+
+export async function signUp(
+  prevState: any,
+  formData: FormData
+) {
+  const supabase = await createSupabaseServerClient();
+
+  const email = (formData.get('email') as string)?.trim();
+  const password = formData.get('password') as string;
+
+  if (!email || !password) {
+    return { error: 'Vui lòng nhập email và password' };
+  }
+
+  if (password.length < 6) {
+    return { error: 'Mật khẩu phải có ít nhất 6 ký tự' };
+  }
+
+  if (!process.env.NEXT_PUBLIC_SITE_URL) {
+    throw new Error('Missing NEXT_PUBLIC_SITE_URL');
+  }
+
+  const { error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/login`,
+    },
+  });
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  return {
+    success: true,
+    message: 'Đăng ký thành công! Vui lòng kiểm tra email để xác nhận tài khoản.',
+  };
+}
+
+
+
+
+
+
 
 export async function signIn(formData: FormData) {
   const supabase = await createSupabaseServerClient();
