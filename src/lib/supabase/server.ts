@@ -53,6 +53,7 @@ export async function createSupabaseServerClient() {
 
 
 // src/lib/supabase/server.ts -> Xoá
+/*
 export async function supabaseServerComponent() {
   const cookieStore = await cookies()
 
@@ -139,7 +140,7 @@ export async function supabaseServerAction() {
     }
   )
 }
-
+*/
 
 
 
