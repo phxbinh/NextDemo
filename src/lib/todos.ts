@@ -65,27 +65,6 @@ export async function getTodosWithImages(): Promise<TodoWithImages[]> {
 
   if (!user) return [];
 
-/* Chỉ có sắp xếp todosimages
-  const rows = await sql`
-    select
-      t.id,
-      t.title,
-      t.content,
-      t.created_at,
-      coalesce(
-        json_agg(
-          json_build_object('image_path', i.image_path)
-        ) filter (where i.id is not null),
-        '[]'
-      ) as images
-    from todosimages t
-    left join todo_images i on i.todo_id = t.id
-    where t.user_id = ${user.id}
-    group by t.id
-    order by t.created_at desc
-  `;
-*/
-
 // Vừa sắp xếp todosimages và sắp xếp images khi mirge bảng
 const rows = await sql`
   select
@@ -106,9 +85,6 @@ const rows = await sql`
   group by t.id
   order by t.created_at desc
 `;
-
-
-
 
   return rows as TodoWithImages[];
 }
