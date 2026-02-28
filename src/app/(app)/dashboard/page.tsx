@@ -1,10 +1,10 @@
 
-import { supabaseServerComponent } from '../../../lib/supabase/server';
+import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
-import { LogoutButton } from '../../../components/signout';
+import { LogoutButton } from '@/components/signout';
 
 export default async function DashboardPage() {
-  const supabase = await supabaseServerComponent();
+  const supabase = await createSupabaseServerClient();
 
   const {
     data: { user },
