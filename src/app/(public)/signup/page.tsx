@@ -64,7 +64,7 @@ type FormState =
 
 export default function SignupPage() {
   const [state, formAction, isPending] =
-    useActionState<FormState>(signUp, null);
+    useActionState<FormState, FormData>(signUp, null);
 
   return (
     <form
@@ -89,18 +89,15 @@ export default function SignupPage() {
         className="w-full border p-2"
       />
 
-      {/* Error */}
       {state?.error && (
         <p className="text-red-500 text-sm">
           {state.error}
         </p>
       )}
 
-      {/* Success */}
       {state?.success && (
         <p className="text-green-600 text-sm">
-          {state.message ??
-            'Đăng ký thành công! Kiểm tra email để xác nhận.'}
+          {state.message}
         </p>
       )}
 
@@ -114,7 +111,6 @@ export default function SignupPage() {
     </form>
   );
 }
-
 
 
 
