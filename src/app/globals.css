@@ -1,5 +1,7 @@
 /* app/globals.css */
 @import 'tailwindcss';
+@config "../tailwind.config.ts"; /* Chỉ đường dẫn đến file config này */
+
 
 @layer base {
   :root {
