@@ -1,5 +1,7 @@
 // src/app/api/todos/images/precheck/route.ts
 import { sql } from "@/lib/neon/sql";
+// Với sql ở trên đang dùng toàn quyền cao nhất.
+// Bỏ qua RLS và policies
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export async function POST(req: Request) {
