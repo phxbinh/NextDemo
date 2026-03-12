@@ -106,7 +106,7 @@ export default function TodoImageUploader({ todoId }: { todoId: string }) {
       const path = `${todoId}/${crypto.randomUUID()}-${file.name}`;
 
       const { error } = await supabase.storage
-        .from('products-images')
+        .from('todo-images')
         .upload(path, file, { upsert: false });
 
       if (error) {
